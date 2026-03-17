@@ -17,7 +17,7 @@ export const userRepository = {
     return rows;
   },
 
-  async findbyId(id: number): Promise<User | null> {
+  async findById(id: number): Promise<User | null> {
     const [rows] = await db.query<(User & RowDataPacket)[]>(
       "SELECT * FROM users WHERE id = ?",
       [id],
@@ -26,7 +26,7 @@ export const userRepository = {
     return rows[0] ?? null;
   },
 
-  async findbyEmail(email: string): Promise<User | null> {
+  async findByEmail(email: string): Promise<User | null> {
     const [rows] = await db.query<(User & RowDataPacket)[]>(
       "SELECT * FROM users WHERE email = ?",
       [email],
@@ -35,17 +35,24 @@ export const userRepository = {
     return rows[0] ?? null;
   },
 
-  async create(data: CreateUser): Promise<User> {
-    const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO users (username, email, password)
-       VALUES (?, ?, ?)`,
-      [data.name, data.email, data.password],
+  async findByUsername(username: string): Promise<User | null> {
+    const [rows] = await db.query<(User & RowDataPacket)[]>(
+      "SELECT * FROM users WHERE username = ?",
+      [username],
     );
 
-    return {
-      id: result.insertId,
-      ...data,
-    };
+    return rows[0] ?? null;
+  },
+
+  async create(data: CreateUser): Promise<User> {
+    await db.query(`CALL create_user_with_role(?, ?, ?, ?)`, [
+      data.username,
+      data.email,
+      data.password,
+      data.role,
+    ]);
+
+    return data as User;
   },
 
   async update(id: number, data: UpdateUser): Promise<boolean> {

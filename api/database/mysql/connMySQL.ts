@@ -1,16 +1,25 @@
-import mysql from "mysql2/promise";
+import mysql, { type PoolOptions } from "mysql2/promise";
+import fs from "fs";
 import dotenv from "dotenv";
-
 dotenv.config();
 
-export const db = mysql.createPool({
-  host: process.env.MYSQL_HOST || "",
-  user: process.env.MYSQL_USER || "",
-  password: process.env.MYSQL_PASSWORD || "",
-  database: process.env.MYSQL_DATABASE || "",
-  ssl: {
-    ca: process.env.DB_SSL_CA?.replace(/\\n/gm, "\n") || "",
-  },
+const poolOptions: PoolOptions = {
+  host: process.env.MYSQL_DB_HOST!,
+  user: process.env.MYSQL_DB_USER!,
+  password: process.env.MYSQL_DB_PASSWORD!,
+  database: process.env.MYSQL_DB_NAME!,
+  port: Number(process.env.MYSQL_DB_PORT) || 3306,
   waitForConnections: true,
   connectionLimit: 5,
-});
+};
+
+// Only add SSL if the cert path exists
+if (process.env.MYSQL_DB_CERT_PATH) {
+  poolOptions.ssl = {
+    ca: fs.readFileSync(process.env.MYSQL_DB_CERT_PATH, "utf-8"),
+  };
+}
+
+export const db = mysql.createPool(poolOptions);
+
+export default db;
