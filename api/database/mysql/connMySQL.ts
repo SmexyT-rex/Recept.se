@@ -8,7 +8,7 @@ const poolOptions: PoolOptions = {
   user: process.env.MYSQL_DB_USER!,
   password: process.env.MYSQL_DB_PASSWORD!,
   database: process.env.MYSQL_DB_NAME!,
-  port: Number(process.env.MYSQL_DB_PORT) || 3306,
+  port: Number(process.env.MYSQL_DB_PORT) || 15608,
   waitForConnections: true,
   connectionLimit: 5,
 };
