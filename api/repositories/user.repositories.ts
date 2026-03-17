@@ -1,6 +1,6 @@
 import { db } from "../database/mysql/connMySQL.js";
 import type { ResultSetHeader, RowDataPacket } from "mysql2";
-import type { User, CreateUserDto, UpdateUserDto } from "../types/user.types";
+import type { User, CreateUser, UpdateUser } from "../types/user.types.ts";
 
 export const userRepository = {
   async findAll(): Promise<User[]> {
@@ -35,11 +35,11 @@ export const userRepository = {
     return rows[0] ?? null;
   },
 
-  async create(data: CreateUserDto): Promise<User> {
+  async create(data: CreateUser): Promise<User> {
     const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO users (name, email, age, address, role)
-       VALUES (?, ?, ?, ?, ?)`,
-      [data.name, data.email, data.age, data.address, data.role],
+      `INSERT INTO users (username, email, password)
+       VALUES (?, ?, ?)`,
+      [data.name, data.email, data.password],
     );
 
     return {
@@ -48,7 +48,7 @@ export const userRepository = {
     };
   },
 
-  async update(id: number, data: UpdateUserDto): Promise<boolean> {
+  async update(id: number, data: UpdateUser): Promise<boolean> {
     const fields = Object.keys(data);
     const values = Object.values(data);
 
