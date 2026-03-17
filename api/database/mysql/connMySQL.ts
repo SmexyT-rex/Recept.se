@@ -13,7 +13,6 @@ const poolOptions: PoolOptions = {
   connectionLimit: 5,
 };
 
-// Only add SSL if the cert path exists
 if (process.env.MYSQL_DB_CERT_PATH) {
   poolOptions.ssl = {
     ca: fs.readFileSync(process.env.MYSQL_DB_CERT_PATH, "utf-8"),

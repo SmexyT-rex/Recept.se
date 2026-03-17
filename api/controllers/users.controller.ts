@@ -15,7 +15,7 @@ export const userController = {
 
   async getByUsername(req: Request<{ username: string }>, res: Response) {
     const user = await userService.getByUsername(req.params.username);
-    res.json(user);
+    res.json({ username: user.username, email: user.email });
   },
 
   async create(req: Request<{}, {}, CreateUser>, res: Response) {
