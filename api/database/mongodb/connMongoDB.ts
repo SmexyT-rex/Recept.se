@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const url = process.env.MONGODB_URI as string
+const uri = process.env.MONGODB_URI as string
 
 export async function connectMongoDB() {
     try {
