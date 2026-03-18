@@ -1,28 +1,11 @@
 import { Router } from "express";
 import { Recipe } from "../../models/recipe.js";
+import { findRecipes, postRecipe } from "../../controllers/recipe.contoller.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-    try {
-        const recipes = await Recipe.find();
-        res.json(recipes);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Could not fetch recipes" });
-    }
-});
+router.get("/", findRecipes);
 
-router.post("/", (req, res) => {
-    try {
-        const recipe = new Recipe(req.body);
-        const savedRecipe = await recipe.save();
-
-        res.status(201).json(savedRecipe);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Could not save recipe" });
-    }
-});
+router.post("/", postRecipe);
 
 export default router;
