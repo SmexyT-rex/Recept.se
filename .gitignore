@@ -29,6 +29,7 @@ coverage/
 .env
 .env.*
 !.env.example
+cert.pem
 
 # OS files
 .DS_Store
