@@ -1,5 +1,7 @@
 import { userRepository } from "../repositories/user.repositories.js";
 import type { CreateUser, UpdateUser, User } from "../types/user.types.ts";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 // export function printUser(user: User): string {
 //   return `
@@ -42,17 +44,31 @@ export const userService = {
   },
 
   async create(data: CreateUser): Promise<User> {
-    const existing = await userRepository.findByEmail(data.email);
+    const existingEmail = await userRepository.findByEmail(data.email);
+    const existingUsername = await userRepository.findByUsername(data.username);
 
-    if (existing) {
+    if (existingUsername) {
+      throw new Error("Username already exists");
+    }
+
+    if (existingEmail) {
       throw new Error("Email already exists");
     }
+
+    const hash = await bcrypt.hash(data.password, 12);
+    data.password = hash;
 
     return userRepository.create(data);
   },
 
   async update(id: number, data: UpdateUser): Promise<void> {
-    const updated = await userRepository.update(id, data);
+    const updateData = { ...data };
+
+    if (updateData.password) {
+      updateData.password = await bcrypt.hash(updateData.password, 12);
+    }
+
+    const updated = await userRepository.update(id, updateData);
 
     if (!updated) {
       throw new Error("User not found");
