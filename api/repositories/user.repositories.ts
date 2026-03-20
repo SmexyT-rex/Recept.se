@@ -72,11 +72,15 @@ export const userRepository = {
   },
 
   async delete(id: number): Promise<boolean> {
-    const [result] = await db.query<ResultSetHeader>(
-      "DELETE FROM users WHERE id = ?",
-      [id],
-    );
+    try {
+      const [result] = await db.query<any>("CALL delete_user(?)", [id]);
 
-    return result.affectedRows > 0;
+      const isDeleted = result?.[0]?.[0]?.success === 1;
+
+      return isDeleted;
+    } catch (error) {
+      console.error("Delete Procedure Error:", error);
+      return false;
+    }
   },
 };

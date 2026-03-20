@@ -62,13 +62,11 @@ export const userService = {
   },
 
   async update(id: number, data: UpdateUser): Promise<void> {
-    const updateData = { ...data };
-
-    if (updateData.password) {
-      updateData.password = await bcrypt.hash(updateData.password, 12);
+    if (data.password) {
+      data.password = await bcrypt.hash(data.password, 12);
     }
 
-    const updated = await userRepository.update(id, updateData);
+    const updated = await userRepository.update(id, data);
 
     if (!updated) {
       throw new Error("User not found");
