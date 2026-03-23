@@ -32,4 +32,24 @@ export const userController = {
     await userService.delete(Number(req.params.id));
     res.json({ message: "Deleted" });
   },
+
+  async login(
+    req: Request<{}, {}, { email: string; password: string }>,
+    res: Response,
+  ) {
+    if (!req.body) {
+      return res.status(400).json({ error: "Missing body" });
+    }
+
+    const { email, password } = req.body;
+
+    const token = await userService.login(email, password);
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      maxAge: 3600000,
+    });
+  },
 };

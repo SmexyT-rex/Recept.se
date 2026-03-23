@@ -26,8 +26,6 @@ export const userService = {
       throw new Error("User not found");
     }
 
-    // printUser(user);
-
     return user;
   },
 
@@ -37,8 +35,6 @@ export const userService = {
     if (!user) {
       throw new Error("User not found");
     }
-
-    // printUser(user);
 
     return user;
   },
@@ -79,5 +75,26 @@ export const userService = {
     if (!deleted) {
       throw new Error("User not found");
     }
+  },
+
+  async login(email: string, password: string): Promise<string> {
+    const error: string = "Invalid username or password";
+    const user = await userRepository.login(email);
+    if (!user) throw new Error(error);
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) throw new Error(error);
+
+    const userRole = user.role;
+
+    const token = jwt.sign(
+      { id: user.id, role: userRole },
+      process.env.JWT_SECRET as string,
+      {
+        expiresIn: "1h",
+      },
+    );
+
+    return token;
   },
 };

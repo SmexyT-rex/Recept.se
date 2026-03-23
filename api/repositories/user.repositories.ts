@@ -35,6 +35,22 @@ export const userRepository = {
     return rows[0] ?? null;
   },
 
+  async login(email: string): Promise<(User & { role: string }) | null> {
+    const [rows] = await db.query<(User & { role: string } & RowDataPacket)[]>(
+      `SELECT
+      u.*,
+      r.name AS role
+     FROM users u
+     JOIN user_profiles up ON up.user_id = u.id
+     JOIN roles r ON r.id = up.role_id
+     WHERE u.email = ?
+     LIMIT 1`,
+      [email],
+    );
+
+    return rows[0] ?? null;
+  },
+
   async findByUsername(username: string): Promise<User | null> {
     const [rows] = await db.query<(User & RowDataPacket)[]>(
       "SELECT * FROM users WHERE username = ?",

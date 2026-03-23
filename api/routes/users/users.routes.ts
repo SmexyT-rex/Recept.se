@@ -3,9 +3,13 @@ import { userController } from "../../controllers/users.controller.js";
 
 const router = Router();
 
+router.post("/login", userController.login);
+
 router.get("/", userController.getAll);
-router.get("/:id", userController.getById);
 router.get("/username/:username", userController.getByUsername);
+
+router.get("/:id", userController.getById);
+
 router.post("/", userController.create);
 router.patch("/:id", userController.update);
 router.delete("/:id", userController.delete);
