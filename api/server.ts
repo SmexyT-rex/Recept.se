@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import userRoutes from "./routes/users/users.routes.js";
+import webRoutes from "./routes/public/public.routes.js";
 import { testConnection } from "./database/mysql/testConn.js";
 import { connectMongoDB } from "./database/mongodb/connMongoDB.js";
 import recipeRoutes from "./routes/recipes/recipes.routes.js";
@@ -16,17 +17,10 @@ app.use(cookieParser());
 
 const webPath: string = path.join(process.cwd(), "web");
 app.use(express.static(webPath));
-
-app.use("/recipes", recipeRoutes);
+app.use("/", webRoutes);
+app.use("/api/recipes", recipeRoutes);
 app.use("/api/users", userRoutes);
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(webPath, "index.html"));
-});
-
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(webPath, "login.html"));
-});
+app.use("/api/auth", userRoutes);
 
 await connectMongoDB();
 await testConnection();

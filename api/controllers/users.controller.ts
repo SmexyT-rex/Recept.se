@@ -52,4 +52,17 @@ export const userController = {
       maxAge: 3600000,
     });
   },
+
+  async logout(req: Request, res: Response) {
+    res.clearCookie("token");
+    res.json({ message: "Logged out" });
+  },
+
+  async isAuthenticated(req: Request, res: Response) {
+    const token = req.cookies?.token;
+    if (!token) {
+      return res.status(401).json({ error: "Not authenticated" });
+    }
+    res.json({ isAuthenticated: true });
+  },
 };

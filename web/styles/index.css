@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Open Sans";
-    src: url("../fonts/open-sans.woff2") format("woff2");
+  src: url("../fonts/open-sans.woff2") format("woff2");
 }
 
 html,
@@ -10,7 +10,6 @@ body {
   font-family: "Open Sans", "times-new-roman";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 .container {
@@ -70,13 +69,13 @@ header h1 {
   height: 50vh;
   padding: 1em;
   display: flex;
-  background: linear-gradient(to right, #4facfe, #00f2fe);
+  background: url("https://images.pexels.com/photos/4676401/pexels-photo-4676401.jpeg")
+    center/cover no-repeat;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-
 
 .mobile-menu a {
   color: white;
@@ -92,12 +91,5 @@ header h1 {
   header h1 {
     margin: 0;
     font-size: 1.5rem;
-  }
-  .hamburger {
-    display: none;
-  }
-
-  .mobile-menu {
-    display: none;
   }
 }
