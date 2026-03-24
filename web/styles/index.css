@@ -1,0 +1,103 @@
+@font-face {
+  font-family: "Open Sans";
+    src: url("../fonts/open-sans.woff2") format("woff2");
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", "times-new-roman";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header {
+  background-color: #b7b7b7;
+  padding: 1rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.hamburger {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-hamburger {
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: right;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background: hsl(0, 0%, 50%);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.hero {
+  height: 50vh;
+  padding: 1em;
+  display: flex;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.mobile-menu a {
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .hamburger {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}
