@@ -20,7 +20,7 @@ function displayRecipes(recipes) {
     console.log(recipe.id);
 
     card.innerHTML = `
-<a href="/recipe/${recipe._id}" class="recipe-card">
+<a href="/recipes/${recipe._id}" class="recipe-card">
   <img
     src="https://images.unsplash.com/photo-1591632288574-a387f820a1ca?q=80&w=400&auto=format&fit=crop"
     alt="${recipe.title}"
