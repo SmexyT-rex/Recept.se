@@ -5,7 +5,7 @@ const router = Router();
 const webPath = path.join(process.cwd(), "web");
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(webPath, "index.html"));
+  res.sendFile(path.join(webPath, "test.html"));
 });
 
 router.get("/login", (req, res) => {
