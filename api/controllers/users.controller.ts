@@ -37,6 +37,8 @@ export const userController = {
     req: Request<{}, {}, { email: string; password: string }>,
     res: Response,
   ) {
+    console.log("Step 1:", req.body);
+
     if (!req.body) {
       return res.status(400).json({ error: "Missing body" });
     }
@@ -44,13 +46,20 @@ export const userController = {
     const { email, password } = req.body;
 
     const token = await userService.login(email, password);
+    console.log("Step 7: Sending response with token", token);
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "strict",
       maxAge: 3600000,
     });
+
+    res.on("finish", () => {
+      console.log("Step 8: Response finished");
+    });
+
+    return res.redirect("/profile");
   },
 
   async logout(req: Request, res: Response) {

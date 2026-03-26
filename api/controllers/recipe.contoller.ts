@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import { Recipe } from "../models/recipe.js";
+import { recipeRepository } from "../repositories/recipe.repositories.js";
 
 // GET - Find all recipes
 export async function findRecipes(req: Request, res: Response) {
@@ -34,6 +35,13 @@ export async function postRecipe(req: Request, res: Response) {
     const recipe = new Recipe(req.body);
     const savedRecipe = await recipe.save();
 
+    const ids = {
+      recipe_id: savedRecipe._id.toString(),
+      user_id: savedRecipe.author_id,
+    };
+
+    recipeRepository.create(ids);
+
     res.status(201).json(savedRecipe);
   } catch (error) {
     console.error(error);
@@ -47,7 +55,7 @@ export async function updateRecipe(req: Request, res: Response) {
     const updatedRecipe = await Recipe.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true, runValidators: true }, // Ensures Schema-rules being followed
+      { new: true, runValidators: true },
     );
 
     if (!updatedRecipe) {
@@ -64,6 +72,8 @@ export async function updateRecipe(req: Request, res: Response) {
 // DELETE - Delete a recipe
 export async function deleteRecipe(req: Request, res: Response) {
   try {
+    const id: string = req.params.id as string;
+    await recipeRepository.delete(id);
     const deletedRecipe = await Recipe.findByIdAndDelete(req.params.id);
 
     if (!deletedRecipe) {

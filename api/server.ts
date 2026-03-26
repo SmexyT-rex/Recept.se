@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import userRoutes from "./routes/users/users.routes.js";
 import webRoutes from "./routes/public/public.routes.js";
+import userAuthRoutes from "./routes/users/users.authRoutes.js";
 import { testConnection } from "./database/mysql/testConn.js";
 import { connectMongoDB } from "./database/mongodb/connMongoDB.js";
 import recipeRoutes from "./routes/recipes/recipes.routes.js";
@@ -14,13 +15,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 
 const webPath: string = path.join(process.cwd(), "web");
 app.use(express.static(webPath));
 app.use("/", webRoutes);
 app.use("/api/recipes", recipeRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/auth", userRoutes);
+app.use("/api/auth", userAuthRoutes);
 
 await connectMongoDB();
 await testConnection();

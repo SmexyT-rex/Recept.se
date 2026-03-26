@@ -1,35 +1,41 @@
-import type { Response, NextFunction } from "express";
+import type { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
-import type { AuthRequest, JwtPayload } from "../types/user.types.js";
 
-const user = (req: AuthRequest, res: Response, next: NextFunction) => {
+import path from "path";
+import { webPath } from "../routes/public/public.routes.js";
+
+const user: RequestHandler = (req, res, next) => {
   const token = req.cookies?.token;
 
   if (!token) {
-    return res.status(401).send("No token");
+    res.sendFile(path.join(webPath, "login.html"));
+    return;
   }
 
   try {
-    const decoded = jwt.verify(
-      token,
-      process.env.JWT_SECRET as string,
-    ) as JwtPayload;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
 
-    req.user = decoded;
+    req.user = decoded as any;
     next();
   } catch {
-    return res.status(401).send("Invalid token");
+    res.sendFile(path.join(webPath, "login.html"));
+    return;
   }
 };
 
-const adminCheck = (req: AuthRequest, res: Response, next: NextFunction) => {
+const adminCheck: RequestHandler = (req, res, next) => {
   if (req.user?.role !== "admin") {
-    return res.status(403).send("Admin access required");
+    res.sendFile(path.join(webPath, "login.html"));
+    return;
   }
+
   next();
 };
 
-export const protect: { user: Function; admin: Function[] } = {
+export const protect: {
+  user: RequestHandler;
+  admin: RequestHandler[];
+} = {
   user,
   admin: [user, adminCheck],
 };
