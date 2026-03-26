@@ -8,6 +8,10 @@ router.get("/", (req, res) => {
   res.sendFile(path.join(webPath, "test.html"));
 });
 
+router.get("/recipes/:id", (req, res) => {
+  res.sendFile(path.join(webPath, "recipe.html"));
+});
+
 router.get("/login", (req, res) => {
   res.sendFile(path.join(webPath, "login.html"));
 });

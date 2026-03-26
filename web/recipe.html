@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Details</title>
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recipe</title>
+
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+          }
+
+          .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+          }
+
+          .hero-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+          }
+
+          .content {
+            padding: 24px;
+          }
+
+          .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+          }
+
+          .tag {
+            background: #eee;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+          }
+
+          h1 {
+            margin: 10px 0;
+          }
+
+          h2 {
+            margin-top: 24px;
+          }
+
+          ul,
+          ol {
+            padding-left: 20px;
+          }
+
+          .meta {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
+          }
+        </style>
+      </head>
+
+      <body>
+        <div class="container">
+          <img id="image" class="hero-img" />
+
+          <div class="content">
+            <div class="tags" id="tags"></div>
+
+            <h1 id="title"></h1>
+
+            <div class="meta" id="meta"></div>
+
+            <h2>Ingredients</h2>
+            <ul id="ingredients"></ul>
+
+            <h2>Steps</h2>
+            <ol id="steps"></ol>
+          </div>
+        </div>
+
+        <script>
+          async function loadRecipe() {
+            const id = window.location.pathname.split("/").pop();
+
+            const res = await fetch(`/api/recipes/${id}`);
+            const recipe = await res.json();
+
+            document.getElementById("title").textContent = recipe.title;
+
+            document.getElementById("image").src =
+              /* recipe.images?.[0] || */
+              "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800";
+
+            document.getElementById("meta").textContent =
+              `Category: ${recipe.category} | Author ID: ${recipe.author_id}`;
+
+            const tagsEl = document.getElementById("tags");
+            recipe.tags.forEach((tag) => {
+              const span = document.createElement("span");
+              span.classList.add("tag");
+              span.textContent = tag;
+              tagsEl.appendChild(span);
+            });
+
+            const ingredientsEl = document.getElementById("ingredients");
+            recipe.ingredients.forEach((i) => {
+              const li = document.createElement("li");
+              li.textContent = `${i.amount} ${i.unit} ${i.name}`;
+              ingredientsEl.appendChild(li);
+            });
+
+            const stepsEl = document.getElementById("steps");
+            recipe.steps.forEach((step) => {
+              const li = document.createElement("li");
+              li.textContent = step;
+              stepsEl.appendChild(li);
+            });
+          }
+
+          document.addEventListener("DOMContentLoaded", loadRecipe);
+        </script>
+      </body>
+    </html>
+  </body>
+</html>
