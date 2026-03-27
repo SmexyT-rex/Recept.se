@@ -80,8 +80,8 @@ body {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)),
         url(../images/pexels-rachel-claire-5531100.jpg);
-    background-size: cover;
     background-position: center;
+    background-size: cover;
     height: 60vh;
     display: flex;
     flex-direction: column;
@@ -90,6 +90,7 @@ body {
     color: white;
     text-align: center;
     padding: 0 20px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6);
 }
 
 .mobile-menu {
@@ -130,10 +131,12 @@ body {
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 10px;
+    text-shadow: 2px 2px #e67e22;
 }
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 20px;
+    text-shadow: 1px 1px #e67e22;
 }
 
 .search-bar {

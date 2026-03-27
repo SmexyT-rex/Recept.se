@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles/createrecipe.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        />
+        <title>FlavorVault - Home Page</title>
+    </head>
+    <body>
+        <nav id="mobileMenu" class="mobile-menu">
+            <button id="navButton" class="menu-hamburger">✕</button>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+        <nav class="navbar">
+            <div class="logo">FlavorVault</div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html"><i class="bi bi-house-fill"></i></a>
+                </li>
+                <li>
+                    <a href="allrecipes.html"
+                        ><i class="bi bi-book-half"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="createrecipe.html"
+                        ><i class="bi bi-plus-circle"></i
+                    ></a>
+                </li>
+                <li>
+                    <a href="login.html"><i class="bi bi-person-fill"></i></a>
+                </li>
+
+                <li><button id="openMenuBtn" class="hamburger">☰</button></li>
+            </ul>
+        </nav>
+        <section class="content">
+            <header class="hero">
+                <h1>Lorem Ipsum</h1>
+                <p>Lorem ipsum lorem ipsum lorem ipsum.</p>
+            </header>
+
+            <main class="container">
+                <section class="recipe-editor">
+                    <h1>Recipe Editor</h1>
+                    <p class="subtitle">Create, edit, and save your recipe.</p>
+
+                    <form id="recipeForm">
+                        <!-- Title -->
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input
+                                type="text"
+                                id="title"
+                                name="title"
+                                placeholder="Enter recipe title"
+                            />
+                        </div>
+
+                        <!-- Category -->
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <input
+                                type="text"
+                                id="category"
+                                name="category"
+                                placeholder="e.g. Dessert, Dinner, Vegan"
+                            />
+                        </div>
+
+                        <!-- Tags -->
+                        <div class="form-group">
+                            <label for="tags">Tags</label>
+                            <input
+                                type="text"
+                                id="tags"
+                                name="tags"
+                                placeholder="e.g. quick, healthy, spicy"
+                            />
+                            <small>Separate tags with commas.</small>
+                        </div>
+
+                        <!-- Ingredients -->
+                        <div class="form-group">
+                            <div class="section-header">
+                                <label>Ingredients</label>
+                                <button
+                                    type="button"
+                                    class="add-btn"
+                                    onclick="addIngredient()"
+                                >
+                                    + Add
+                                </button>
+                            </div>
+
+                            <div id="ingredientsList" class="dynamic-list">
+                                <div class="dynamic-item ingredient-row">
+                                    <input
+                                        type="text"
+                                        name="ingredient[]"
+                                        placeholder="Ingredient (e.g. ground beef)"
+                                    />
+                                    <input
+                                        type="number"
+                                        name="amount[]"
+                                        placeholder="Amount (e.g. 500)"
+                                    />
+                                    <input
+                                        type="text"
+                                        name="unit[]"
+                                        placeholder="Unit (e.g. g)"
+                                    />
+                                    <button
+                                        type="button"
+                                        class="remove-btn"
+                                        onclick="removeField(this)"
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Steps -->
+                        <div class="form-group">
+                            <div class="section-header">
+                                <label>Steps</label>
+                                <button
+                                    type="button"
+                                    class="add-btn"
+                                    onclick="
+                                        addField(
+                                            'stepsList',
+                                            'Step description'
+                                        )
+                                    "
+                                >
+                                    + Add
+                                </button>
+                            </div>
+                            <div id="stepsList" class="dynamic-list">
+                                <div class="dynamic-item">
+                                    <textarea
+                                        name="steps[]"
+                                        rows="3"
+                                        placeholder="Step description"
+                                    ></textarea>
+                                    <button
+                                        type="button"
+                                        class="remove-btn"
+                                        onclick="removeField(this)"
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Images -->
+                        <div class="form-group">
+                            <div class="section-header">
+                                <label>Images</label>
+                                <button
+                                    type="button"
+                                    class="add-btn"
+                                    onclick="
+                                        addField(
+                                            'imagesList',
+                                            'Image URL',
+                                            true
+                                        )
+                                    "
+                                >
+                                    + Add
+                                </button>
+                            </div>
+                            <div id="imagesList" class="dynamic-list">
+                                <div class="dynamic-item">
+                                    <input
+                                        type="text"
+                                        name="images[]"
+                                        placeholder="Image URL"
+                                    />
+                                    <button
+                                        type="button"
+                                        class="remove-btn"
+                                        onclick="removeField(this)"
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn">
+                                Save Recipe
+                            </button>
+                            <button type="reset" class="delete-btn">
+                                Clear
+                            </button>
+                        </div>
+                    </form>
+                </section>
+            </main>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2026 FlavorVault. Cook with passion.</p>
+        </footer>
+        <script src="scripts/index.js"></script>
+        <script src="scripts/createrecipe.js"></script>
+    </body>
+</html>
