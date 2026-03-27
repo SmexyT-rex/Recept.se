@@ -12,6 +12,11 @@ export class Recipe {
   recipe_id!: string;
 }
 
+export type JwtUser = {
+  id: number;
+  role: string;
+};
+
 export type CreateRecipe = Omit<Recipe, "id">;
 
 export type UpdateRecipe = Partial<CreateRecipe>;

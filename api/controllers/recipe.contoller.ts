@@ -13,6 +13,17 @@ export async function findRecipes(req: Request, res: Response) {
   }
 }
 
+export async function findManyRecipes(req: Request, res: Response) {
+  try {
+    const { ids } = req.body;
+    const recipes = await Recipe.find({ _id: { $in: ids } });
+    res.json(recipes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Could not fetch recipes" });
+  }
+}
+
 // GET - Find a recipe by id
 export async function findRecipeById(req: Request, res: Response) {
   try {
@@ -32,19 +43,22 @@ export async function findRecipeById(req: Request, res: Response) {
 // POST - Create a new recipe
 export async function postRecipe(req: Request, res: Response) {
   try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const userId = req.user.id;
+
     const recipe = new Recipe(req.body);
     const savedRecipe = await recipe.save();
 
-    const ids = {
+    await recipeRepository.create({
       recipe_id: savedRecipe._id.toString(),
-      user_id: savedRecipe.author_id,
-    };
-
-    recipeRepository.create(ids);
+      user_id: userId,
+    });
 
     res.status(201).json(savedRecipe);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: "Could not save recipe" });
   }
 }

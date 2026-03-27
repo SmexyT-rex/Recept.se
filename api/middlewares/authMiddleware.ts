@@ -1,4 +1,5 @@
 import type { RequestHandler } from "express";
+import type { JwtUser } from "../types/user.types.js";
 import jwt from "jsonwebtoken";
 
 import path from "path";
@@ -8,24 +9,24 @@ const user: RequestHandler = (req, res, next) => {
   const token = req.cookies?.token;
 
   if (!token) {
-    res.sendFile(path.join(webPath, "login.html"));
+    res.redirect(303, "/login");
     return;
   }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
 
-    req.user = decoded as any;
+    req.user = decoded as JwtUser;
     next();
   } catch {
-    res.sendFile(path.join(webPath, "login.html"));
+    res.status(401).json({ error: "Invalid token" });
     return;
   }
 };
 
 const adminCheck: RequestHandler = (req, res, next) => {
   if (req.user?.role !== "admin") {
-    res.sendFile(path.join(webPath, "login.html"));
+    res.status(403).json({ error: "Access denied" });
     return;
   }
 

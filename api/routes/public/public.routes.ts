@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { Router } from "express";
 import path from "path";
 import { protect } from "../../middlewares/authMiddleware.js";
+import { findManyRecipes } from "../../controllers/recipe.contoller.js";
 
 interface RouteHandler {
   (req: Request, res: Response): void;
@@ -21,6 +22,8 @@ router.get("/", (req: Request, res: Response) => {
 router.get("/recipes/:id", (req: Request, res: Response) => {
   res.sendFile(path.join(webPath, "recipe.html"));
 });
+
+router.post("/recipes", findManyRecipes);
 
 router.get("/login", (req: Request, res: Response) => {
   res.sendFile(path.join(webPath, "login.html"));

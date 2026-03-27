@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Recipe } from "../../models/recipe.js";
+import { protect } from "../../middlewares/authMiddleware.js";
 import {
   findRecipes,
   findRecipeById,
@@ -12,8 +12,8 @@ const router = Router();
 
 router.get("/", findRecipes);
 router.get("/:id", findRecipeById);
-router.post("/", postRecipe);
-router.put("/:id", updateRecipe);
-router.delete("/:id", deleteRecipe);
+router.post("/", protect.user, postRecipe);
+router.put("/:id", protect.user, updateRecipe);
+router.delete("/:id", protect.user, deleteRecipe);
 
 export default router;
