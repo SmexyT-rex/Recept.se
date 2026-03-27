@@ -63,8 +63,13 @@ export const userController = {
   },
 
   async logout(req: Request, res: Response) {
-    res.clearCookie("token");
-    res.json({ message: "Logged out" });
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+
+    res.redirect("/");
   },
 
   async isAuthenticated(req: Request, res: Response) {
