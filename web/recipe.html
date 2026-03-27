@@ -1,141 +1,335 @@
 <!doctype html>
-<html lang="en">
+<html class="light" lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recipe Details</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Recipe - Culinary Atelier</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#5a6060",
+              error: "#9f403d",
+              "on-secondary-fixed": "#453e3c",
+              "inverse-surface": "#0c0f0e",
+              secondary: "#665d5b",
+              "inverse-primary": "#fd7954",
+              "on-error": "#fff7f6",
+              "on-primary-fixed-variant": "#a23718",
+              "surface-dim": "#d4dcda",
+              "secondary-fixed-dim": "#ded2cf",
+              "surface-container-high": "#e4e9e8",
+              primary: "#a63a1a",
+              "surface-tint": "#a63a1a",
+              "secondary-dim": "#5a514f",
+              "on-secondary": "#fff7f5",
+              background: "#f9f9f8",
+              "on-error-container": "#752121",
+              "outline-variant": "#adb3b2",
+              "tertiary-container": "#ffcdd9",
+              "secondary-fixed": "#ede0dd",
+              "primary-fixed-dim": "#ffc8b9",
+              tertiary: "#7a555e",
+              "on-surface": "#2d3433",
+              "on-primary-container": "#952e0e",
+              "error-container": "#fe8983",
+              "on-background": "#2d3433",
+              "tertiary-dim": "#6d4953",
+              "on-primary": "#fff6f4",
+              "surface-variant": "#dde4e3",
+              surface: "#f9f9f8",
+              "primary-fixed": "#ffdbd1",
+              "on-tertiary-fixed-variant": "#704c56",
+              "on-primary-fixed": "#7a1d00",
+              "surface-bright": "#f9f9f8",
+              "secondary-container": "#ede0dd",
+              "primary-dim": "#962e0f",
+              "on-secondary-fixed-variant": "#625a57",
+              "surface-container": "#ebeeed",
+              "inverse-on-surface": "#9c9d9c",
+              "on-tertiary-fixed": "#51303a",
+              outline: "#757c7b",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#ffdbd1",
+              "surface-container-highest": "#dde4e3",
+              "error-dim": "#4e0309",
+              "tertiary-fixed": "#ffcdd9",
+              "surface-container-low": "#f2f4f3",
+              "on-secondary-container": "#58504e",
+              "on-tertiary-container": "#66434c",
+              "tertiary-fixed-dim": "#f0c0cb",
+              "on-tertiary": "#fff7f7",
+            },
+            fontFamily: {
+              headline: ["Plus Jakarta Sans"],
+              body: ["Plus Jakarta Sans"],
+              label: ["Plus Jakarta Sans"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+    </style>
   </head>
-  <body>
-    <!doctype html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Recipe</title>
-
-        <style>
-          body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f5f5f5;
-          }
-
-          .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-          }
-
-          .hero-img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-          }
-
-          .content {
-            padding: 24px;
-          }
-
-          .tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-          }
-
-          .tag {
-            background: #eee;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-          }
-
-          h1 {
-            margin: 10px 0;
-          }
-
-          h2 {
-            margin-top: 24px;
-          }
-
-          ul,
-          ol {
-            padding-left: 20px;
-          }
-
-          .meta {
-            font-size: 13px;
-            color: #666;
-            margin-top: 8px;
-          }
-        </style>
-      </head>
-
-      <body>
-        <div class="container">
-          <img id="image" class="hero-img" />
-
-          <div class="content">
-            <div class="tags" id="tags"></div>
-
-            <h1 id="title"></h1>
-
-            <div class="meta" id="meta"></div>
-
-            <h2>Ingredients</h2>
-            <ul id="ingredients"></ul>
-
-            <h2>Steps</h2>
-            <ol id="steps"></ol>
+  <body
+    class="bg-background text-on-surface selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- TopAppBar -->
+    <nav
+      class="fixed top-0 w-full z-50 bg-[#f9f9f8]/80 dark:bg-stone-900/80 backdrop-blur-md"
+    >
+      <div
+        class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto"
+      >
+        <div
+          class="text-xl font-bold tracking-tighter text-[#2d3433] dark:text-stone-100"
+        >
+          Culinary Atelier
+        </div>
+        <div
+          class="hidden md:flex items-center space-x-8 font-['Plus_Jakarta_Sans'] text-body-lg tracking-tight"
+        >
+          <a
+            class="text-[#5a6060] dark:text-stone-400 hover:text-[#2d3433] hover:bg-[#f2f4f3]/50 transition-colors px-2 py-1 rounded"
+            href="#"
+            >Collections</a
+          >
+          <a
+            class="text-[#5a6060] dark:text-stone-400 hover:text-[#2d3433] hover:bg-[#f2f4f3]/50 transition-colors px-2 py-1 rounded"
+            href="#"
+            >Pantry</a
+          >
+          <a
+            class="text-[#5a6060] dark:text-stone-400 hover:text-[#2d3433] hover:bg-[#f2f4f3]/50 transition-colors px-2 py-1 rounded"
+            href="#"
+            >Techniques</a
+          >
+        </div>
+        <div class="flex items-center space-x-4">
+          <button
+            class="material-symbols-outlined text-[#5a6060] hover:bg-[#f2f4f3]/50 p-2 rounded-full transition-colors"
+            data-icon="bookmark"
+          >
+            bookmark
+          </button>
+          <button
+            class="material-symbols-outlined text-[#5a6060] hover:bg-[#f2f4f3]/50 p-2 rounded-full transition-colors"
+            data-icon="share"
+          >
+            share
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main class="pt-32 pb-32 px-6 max-w-7xl mx-auto">
+      <!-- Breadcrumbs -->
+      <nav
+        class="mb-12 flex items-center space-x-2 text-on-surface-variant font-label text-[11px] uppercase tracking-widest"
+      >
+        <a class="hover:text-primary transition-colors" href="#">Home</a>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <a class="hover:text-primary transition-colors" href="#">My Recipes</a>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span
+          class="text-on-surface font-semibold"
+          id="breadcrumb-title"
+        ></span>
+      </nav>
+      <!-- Hero Header -->
+      <header class="mb-20">
+        <h1
+          id="hero-title"
+          class="text-7xl font-extrabold tracking-tighter text-on-surface mb-8 leading-[0.9]"
+        ></h1>
+        <div class="flex flex-wrap items-center gap-3">
+          <span
+            id="category-badge"
+            class="px-4 py-1.5 bg-surface-container-high rounded-full text-label-md font-semibold text-on-surface-variant uppercase tracking-wider"
+          ></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-outline-variant/30"></span>
+          <div id="tags-container" class="flex gap-2"></div>
+        </div>
+      </header>
+      <!-- Main Grid Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <!-- Left Column: Content -->
+        <div class="lg:col-span-7 space-y-20">
+          <!-- Ingredients Section -->
+          <section>
+            <div class="flex items-center gap-4 mb-8">
+              <h2 class="text-2xl font-bold tracking-tight text-on-surface">
+                Ingredients
+              </h2>
+              <div class="flex-grow h-[1px] bg-outline-variant/15"></div>
+            </div>
+            <div class="bg-surface-container-low p-10 rounded-xl space-y-6">
+              <ul id="ingredients-list" class="space-y-5"></ul>
+            </div>
+          </section>
+          <!-- Cooking Steps Section -->
+          <section>
+            <div class="flex items-center gap-4 mb-10">
+              <h2 class="text-2xl font-bold tracking-tight text-on-surface">
+                Cooking Steps
+              </h2>
+              <div class="flex-grow h-[1px] bg-outline-variant/15"></div>
+            </div>
+            <div id="steps-container" class="space-y-12"></div>
+          </section>
+        </div>
+        <!-- Right Column: Gallery (Bento Style) -->
+        <div class="lg:col-span-5">
+          <div class="flex items-center gap-4 mb-8">
+            <h2 class="text-2xl font-bold tracking-tight text-on-surface">
+              Gallery
+            </h2>
+            <div class="flex-grow h-[1px] bg-outline-variant/15"></div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              class="col-span-2 aspect-[4/5] rounded-xl overflow-hidden shadow-sm"
+            >
+              <img
+                id="hero-image"
+                alt="Recipe"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800"
+              />
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden shadow-sm">
+              <img
+                alt="Ingredients"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                data-alt="Overhead shot of fresh ingredients including whole garlic bulbs, sprigs of rosemary, and sliced lemons on a light marble surface"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPjQSV9yqlihE3bgo-yJAasBxqqHJ7rL-HRM17YemzSrz5NTqblwdJ0dgWaBYnd6r7RCCr-EubFq8x6ADBLnvVQ4v6_9LyZhp_2NFqRVbmybvVAZpXbeqV6RlgaAAvFHmWJBzm9-SWGEvIN-MJzF3qsbCIB68PEiUpLaYR65WQs0MBIqp1fsmGsO-nC7CvZO0TigQS7uB0v-Dl4umO3uF7LNDxxPICh-TZrYsZYxUHftij42_PZVVb1hn4gh7UUD4CwdcYuj9xXsgl"
+              />
+            </div>
+            <div class="aspect-square rounded-xl overflow-hidden shadow-sm">
+              <img
+                alt="Plated Dish"
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                data-alt="A beautifully plated slice of succulent roast chicken with crispy skin, served with roasted vegetables and a drizzle of pan juices"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC51kwnDE0yRBJ4AzLU-lOD0eBIxXIDBBatq6ZhsJfVGOe4cfhYrF7eyh_vqdChrakKXlVgzW8uzDaAge3WMlRWAuDzTiMvJKfj38Wzb5FOeFfyvKAs5W3r5HEz4qf1ky-z0ReAEreWQdjn3SHzha1KE5o-zl4ftnjDoI6cFGNDoPnQ-FTGeDacXMs8Ieegmc4nz9v1DZVbQZNbhv3hjfbQFMPGjzprCMljb-b_seJ98uevzXqY8lwHg70x4MTOUz8m93D-SKjXyGs0"
+              />
+            </div>
+            <div
+              class="col-span-2 aspect-video rounded-xl overflow-hidden shadow-sm relative group"
+            >
+              <img
+                alt="Kitchen Setting"
+                class="w-full h-full object-cover"
+                data-alt="Atmospheric shot of a sunlit high-end kitchen with steam rising from a roasting pan, warm afternoon light filtering through a window"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW5W36o6X7wZGfyTWItryMiSB2NxExIbanPtDaV_ab-WIFRT70nM_ONcNQ_4ml6m2HeP04DSuDyfs6hieMjrbP23kQIh8bU03G8zq_oxNzqMCqb2AZGHq5PqApPCwAl5AzWofS2AdVCjM6eRrsrYMpAEDt4edo3Np-63tLRlM3Gws14xcYZRoH72rAPR1nHV_L1YKqwruMFvQil_yHEnU3qiY9z4tXSNEKlMIB2IvOTJpFx70cDmwMJIObBCVSRFgdfINRiRLxa3b3"
+              />
+              <div
+                class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"
+              ></div>
+            </div>
+          </div>
+          <!-- Nutrition Quick Card -->
+          <div
+            class="mt-12 p-8 bg-surface-container-highest rounded-xl border border-outline-variant/10"
+          >
+            <h4
+              class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-6"
+            >
+              Nutrition per serving
+            </h4>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="text-center">
+                <span
+                  class="block text-2xl font-bold text-on-surface tabular-nums"
+                  >480</span
+                >
+                <span
+                  class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter"
+                  >Calories</span
+                >
+              </div>
+              <div class="text-center border-x border-outline-variant/20">
+                <span
+                  class="block text-2xl font-bold text-on-surface tabular-nums"
+                  >35g</span
+                >
+                <span
+                  class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter"
+                  >Protein</span
+                >
+              </div>
+              <div class="text-center">
+                <span
+                  class="block text-2xl font-bold text-on-surface tabular-nums"
+                  >12g</span
+                >
+                <span
+                  class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter"
+                  >Fat</span
+                >
+              </div>
+            </div>
           </div>
         </div>
-
-        <script>
-          async function loadRecipe() {
-            const id = window.location.pathname.split("/").pop();
-
-            const res = await fetch(`/api/recipes/${id}`);
-            const recipe = await res.json();
-
-            document.getElementById("title").textContent = recipe.title;
-
-            document.getElementById("image").src =
-              /* recipe.images?.[0] || */
-              "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800";
-
-            document.getElementById("meta").textContent =
-              `Category: ${recipe.category} | Author ID: ${recipe.author_id}`;
-
-            const tagsEl = document.getElementById("tags");
-            recipe.tags.forEach((tag) => {
-              const span = document.createElement("span");
-              span.classList.add("tag");
-              span.textContent = tag;
-              tagsEl.appendChild(span);
-            });
-
-            const ingredientsEl = document.getElementById("ingredients");
-            recipe.ingredients.forEach((i) => {
-              const li = document.createElement("li");
-              li.textContent = `${i.amount} ${i.unit} ${i.name}`;
-              ingredientsEl.appendChild(li);
-            });
-
-            const stepsEl = document.getElementById("steps");
-            recipe.steps.forEach((step) => {
-              const li = document.createElement("li");
-              li.textContent = step;
-              stepsEl.appendChild(li);
-            });
-          }
-
-          document.addEventListener("DOMContentLoaded", loadRecipe);
-        </script>
-      </body>
-    </html>
+      </div>
+    </main>
+    <!-- BottomNavBar -->
+    <nav
+      class="fixed bottom-0 left-0 w-full h-20 bg-[#ffffff] dark:bg-stone-950 flex justify-around items-center px-6 pb-safe z-50 border-t border-[#adb3b2]/15 shadow-[0_-4px_24px_rgba(45,52,51,0.04)]"
+    >
+      <button
+        class="flex flex-col items-center justify-center text-[#5a6060] dark:text-stone-400 px-6 py-2 hover:opacity-90 transition-opacity active:scale-98"
+      >
+        <span class="material-symbols-outlined mb-1" data-icon="arrow_back"
+          >arrow_back</span
+        >
+        <span
+          class="font-['Plus_Jakarta_Sans'] text-[11px] font-semibold uppercase tracking-widest"
+          >Back to Recipes</span
+        >
+      </button>
+      <button
+        class="flex flex-col items-center justify-center bg-gradient-to-br from-[#a63a1a] to-[#962e0f] text-white rounded-md px-10 py-2 shadow-sm hover:opacity-90 transition-opacity active:scale-98"
+      >
+        <span class="material-symbols-outlined mb-1" data-icon="edit"
+          >edit</span
+        >
+        <span
+          class="font-['Plus_Jakarta_Sans'] text-[11px] font-semibold uppercase tracking-widest"
+          >Edit</span
+        >
+      </button>
+    </nav>
+    <script src="/scripts/recipe.js"></script>
   </body>
 </html>

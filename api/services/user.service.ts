@@ -94,7 +94,7 @@ export const userService = {
     console.log("Step 5: User role", userRole);
 
     const token = jwt.sign(
-      { id: user.id, role: userRole },
+      { id: user.id, username: user.username, role: userRole },
       process.env.JWT_SECRET as string,
       {
         expiresIn: "1h",
@@ -103,5 +103,9 @@ export const userService = {
     console.log("Step 6: JWT Token generated", token);
 
     return token;
+  },
+
+  async getUserRecipes(userId: number) {
+    return userRepository.findUserRecipes(userId);
   },
 };

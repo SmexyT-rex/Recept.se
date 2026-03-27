@@ -99,4 +99,12 @@ export const userRepository = {
       return false;
     }
   },
+
+  async findUserRecipes(userId: number): Promise<(User & RowDataPacket)[]> {
+    const [rows] = await db.query<(User & RowDataPacket)[]>(
+      `SELECT r.* FROM recipes r WHERE r.user_id = ?`,
+      [userId],
+    );
+    return rows;
+  },
 };
