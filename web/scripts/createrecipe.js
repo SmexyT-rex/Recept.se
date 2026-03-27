@@ -36,6 +36,7 @@ function addField(containerId, placeholder, isInput = false) {
     }
 
     container.appendChild(wrapper);
+    updatePreview();
 }
 
 // Remove field for recipe
@@ -45,6 +46,7 @@ function removeField(button) {
 
     if (container.children.length > 1) {
         item.remove();
+        updatePreview();
     }
 }
 
@@ -63,7 +65,91 @@ function addIngredient() {
   `;
 
     container.appendChild(wrapper);
+    updatePreview();
 }
+
+// Preview section
+function updatePreview() {
+    const title = document.getElementById('title').value.trim();
+    const category = document.getElementById('category').value.trim();
+    const tags = document.getElementById('tags').value.trim();
+
+    document.getElementById('previewTitle').textContent =
+        title || 'Recipe title';
+    document.getElementById('previewCategory').textContent =
+        `Category: ${category || '-'}`;
+    document.getElementById('previewTags').textContent = `Tags: ${tags || '-'}`;
+
+    const ingredientRows = document.querySelectorAll(
+        '#ingredientsList .ingredient-row'
+    );
+    const previewIngredients = document.getElementById('previewIngredients');
+    previewIngredients.innerHTML = '';
+
+    let hasIngredients = false;
+
+    ingredientRows.forEach((row) => {
+        const ingredient = row
+            .querySelector('input[name="ingredient[]"]')
+            .value.trim();
+        const amount = row.querySelector('input[name="amount[]"]').value.trim();
+        const unit = row.querySelector('input[name="unit[]"]').value.trim();
+
+        if (ingredient) {
+            hasIngredients = true;
+            const li = document.createElement('li');
+            li.textContent = `${ingredient}${amount ? ` - ${amount}` : ''}${unit ? ` ${unit}` : ''}`;
+            previewIngredients.appendChild(li);
+        }
+    });
+
+    if (!hasIngredients) {
+        previewIngredients.innerHTML = '<li>No ingredients added yet.</li>';
+    }
+
+    const steps = document.querySelectorAll('textarea[name="steps[]"]');
+    const previewSteps = document.getElementById('previewSteps');
+    previewSteps.innerHTML = '';
+
+    let hasSteps = false;
+
+    steps.forEach((step) => {
+        const value = step.value.trim();
+        if (value) {
+            hasSteps = true;
+            const li = document.createElement('li');
+            li.textContent = value;
+            previewSteps.appendChild(li);
+        }
+    });
+
+    if (!hasSteps) {
+        previewSteps.innerHTML = '<li>No steps added yet.</li>';
+    }
+
+    const images = document.querySelectorAll('input[name="images[]"]');
+    const previewImages = document.getElementById('previewImages');
+    previewImages.innerHTML = '';
+
+    let hasImages = false;
+
+    images.forEach((image) => {
+        const value = image.value.trim();
+        if (value) {
+            hasImages = true;
+            const img = document.createElement('img');
+            img.src = value;
+            img.alt = 'Recipe image';
+            previewImages.appendChild(img);
+        }
+    });
+
+    if (!hasImages) {
+        previewImages.innerHTML = '<p>No images added yet.</p>';
+    }
+}
+
+document.addEventListener('input', updatePreview);
 
 // Combine data
 document.getElementById('recipeForm').addEventListener('submit', function (e) {
@@ -110,3 +196,5 @@ document.getElementById('recipeForm').addEventListener('submit', function (e) {
 
     console.log('Recipe data:', formData); // DEV --- CONNECT TO API HERE
 });
+
+updatePreview();

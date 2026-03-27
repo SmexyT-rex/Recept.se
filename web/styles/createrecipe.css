@@ -277,6 +277,47 @@ button:hover {
     align-items: center;
 }
 
+.preview {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #ddd;
+}
+
+.preview h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.preview h3 {
+    margin-bottom: 10px;
+}
+
+.preview-block {
+    margin-top: 24px;
+}
+
+.preview ul,
+.preview ol {
+    padding-left: 20px;
+}
+
+.preview li {
+    margin-bottom: 8px;
+}
+
+.preview-images {
+    display: grid;
+    gap: 12px;
+}
+
+.preview-images img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    object-fit: cover;
+}
+
 @media (max-width: 600px) {
     .dynamic-item {
         flex-direction: column;
