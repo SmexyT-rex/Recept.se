@@ -1,13 +1,13 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import likeRoutes from "./routes/users/likes.routes.js";
 import userRoutes from "./routes/users/users.routes.js";
 import webRoutes from "./routes/public/public.routes.js";
 import userAuthRoutes from "./routes/users/users.authRoutes.js";
 import { testConnection } from "./database/mysql/testConn.js";
 import { connectMongoDB } from "./database/mongodb/connMongoDB.js";
 import recipeRoutes from "./routes/recipes/recipes.routes.js";
-import likeRoutes from "./routes/users/likes.routes.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 
@@ -23,9 +23,9 @@ app.use(express.static(webPath));
 
 app.use("/", webRoutes);
 app.use("/api/recipes", recipeRoutes);
+app.use("/api/likes", likeRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", userAuthRoutes);
-app.use("/api/likes", likeRoutes);
 
 await connectMongoDB();
 await testConnection();

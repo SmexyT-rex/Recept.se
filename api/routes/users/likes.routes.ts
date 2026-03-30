@@ -5,7 +5,7 @@ import { userController } from "../../controllers/users.controller.js";
 
 const router = Router();
 
-router.get("/", (req: Request, res: Response) => {
+router.get("/ping", (req: Request, res: Response) => {
   console.log("[GET] /api/likes/ping called", { ip: req.ip });
   res.status(200).json({ message: "Likes route is working" });
 });
