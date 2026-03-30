@@ -184,7 +184,7 @@ async function fetchRecipes() {
 
 logInButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    window.location.href = "/login";
+    window.location.href = "/dashboard";
   });
 });
 
