@@ -2,9 +2,6 @@ import type { RequestHandler } from "express";
 import type { JwtUser } from "../types/user.types.js";
 import jwt from "jsonwebtoken";
 
-import path from "path";
-import { webPath } from "../routes/public/public.routes.js";
-
 const user: RequestHandler = (req, res, next) => {
   const token = req.cookies?.token;
 

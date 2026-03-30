@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
+import { protect } from "../../middlewares/authMiddleware.js";
 import { Router } from "express";
 import path from "path";
-import { protect } from "../../middlewares/authMiddleware.js";
 import { testMiddleware } from "../../middlewares/testmiddleware.js";
 import { findManyRecipes } from "../../controllers/recipe.contoller.js";
 
