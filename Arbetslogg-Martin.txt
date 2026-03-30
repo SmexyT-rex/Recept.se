@@ -13,23 +13,23 @@ Förfinade databasdesign.
 2026-03-12
 Slutförde databasstruktur och koppling till API-plan.
 
-2026-03-16 (Måndag)
+2026-03-16
 Satte upp projektets repo-struktur.
 Började implementera API.
 
-2026-03-17 (Tisdag)
+2026-03-17
 Fortsatte utveckla API-endpoints.
 Strukturerade routing och controllers.
 
-2026-03-18 (Onsdag)
+2026-03-18
 Implementerade CRUD för användare.
 Testade grundläggande funktionalitet.
 
-2026-03-19 (Torsdag)
+2026-03-19
 Fortsatte med CRUD och validering.
 Förbättrade API-struktur.
 
-2026-03-20 (Fredag)
+2026-03-20
 Påbörjade JWT-autentisering.
 Implementerade login-logik.
 

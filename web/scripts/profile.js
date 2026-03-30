@@ -1,140 +1,209 @@
-const heading = document.getElementById("profile-heading");
-const userName = document.getElementById("user-name");
-const userGrid = document.getElementById("user-recipes-grid");
-const favoritesGrid = document.getElementById("favorites-grid");
-const recipesPublishedCount = document.getElementById("recipes-published");
+document.addEventListener("DOMContentLoaded", () => {
+  const menuOpen = document.getElementById("menu-open");
+  const menuClose = document.getElementById("menu-close");
+  const mobileDrawer = document.getElementById("mobile-drawer");
+  const overlay = document.getElementById("drawer-overlay");
 
-async function fetchUser() {
-  const res = await fetch("/api/auth/me", {
-    credentials: "include",
+  const userName = document.getElementById("user-name");
+  const userGrid = document.getElementById("user-recipes-grid");
+  const likesGrid = document.getElementById("likes-grid");
+  const recipesPublishedCount = document.getElementById("recipes-published");
+
+  let selectedRecipeId = null;
+  let selectedCard = null;
+  let selectedType = null;
+
+  const toggleMenu = (open) => {
+    if (!mobileDrawer || !overlay) return;
+
+    mobileDrawer.classList.toggle("open", open);
+    overlay.classList.toggle("opacity-100", open);
+    overlay.classList.toggle("pointer-events-none", !open);
+    document.body.classList.toggle("overflow-hidden", open);
+  };
+
+  menuOpen?.addEventListener("click", () => toggleMenu(true));
+  menuClose?.addEventListener("click", () => toggleMenu(false));
+  overlay?.addEventListener("click", () => toggleMenu(false));
+
+  const openModal = () => {
+    const modal = document.getElementById("delete-modal");
+    if (!modal) return;
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementById("delete-modal");
+    if (!modal) return;
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+  };
+
+  document.addEventListener("click", async (e) => {
+    const target = e.target;
+    if (!(target instanceof Element)) return;
+
+    const deleteBtn = target.closest(".bin-button");
+    if (deleteBtn) {
+      const card = deleteBtn.closest(".user-recipes");
+      if (!card) return;
+
+      const id = card.dataset.id;
+      const type = card.dataset.type;
+
+      if (!id || !type) return;
+
+      selectedRecipeId = id;
+      selectedCard = card;
+      selectedType = type;
+
+      openModal();
+      return;
+    }
+
+    if (target.closest("#confirm-delete-button")) {
+      if (!selectedRecipeId || !selectedCard || !selectedType) return;
+
+      try {
+        if (selectedType === "own") {
+          await fetch(`/api/recipes/${selectedRecipeId}`, {
+            method: "DELETE",
+            credentials: "include",
+          });
+
+          const count = Number(recipesPublishedCount.textContent || 0);
+          recipesPublishedCount.textContent = Math.max(0, count - 1);
+        }
+
+        if (selectedType === "liked") {
+          await fetch(`/api/likes/${selectedRecipeId}`, {
+            method: "DELETE",
+            credentials: "include",
+          });
+        }
+
+        selectedCard.remove();
+        closeModal();
+
+        selectedRecipeId = null;
+        selectedCard = null;
+        selectedType = null;
+      } catch (err) {
+        console.error(err);
+      }
+
+      return;
+    }
+
+    if (target.closest("#close-modal") || target.id === "modal-backdrop") {
+      closeModal();
+    }
   });
 
-  if (!res.ok) {
-    throw new Error("Not authenticated");
+  async function fetchUser() {
+    const res = await fetch("/api/auth/me", { credentials: "include" });
+    if (!res.ok) throw new Error("Not authenticated");
+    return res.json();
   }
 
-  return res.json();
-}
+  async function fetchRecipeDetails(ids) {
+    const res = await fetch("/recipes", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids }),
+    });
 
-async function fetchRecipeDetails(recipeIds) {
-  const res = await fetch("/recipes", {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ ids: recipeIds }),
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch recipes");
+    if (!res.ok) throw new Error("Failed to fetch recipes");
+    return res.json();
   }
 
-  return res.json();
-}
+  async function loadUserRecipes(userId) {
+    const res = await fetch(`/api/users/recipes/${userId}`, {
+      credentials: "include",
+    });
 
-async function loadProfile(user) {
-  userName.textContent = user.username;
-}
+    if (!res.ok) throw new Error("Failed to fetch user recipes");
 
-async function loadUserRecipes(user) {
-  const res = await fetch(`/api/users/recipes/${user.id}`, {
-    credentials: "include",
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch recipes");
+    const data = await res.json();
+    return fetchRecipeDetails(data.map((r) => r.recipe_id));
   }
 
-  const userRecipes = await res.json();
+  async function loadLikedRecipes(userId) {
+    const res = await fetch(`/api/likes/${userId}`, {
+      credentials: "include",
+    });
 
-  const recipeIds = userRecipes.map((r) => r.recipe_id);
+    if (!res.ok) throw new Error("Failed to fetch liked recipes");
 
-  return fetchRecipeDetails(recipeIds);
-}
-
-function renderRecipes(recipes) {
-  recipesPublishedCount.textContent = recipes.length;
-  userGrid.innerHTML = "";
-
-  recipes.forEach((recipe) => {
-    const card = document.createElement("div");
-    card.className =
-      "bg-surface-container-low rounded-xl overflow-hidden flex flex-col group transition-all duration-300 hover:editorial-shadow";
-
-    card.innerHTML = `<div
-                class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col group transition-all duration-300 hover:editorial-shadow"
-              >
-                <div class="relative h-64 overflow-hidden">
-                  <img
-                    alt="${recipe.title}"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    src="${recipe.images?.[0] || "https://media.gettyimages.com/id/1202073264/video/hungry-woman-waiting-to-be-served.jpg?s=640x640&k=20&c=oMs9rn7hpcd1uzVDv0nJhoKpi2XjyH9zWKboJuNOg34="}"
-                  />
-                  <div
-                    class="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
-                  >
-                    ${recipe.tags?.[0] || "Fresh"}
-                  </div>
-                </div>
-                <div class="p-8 flex flex-col flex-1">
-                  <div class="flex justify-between items-start mb-4">
-                    <h3
-                      class="text-2xl font-headline font-bold leading-tight group-hover:text-primary transition-colors"
-                    >
-                      ${recipe.title}
-                    </h3>
-                    <div class="flex gap-2">
-                      <button
-                        class="p-2 text-stone-400 hover:text-primary transition-colors"
-                      >
-                        <span class="material-symbols-outlined">edit</span>
-                      </button>
-                      <button
-                        class="bin-button p-2 text-stone-400 hover:text-error transition-colors"
-                      >
-                        <span class="material-symbols-outlined">delete</span>
-                      </button>
-                    </div>
-                  </div>
-                  <p class="text-on-surface-variant line-clamp-2 mb-6">
-                    ${recipe.description || "No description available."}
-                  </p>
-                  <div
-                    class="mt-auto pt-6 border-t border-outline-variant/10 flex items-center gap-6"
-                  >
-                    <div class="flex items-center gap-2 text-stone-500">
-                      <span class="material-symbols-outlined text-sm"
-                        >schedule</span
-                      >
-                      <span class="text-sm font-semibold">60 mins</span>
-                    </div>
-                    <div class="flex items-center gap-2 text-stone-500">
-                      <span class="material-symbols-outlined text-sm"
-                        >restaurant</span
-                      >
-                      <span class="text-sm font-semibold capitalize">${recipe.tags?.[1] || "Fresh"}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>`;
-
-    userGrid.appendChild(card);
-  });
-}
-
-async function initProfile() {
-  try {
-    const user = await fetchUser();
-
-    await loadProfile(user);
-
-    const recipes = await loadUserRecipes(user);
-
-    renderRecipes(recipes);
-  } catch (err) {
-    console.error(err);
+    const data = await res.json();
+    return fetchRecipeDetails(data.map((r) => r.recipe_id));
   }
-}
 
-initProfile();
+  function createCard(recipe, type) {
+    const wrapper = document.createElement("div");
+
+    wrapper.innerHTML = `
+      <div class="user-recipes bg-surface-container-low rounded-xl overflow-hidden flex flex-col group"
+           data-id="${recipe.id}"
+           data-type="${type}">
+        <div class="relative h-64 overflow-hidden">
+          <img src="${recipe.images?.[0] || ""}" class="w-full h-full object-cover" />
+        </div>
+
+        <div class="p-8 flex flex-col flex-1">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-2xl font-bold">${recipe.title}</h3>
+            <button class="bin-button p-2">
+              <span class="material-symbols-outlined">delete</span>
+            </button>
+          </div>
+
+          <p>${recipe.description || "No description available."}</p>
+        </div>
+      </div>
+    `;
+
+    return wrapper.firstElementChild;
+  }
+
+  function renderRecipes(recipes) {
+    if (!userGrid) return;
+    userGrid.innerHTML = "";
+    recipesPublishedCount.textContent = recipes.length;
+
+    recipes.forEach((r) => {
+      userGrid.appendChild(createCard(r, "own"));
+    });
+  }
+
+  function renderLikedRecipes(recipes) {
+    if (!likesGrid) return;
+    likesGrid.innerHTML = "";
+
+    recipes.forEach((r) => {
+      likesGrid.appendChild(createCard(r, "liked"));
+    });
+  }
+
+  async function init() {
+    try {
+      const user = await fetchUser();
+
+      if (userName) userName.textContent = user.username;
+
+      const [own, liked] = await Promise.all([
+        loadUserRecipes(user.id),
+        loadLikedRecipes(user.id),
+      ]);
+
+      renderRecipes(own);
+      renderLikedRecipes(liked);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  init();
+});

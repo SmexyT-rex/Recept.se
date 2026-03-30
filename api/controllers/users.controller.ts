@@ -110,6 +110,7 @@ export const userController = {
 
   async getMyLikes(req: Request, res: Response) {
     try {
+      console.log("Fetching user likes for user:", req.user);
       if (!req.user) {
         return res.status(401).json({ message: "Unauthorized" });
       }

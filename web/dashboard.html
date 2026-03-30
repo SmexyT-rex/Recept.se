@@ -309,7 +309,7 @@
               </div>
             </div>
             <div
-              id="favorites-grid"
+              id="likes-grid"
               class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8"
             >
               <!-- Recipe Card 1 -->
@@ -491,7 +491,6 @@
         </div>
       </main>
     </div>
-    <script src="./scripts/dashboard.js"></script>
     <script src="./scripts/profile.js"></script>
     <!-- Delete Confirmation Modal -->
     <div
@@ -532,6 +531,7 @@
               Cancel
             </button>
             <button
+              id="confirm-delete-button"
               class="flex-1 px-6 py-3.5 rounded-full font-headline font-bold uppercase text-xs tracking-widest text-white bg-[#FF3007] hover:opacity-90 active:scale-95 transition-all"
             >
               Delete
@@ -540,32 +540,5 @@
         </div>
       </div>
     </div>
-    <script>
-      const deleteModal = document.getElementById("delete-modal");
-      const modalBackdrop = document.getElementById("modal-backdrop");
-      const closeModalBtn = document.getElementById("close-modal");
-      const deleteButtons = document.querySelectorAll(".bin-button");
-
-      const openModal = () => {
-        deleteModal.classList.remove("hidden");
-        document.body.style.overflow = "hidden";
-      };
-
-      const closeModal = () => {
-        deleteModal.classList.add("hidden");
-        document.body.style.overflow = "";
-      };
-
-      // Handle all delete buttons
-      deleteButtons.forEach((button) => {
-        button.addEventListener("click", (e) => {
-          e.preventDefault();
-          openModal();
-        });
-      });
-
-      closeModalBtn.addEventListener("click", closeModal);
-      modalBackdrop.addEventListener("click", closeModal);
-    </script>
   </body>
 </html>
