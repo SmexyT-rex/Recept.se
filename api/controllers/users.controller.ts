@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { userService } from "../services/user.service.js";
 import type { CreateUser, UpdateUser } from "../types/user.types.ts";
 import jwt from "jsonwebtoken";
+import { userRepository } from "../repositories/user.repositories.js";
 
 export const userController = {
   async getAll(req: Request, res: Response) {
@@ -99,6 +100,42 @@ export const userController = {
       });
     } catch {
       return res.status(401).json({ error: "Invalid token" });
+    }
+  },
+
+  async likeRecipe(req: Request, res: Response) {
+    try {
+      if (!req.user) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const userId = req.user.id;
+      const { recipeId } = req.body;
+
+      await userRepository.likeRecipe(userId, recipeId);
+
+      res.json({ message: "Recipe liked successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Could not like recipe" });
+    }
+  },
+
+  async unlikeRecipe(req: Request, res: Response) {
+    try {
+      if (!req.user) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const userId = req.user.id;
+      const { recipeId } = req.body;
+
+      await userRepository.unlikeRecipe(userId, recipeId);
+
+      res.json({ message: "Recipe unliked successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Could not unlike recipe" });
     }
   },
 };

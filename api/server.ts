@@ -7,6 +7,7 @@ import userAuthRoutes from "./routes/users/users.authRoutes.js";
 import { testConnection } from "./database/mysql/testConn.js";
 import { connectMongoDB } from "./database/mongodb/connMongoDB.js";
 import recipeRoutes from "./routes/recipes/recipes.routes.js";
+import likeRoutes from "./routes/users/likes.routes.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 
@@ -23,6 +24,7 @@ app.use("/", webRoutes);
 app.use("/api/recipes", recipeRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/auth", userAuthRoutes);
+app.use("/api/likes", likeRoutes);
 
 await connectMongoDB();
 await testConnection();

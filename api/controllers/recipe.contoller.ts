@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { Recipe } from "../models/recipe.js";
 import { recipeRepository } from "../repositories/recipe.repositories.js";
+import { userRepository } from "../repositories/user.repositories.js";
 
 // GET - Find all recipes
 export async function findRecipes(req: Request, res: Response) {

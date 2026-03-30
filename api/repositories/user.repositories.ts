@@ -107,4 +107,18 @@ export const userRepository = {
     );
     return rows;
   },
+
+  async likeRecipe(userId: number, recipeId: string): Promise<void> {
+    await db.query(
+      "INSERT INTO user_likes (user_id, recipe_id) VALUES (?, ?)",
+      [userId, recipeId],
+    );
+  },
+
+  async unlikeRecipe(userId: number, recipeId: string): Promise<void> {
+    await db.query(
+      "DELETE FROM user_likes WHERE user_id = ? AND recipe_id = ?",
+      [userId, recipeId],
+    );
+  },
 };

@@ -14,6 +14,7 @@ export class Recipe {
 
 export type JwtUser = {
   id: number;
+  username: string;
   role: string;
 };
 
