@@ -6,6 +6,21 @@ export class User {
   role: Role = Role.USER;
 }
 
+export class Recipe {
+  id!: number;
+  user_id!: number;
+  recipe_id!: string;
+}
+
+export type JwtUser = {
+  id: number;
+  role: string;
+};
+
+export type CreateRecipe = Omit<Recipe, "id">;
+
+export type UpdateRecipe = Partial<CreateRecipe>;
+
 export enum Role {
   USER = "USER",
   ADMIN = "ADMIN",

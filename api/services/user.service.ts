@@ -78,23 +78,34 @@ export const userService = {
   },
 
   async login(email: string, password: string): Promise<string> {
+    console.log("Step 2:", { email, password });
+
     const error: string = "Invalid username or password";
+
     const user = await userRepository.login(email);
+    console.log("Step 3: User found", user);
     if (!user) throw new Error(error);
 
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("Step 4: Password match", isMatch);
     if (!isMatch) throw new Error(error);
 
     const userRole = user.role;
+    console.log("Step 5: User role", userRole);
 
     const token = jwt.sign(
-      { id: user.id, role: userRole },
+      { id: user.id, username: user.username, role: userRole },
       process.env.JWT_SECRET as string,
       {
         expiresIn: "1h",
       },
     );
+    console.log("Step 6: JWT Token generated", token);
 
     return token;
+  },
+
+  async getUserRecipes(userId: number) {
+    return userRepository.findUserRecipes(userId);
   },
 };
