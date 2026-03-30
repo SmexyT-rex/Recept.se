@@ -108,17 +108,25 @@ export const userRepository = {
     return rows;
   },
 
-  async likeRecipe(userId: number, recipeId: string): Promise<void> {
-    await db.query(
-      "INSERT INTO user_likes (user_id, recipe_id) VALUES (?, ?)",
-      [userId, recipeId],
+  async findUserLikes(userId: number): Promise<(User & RowDataPacket)[]> {
+    const [rows] = await db.query<(User & RowDataPacket)[]>(
+      `SELECT * FROM likes WHERE user_id = ?`,
+      [userId],
     );
+    return rows;
+  },
+
+  async likeRecipe(userId: number, recipeId: string): Promise<void> {
+    await db.query("INSERT INTO likes (user_id, recipe_id) VALUES (?, ?)", [
+      userId,
+      recipeId,
+    ]);
   },
 
   async unlikeRecipe(userId: number, recipeId: string): Promise<void> {
-    await db.query(
-      "DELETE FROM user_likes WHERE user_id = ? AND recipe_id = ?",
-      [userId, recipeId],
-    );
+    await db.query("DELETE FROM likes WHERE user_id = ? AND recipe_id = ?", [
+      userId,
+      recipeId,
+    ]);
   },
 };

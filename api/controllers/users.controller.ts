@@ -103,6 +103,26 @@ export const userController = {
     }
   },
 
+  async getUserLikes(req: Request<{ id: number }>, res: Response) {
+    const likes = await userRepository.findUserLikes(Number(req.params.id));
+    res.json(likes);
+  },
+
+  async getMyLikes(req: Request, res: Response) {
+    try {
+      if (!req.user) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+      const userId = req.user.id;
+
+      const likes = await userRepository.findUserLikes(userId);
+      res.json(likes);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Could not fetch user likes" });
+    }
+  },
+
   async likeRecipe(req: Request<{}, {}, { recipeId: string }>, res: Response) {
     try {
       if (!req.user) {
