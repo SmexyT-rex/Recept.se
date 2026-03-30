@@ -1,0 +1,481 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Edit Recipe | The Gastronomic Editorial</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;family=Lexend:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#c4cc80",
+              "primary-container": "#e22600",
+              "surface-container": "#f0eded",
+              "on-surface-variant": "#5e3f39",
+              "on-primary-container": "#fffbff",
+              background: "#fcf9f8",
+              "primary-fixed": "#ffdad3",
+              "surface-dim": "#dcd9d9",
+              "on-primary-fixed": "#3e0400",
+              "surface-container-highest": "#e5e2e1",
+              surface: "#fcf9f8",
+              "tertiary-container": "#727936",
+              "on-surface": "#1c1b1b",
+              error: "#ba1a1a",
+              "secondary-fixed": "#ffdeab",
+              "on-tertiary-container": "#feffdc",
+              "on-primary": "#ffffff",
+              "on-tertiary-fixed-variant": "#444b0b",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed": "#1a1e00",
+              "on-secondary-fixed-variant": "#5f4100",
+              "surface-container-low": "#f6f3f2",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#6c4a00",
+              "surface-container-high": "#eae7e7",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#313030",
+              outline: "#936e67",
+              "tertiary-fixed": "#e1e999",
+              "inverse-primary": "#ffb4a5",
+              "on-error": "#ffffff",
+              secondary: "#7d5700",
+              primary: "#b51c00",
+              "on-error-container": "#93000a",
+              "inverse-on-surface": "#f3f0ef",
+              "surface-bright": "#fcf9f8",
+              "secondary-fixed-dim": "#ffba30",
+              "on-background": "#1c1b1b",
+              tertiary: "#596020",
+              "outline-variant": "#e9bcb3",
+              "on-secondary-fixed": "#271900",
+              "on-primary-fixed-variant": "#8e1400",
+              "on-tertiary": "#ffffff",
+              "secondary-container": "#ffb615",
+              "primary-fixed-dim": "#ffb4a5",
+              "surface-tint": "#b91d00",
+              "surface-variant": "#e5e2e1",
+            },
+            fontFamily: {
+              headline: ["Lexend", "sans-serif"],
+              body: ["Manrope", "sans-serif"],
+              label: ["Manrope", "sans-serif"],
+              epilogue: ["Epilogue", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: none !important;
+        box-shadow: 0 0 0 2px rgba(181, 28, 0, 0.4) !important;
+      }
+      .editorial-input {
+        background: transparent;
+        border: none;
+        padding: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed"
+  >
+    <!-- Management Header (Fixed) -->
+    <header
+      class="sticky top-0 z-[60] bg-[#fcf9f8]/80 backdrop-blur-xl border-b border-surface-container shadow-sm"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-6">
+          <a
+            class="text-primary font-epilogue font-black text-2xl tracking-tighter"
+            href="#"
+            >THE GASTRONOMIC</a
+          >
+          <div class="h-6 w-px bg-surface-container-highest"></div>
+          <span
+            class="text-tertiary font-medium tracking-wide uppercase text-xs"
+            >Recipe Editor</span
+          >
+        </div>
+        <div class="flex items-center gap-3">
+          <div
+            class="hidden md:flex items-center gap-4 mr-4 text-[10px] uppercase font-bold tracking-widest text-on-surface-variant/50"
+          >
+            <div class="flex flex-col items-end">
+              <span
+                >Author ID: <span class="text-on-surface">CHEF_882</span></span
+              >
+              <span
+                >Created:
+                <span class="text-on-surface">Oct 24, 2024</span></span
+              >
+            </div>
+          </div>
+          <button
+            class="px-5 py-2.5 rounded-full font-bold text-sm text-on-surface-variant hover:bg-surface-container-high transition-all flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined text-lg">visibility</span>
+            Preview
+          </button>
+          <button
+            class="px-8 py-2.5 rounded-full font-bold text-sm bg-primary text-on-primary hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-primary/20"
+          >
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </header>
+    <main
+      class="max-w-7xl mx-auto px-6 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-16"
+    >
+      <!-- Main Editor Column -->
+      <div class="lg:col-span-8 space-y-16">
+        <!-- Images Array Section -->
+        <section class="space-y-10">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="md:col-span-2 relative group">
+              <div
+                class="aspect-[16/9] w-full rounded-xl bg-surface-container-low border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center gap-4 hover:bg-surface-container transition-colors cursor-pointer overflow-hidden"
+              >
+                <div class="flex flex-col items-center text-center px-10">
+                  <span
+                    class="material-symbols-outlined text-5xl text-outline-variant mb-2"
+                    >add_a_photo</span
+                  >
+                  <p
+                    class="font-headline font-bold text-xl text-on-surface-variant"
+                  >
+                    Primary Image (URL)
+                  </p>
+                  <p
+                    class="text-[10px] text-tertiary mt-1 uppercase tracking-widest font-bold"
+                  >
+                    Main Recipe Visual
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div
+                class="aspect-square w-full rounded-xl bg-surface-container-low border-2 border-dashed border-outline-variant/20 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-surface-container transition-colors group"
+              >
+                <span
+                  class="material-symbols-outlined text-3xl text-outline-variant"
+                  >add_photo_alternate</span
+                >
+                <span
+                  class="text-[10px] font-bold text-tertiary uppercase tracking-widest"
+                  >Gallery Image</span
+                >
+              </div>
+              <div
+                class="aspect-square w-full rounded-xl bg-surface-container-low border-2 border-dashed border-outline-variant/20 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-surface-container transition-colors group"
+              >
+                <span
+                  class="material-symbols-outlined text-3xl text-outline-variant"
+                  >add_photo_alternate</span
+                >
+                <span
+                  class="text-[10px] font-bold text-tertiary uppercase tracking-widest"
+                  >Gallery Image</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="space-y-6">
+            <!-- Title -->
+            <div class="flex flex-col gap-2">
+              <label
+                class="text-[10px] uppercase font-black tracking-[0.2em] text-primary"
+                >Recipe Title</label
+              >
+              <input
+                class="editorial-input font-epilogue font-black text-5xl md:text-6xl lg:text-7xl tracking-tight text-on-surface placeholder:text-surface-container-highest uppercase"
+                placeholder="ENTER TITLE"
+                type="text"
+              />
+            </div>
+            <!-- Category -->
+            <div class="space-y-2">
+              <label
+                class="text-[10px] uppercase font-black tracking-[0.2em] text-tertiary"
+                >Category</label
+              >
+              <select
+                class="w-full bg-surface-container-low border-none rounded-lg py-4 px-4 font-headline font-bold text-on-surface-variant focus:ring-primary appearance-none"
+              >
+                <option disabled="" selected="" value="">
+                  Select Category
+                </option>
+                <option>Appetizers</option>
+                <option>Main Courses</option>
+                <option>Desserts</option>
+                <option>Seasonal Harvest</option>
+                <option>Artisan Breads</option>
+              </select>
+            </div>
+            <!-- Description -->
+            <div class="space-y-2">
+              <label
+                class="text-[10px] uppercase font-black tracking-[0.2em] text-tertiary"
+                >Description</label
+              >
+              <textarea
+                class="editorial-input font-headline font-light text-xl lg:text-2xl text-on-surface-variant italic placeholder:text-surface-container-highest resize-none leading-relaxed"
+                placeholder="Write a compelling editorial description of this dish..."
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+        </section>
+        <!-- Ingredients Array Section -->
+        <section class="space-y-8">
+          <div
+            class="flex items-center justify-between border-b-2 border-primary pb-4"
+          >
+            <h3
+              class="font-epilogue font-black text-3xl tracking-tight text-on-surface"
+            >
+              Ingredients
+            </h3>
+          </div>
+          <div class="space-y-3" id="ingredients-container">
+            <div class="grid grid-cols-12 gap-3 items-center group">
+              <div class="col-span-2">
+                <input
+                  class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-3 font-medium text-sm focus:border-primary transition-all"
+                  placeholder="Amount"
+                  type="text"
+                />
+              </div>
+              <div class="col-span-3">
+                <input
+                  class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-3 font-medium text-sm focus:border-primary transition-all"
+                  placeholder="Unit"
+                  type="text"
+                />
+              </div>
+              <div class="col-span-6">
+                <input
+                  class="w-full bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-4 py-3 font-medium text-sm focus:border-primary transition-all"
+                  placeholder="Ingredient name..."
+                  type="text"
+                />
+              </div>
+              <div class="col-span-1 flex justify-center">
+                <button
+                  class="text-surface-container-highest hover:text-error transition-colors"
+                >
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+            </div>
+            <button
+              class="w-full py-4 border border-dashed border-outline-variant/40 rounded-xl text-tertiary font-bold text-sm hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2 mt-4"
+            >
+              <span class="material-symbols-outlined text-lg">add</span> Add
+              Ingredient Line
+            </button>
+          </div>
+        </section>
+        <!-- Steps Array Section -->
+        <section class="space-y-12">
+          <div class="border-b-2 border-primary pb-4">
+            <h3
+              class="font-epilogue font-black text-3xl tracking-tight text-on-surface"
+            >
+              Method Steps
+            </h3>
+          </div>
+          <div class="space-y-12" id="steps-container">
+            <!-- Step 1 -->
+            <div class="relative pl-16 group">
+              <div
+                class="absolute left-0 top-0 w-12 h-12 rounded-full bg-primary text-on-primary font-epilogue font-black flex items-center justify-center text-xl shadow-lg shadow-primary/20"
+              >
+                1
+              </div>
+              <div class="space-y-6">
+                <textarea
+                  class="editorial-input font-body text-lg text-on-surface-variant leading-relaxed placeholder:text-surface-container-highest resize-none border-b border-surface-container pb-4"
+                  placeholder="Describe the process step..."
+                  rows="3"
+                ></textarea>
+              </div>
+              <div
+                class="absolute -right-8 top-0 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-2"
+              >
+                <button
+                  class="p-2 bg-surface-container-highest rounded-full text-error transition-colors"
+                >
+                  <span class="material-symbols-outlined text-sm">delete</span>
+                </button>
+              </div>
+            </div>
+            <button
+              class="w-full py-6 bg-surface-container-low rounded-xl text-primary font-epilogue font-black text-xl hover:scale-[1.01] transition-transform flex items-center justify-center gap-3"
+            >
+              <span class="material-symbols-outlined text-2xl">add_circle</span>
+              ADD NEXT STEP
+            </button>
+          </div>
+        </section>
+      </div>
+      <!-- Sidebar: Tags & Secondary Schema Metadata -->
+      <aside class="lg:col-span-4 space-y-8">
+        <div class="sticky top-28 space-y-8">
+          <!-- Tags Array Section -->
+          <div
+            class="bg-surface-container-lowest p-8 rounded-2xl border border-surface-container-high space-y-6 shadow-sm"
+          >
+            <div class="space-y-4">
+              <h4 class="font-epilogue font-bold text-xl text-on-surface">
+                Recipe Tags
+              </h4>
+              <div class="relative">
+                <input
+                  class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 text-sm font-medium text-on-surface-variant focus:ring-primary"
+                  placeholder="Press Enter to add tag..."
+                  type="text"
+                />
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-4 py-1.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-black uppercase tracking-wider flex items-center gap-2"
+                  >Organic
+                  <button class="hover:text-error">
+                    <span class="material-symbols-outlined text-xs">close</span>
+                  </button></span
+                >
+                <span
+                  class="px-4 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed text-[10px] font-black uppercase tracking-wider flex items-center gap-2"
+                  >Seasonal
+                  <button class="hover:text-error">
+                    <span class="material-symbols-outlined text-xs">close</span>
+                  </button></span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Meta Information (Schema compliance) -->
+          <div
+            class="p-8 rounded-2xl bg-on-surface text-surface border border-on-surface space-y-6 shadow-2xl"
+          >
+            <div class="space-y-4">
+              <h4
+                class="font-epilogue font-bold text-sm uppercase tracking-tight text-primary-fixed"
+              >
+                Schema Metadata
+              </h4>
+              <div class="space-y-1">
+                <p
+                  class="text-[10px] uppercase font-bold tracking-widest text-surface-container-highest opacity-60"
+                >
+                  Author ID (Number)
+                </p>
+                <p class="text-sm font-headline font-bold">882</p>
+              </div>
+              <div class="space-y-1">
+                <p
+                  class="text-[10px] uppercase font-bold tracking-widest text-surface-container-highest opacity-60"
+                >
+                  Created At (Date)
+                </p>
+                <p class="text-sm font-headline font-bold">2024-10-24</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="bg-surface-container-highest mt-20 border-t border-outline-variant/20"
+    >
+      <div
+        class="max-w-7xl mx-auto px-10 py-16 grid grid-cols-1 md:grid-cols-3 gap-12"
+      >
+        <div class="space-y-6">
+          <span
+            class="text-2xl font-black text-primary font-epilogue tracking-tighter uppercase"
+            >The Gastronomic Editorial</span
+          >
+          <p
+            class="font-body text-sm tracking-wide text-on-surface-variant leading-relaxed opacity-80"
+          >
+            © 2024 The Gastronomic Editorial. Crafted for the Modern Maître d’.
+          </p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <h5
+            class="font-epilogue font-bold text-tertiary text-xs uppercase tracking-[0.2em]"
+          >
+            The Magazine
+          </h5>
+          <nav class="flex flex-col gap-2">
+            <a
+              class="font-body text-sm text-on-surface-variant hover:text-primary transition-colors"
+              href="#"
+              >Archive</a
+            >
+            <a
+              class="font-body text-sm text-on-surface-variant hover:text-primary transition-colors"
+              href="#"
+              >Kitchen Studio</a
+            >
+          </nav>
+        </div>
+        <div class="flex flex-col gap-4">
+          <h5
+            class="font-epilogue font-bold text-tertiary text-xs uppercase tracking-[0.2em]"
+          >
+            Support
+          </h5>
+          <nav class="flex flex-col gap-2">
+            <a
+              class="font-body text-sm text-on-surface-variant hover:text-primary transition-colors"
+              href="#"
+              >Privacy Policy</a
+            >
+            <a
+              class="font-body text-sm text-on-surface-variant hover:text-primary transition-colors"
+              href="#"
+              >Terms of Service</a
+            >
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

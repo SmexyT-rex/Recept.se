@@ -158,7 +158,7 @@
             class="flex items-center gap-8 font-['Epilogue'] tracking-tight text-sm"
           >
             <a
-              class=" text-[18px] text-[#b51c00] dark:text-[#ff3007] font-bold border-b-2 border-[#b51c00] pb-1 transition-all duration-200"
+              class="text-[18px] text-[#b51c00] dark:text-[#ff3007] font-bold border-b-2 border-[#b51c00] pb-1 transition-all duration-200"
               href="#"
               >Home</a
             >
@@ -172,22 +172,21 @@
               href="#"
               >Favorites</a
             >
-
           </nav>
+
           <div class="flex items-center gap-6">
-
-
             <button
               class="bg-[#b51c00] text-white px-8 py-2.5 rounded-full font-headline font-bold uppercase text-xs tracking-widest hover:opacity-90 active:scale-95 transition-all duration-200"
             >
               Add Recipe
             </button>
-                        <button
-              class="bg-[#b51c00] text-white px-8 py-2.5 rounded-full font-headline font-bold uppercase text-xs tracking-widest hover:opacity-90 active:scale-95 transition-all duration-200"
+
+            <button
+              class="log-in bg-transparent text-[#b51c00] border-[#b51c00] border-2 px-8 py-2 rounded-full font-headline font-bold uppercase text-xs tracking-widest hover:bg-[#b51c00] hover:text-white active:scale-95 transition-all duration-200 box-content"
             >
               Log in
             </button>
-
+          </div>
         </div>
       </div>
     </header>
@@ -197,7 +196,7 @@
       id="mobile-drawer"
     >
       <div
-        class="absolute inset-0  duration-300 pointer-events-none"
+        class="absolute inset-0 duration-300 pointer-events-none"
         id="drawer-overlay"
       ></div>
       <div
@@ -230,7 +229,7 @@
               >Favorites</a
             >
             <button
-              class="bg-[#b51c00] text-white px-8 py-2.5 rounded-full font-headline font-bold uppercase text-xs tracking-widest hover:opacity-90 active:scale-95 transition-all duration-200"
+              class="log-in bg-[#b51c00] text-white px-8 py-2.5 rounded-full font-headline font-bold uppercase text-xs tracking-widest hover:opacity-90 active:scale-95 transition-all duration-200"
             >
               Log in
             </button>
@@ -280,12 +279,11 @@
           </div>
           <div class="lg:col-span-5 relative">
             <div
-              class="absolute -top-10 -right-10 w-64 h-64 bg-tertiary-fixed rounded-full mix-blend-multiply filter blur-3xl opacity-30"
-            ></div>
-            <div
+              id="featured-recipe-card"
               class="relative rounded-[2.5rem] md:rounded-[3rem] overflow-hidden editorial-shadow transform rotate-1 hover:rotate-0 transition-transform duration-700"
             >
               <img
+                id="featured-recipe-image"
                 alt=""
                 class="w-full h-[450px] md:h-[650px] object-cover"
                 data-alt="close-up of a vibrant healthy bowl with salmon, avocado, and fresh greens on a stone textured surface with soft natural light"
@@ -300,6 +298,7 @@
                   Featured Meal
                 </p>
                 <h3
+                  id="featured-recipe-title"
                   class="font-headline text-xl md:text-2xl font-black text-on-surface leading-tight"
                 >
                   15-Min Citrus Glazed Salmon
@@ -446,6 +445,7 @@
               class="lg:col-span-6 h-[300px] md:h-[450px] lg:h-auto relative"
             >
               <img
+                id="second-recipe-image"
                 class="w-full h-full object-cover"
                 data-alt="close up of artisan fresh pasta with pesto and pine nuts being tossed in a pan"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9PqELJBMjPluQaigvWxwa7jlxYTw5AkVWo75huhXhfH_Nr1orRmnvrXZ7FGMKOjoW-PTDPcsii5Y0BY4CnDA5PmrjxtZ1amzta_Dfktiuksf-GX1N2UK_7Lrt9O_Mpc_SgiEUq5f7ROaNCCifPr-y-KXK0iM9fmecbSPHP_UpIfKCCobU_-DhfBV4t6ROqUGqjFBkm8c8_2WgcDgyb4a0BLSHQcl36JhJVsihNVbCQPMz-Be_UcgZZycuuTk_S_SHpCqErRTVtA4"
@@ -460,7 +460,7 @@
                     >schedule</span
                   >
                   <span class="text-xs md:text-sm font-bold tracking-tight"
-                    >12 MINS</span
+                    >60 MINS</span
                   >
                 </div>
               </div>
@@ -471,7 +471,7 @@
               <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
                 <span
                   class="text-[10px] md:text-xs font-black uppercase tracking-widest text-primary/80"
-                  >Vegetarian</span
+                  >Low Carb</span
                 >
                 <span
                   class="w-1 md:1.5 h-1 md:1.5 rounded-full bg-stone-200"
@@ -482,11 +482,13 @@
                 >
               </div>
               <h3
+                id="second-recipe-title"
                 class="font-headline text-3xl md:text-4xl lg:text-5xl font-black mb-6 md:10 leading-tight tracking-tighter"
               >
                 Wild Garlic &amp; Walnut Pesto Penne
               </h3>
               <p
+                id="second-recipe-description"
                 class="text-on-surface-variant text-lg md:text-xl mb-8 md:12 leading-relaxed italic border-l-2 border-primary/20 pl-6 md:8"
               >
                 "A spring classic reimagined for modern kitchens. The pungent
@@ -516,6 +518,7 @@
                 class="relative aspect-[4/3] rounded-[2rem] md:rounded-[3rem] overflow-hidden editorial-shadow mb-6 md:10"
               >
                 <img
+                  id="third-recipe-image"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                   data-alt="glistening honey glazed ribs served on a dark rustic wooden board with herbs"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMw47JcGQHC1sKfKny3WOAQKyPr0GB7OI8I3q8Ecs7VGOBn4AuDZaIJkT51ohlcsPvrDTyoFVjCANcAitONQEj3H7AgCQ5b_TQ8hs2ayar9cWz62JTlL5bXS_QZOn_u2Jm2wP3d5ZFL2XSx6kwmlQSxnS_RsB-TLPtWAMWyR7Lfe74fS5uitxl1b9X7c7z-2TcP8Qu75qtWFElVUqe0FSZx806j1G9lHVd7R8GaDVUAdzXCl_Zb_b9KGChgrfjWLi1nP_9ZJgJXho"
@@ -537,12 +540,14 @@
               </div>
               <div class="px-2 md:px-4">
                 <h3
+                  id="third-recipe-title"
                   class="font-headline text-2xl md:text-3xl font-black mb-4 md:5 tracking-tight"
                 >
                   Sticky Umami Short Ribs
                 </h3>
                 <p
                   class="text-on-surface-variant text-base md:text-lg leading-relaxed mb-6 md:8 line-clamp-2"
+                  id="third-recipe-description"
                 >
                   Slow-braised flavor achieved in record time using pressure
                   cooking techniques.
@@ -567,6 +572,7 @@
                 class="relative aspect-[4/3] rounded-[2rem] md:rounded-[3rem] overflow-hidden editorial-shadow mb-6 md:10"
               >
                 <img
+                  id="fourth-recipe-image"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                   data-alt="vibrant mediterranean spread with hummus, olives, pita bread and fresh vegetables"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIl8IJhCXtyAOOoZvN0rPknkcYIobYgesNAr6FZi2doM23fU-LLMycO3a6AcBkvscXBnkPdHzQg5SZdjnDazOUo6T4BP4FPm2SCyvpCEZdJe-WRTb5UMXXdzLOZmuMz0kEOKo5lQFTuig62kDJbF44PE2-llDrYm8e1X74oq3Rx7-kL12pYaRg6LeKvB--yV4Qg9JEx-12iCdoMLndeIA5bcWvvVnoS_1IscwUTXgixRLEsmVjt9Kh6JYw0ai8VtjyfbRlq4JrZLY"
@@ -588,12 +594,14 @@
               </div>
               <div class="px-2 md:px-4">
                 <h3
+                  id="fourth-recipe-title"
                   class="font-headline text-2xl md:text-3xl font-black mb-4 md:5 tracking-tight"
                 >
                   The Modern Meze Board
                 </h3>
                 <p
                   class="text-on-surface-variant text-base md:text-lg leading-relaxed mb-6 md:8 line-clamp-2"
+                  id="fourth-recipe-description"
                 >
                   An assembly-focused masterpiece featuring smoky harissa hummus
                   and quick-pickled onions.
@@ -899,126 +907,6 @@
         </div>
       </div>
     </footer>
-    <script>
-      gsap.registerPlugin(ScrollTrigger);
-
-      // Mobile Drawer Logic
-      const menuOpen = document.getElementById("menu-open");
-      const menuClose = document.getElementById("menu-close");
-      const drawer = document.getElementById("mobile-drawer");
-      const overlay = document.getElementById("drawer-overlay");
-
-      function toggleMenu(isOpen) {
-        if (isOpen) {
-          drawer.classList.remove("translate-x-full");
-          drawer.classList.add("translate-x-0");
-          overlay.classList.remove("opacity-0", "pointer-events-none");
-          overlay.classList.add("opacity-100", "pointer-events-auto");
-          document.body.style.overflow = "hidden";
-        } else {
-          drawer.classList.add("translate-x-full");
-          drawer.classList.remove("translate-x-0");
-          overlay.classList.add("opacity-0", "pointer-events-none");
-          overlay.classList.remove("opacity-100", "pointer-events-auto");
-          document.body.style.overflow = "";
-        }
-      }
-
-      menuOpen.addEventListener("click", () => toggleMenu(true));
-      menuClose.addEventListener("click", () => toggleMenu(false));
-      overlay.addEventListener("click", () => toggleMenu(false));
-
-      // 1. Hero Animations
-      const heroTl = gsap.timeline({
-        defaults: { ease: "power3.out", duration: 1.2 },
-      });
-      heroTl
-        .from("section.relative h1", { y: 60, opacity: 0, delay: 0.2 })
-        .from("section.relative p", { y: 30, opacity: 0 }, "-=0.8")
-        .from(
-          "section.relative .flex.flex-wrap",
-          { y: 20, opacity: 0 },
-          "-=0.6",
-        )
-        .from(
-          "section.relative .lg\\:col-span-5",
-          { scale: 0.95, opacity: 0, duration: 1.5 },
-          "0",
-        );
-
-      // Hero Parallax (Desktop Only)
-      if (window.innerWidth >= 1024) {
-        gsap.to("section.relative .lg\\:col-span-5", {
-          y: -50,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "section.relative",
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-      }
-
-      // 2. Explore by Taste - Staggered Reveal
-      gsap.from(".grid.grid-cols-2.md\\:grid-cols-4.lg\\:grid-cols-5 > div", {
-        scrollTrigger: {
-          trigger: ".grid.grid-cols-2.md\\:grid-cols-4.lg\\:grid-cols-5",
-          start: "top 85%",
-        },
-        opacity: 0,
-        scale: 0.9,
-        y: 40,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "back.out(1.7)",
-      });
-
-      // 3. Weekly Selections
-      gsap.from(
-        ".space-y-24 > div:first-child, .space-y-32 > div:first-child",
-        {
-          scrollTrigger: {
-            trigger:
-              ".space-y-24 > div:first-child, .space-y-32 > div:first-child",
-            start: "top 80%",
-          },
-          x: window.innerWidth >= 1024 ? -100 : 0,
-          y: window.innerWidth < 1024 ? 50 : 0,
-          opacity: 0,
-          duration: 1.2,
-          ease: "power4.out",
-        },
-      );
-
-      // 4. Chef's Fast-Scan Grid
-      gsap.from(
-        "section.py-24.bg-stone-100\\/30 .grid > div, section.py-32.bg-stone-100\\/30 .grid > div",
-        {
-          scrollTrigger: {
-            trigger:
-              "section.py-24.bg-stone-100\\/30, section.py-32.bg-stone-100\\/30",
-            start: "top 85%",
-          },
-          opacity: 0,
-          y: 50,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power2.out",
-        },
-      );
-
-      // 5. Final CTA
-      gsap.from("section.py-24 .bg-primary, section.py-48 .bg-primary", {
-        scrollTrigger: {
-          trigger: "section.py-24 .bg-primary, section.py-48 .bg-primary",
-          start: "top 85%",
-        },
-        scale: 0.95,
-        opacity: 0,
-        duration: 1,
-        ease: "expo.out",
-      });
-    </script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

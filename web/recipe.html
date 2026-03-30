@@ -1,0 +1,526 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+      Slow-Roasted Balsamic Glazed Salmon | The Gastronomic Editorial
+    </title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;family=Lexend:wght@700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#c4cc80",
+              "primary-container": "#e22600",
+              "surface-container": "#f0eded",
+              "on-surface-variant": "#5e3f39",
+              "on-primary-container": "#fffbff",
+              background: "#fcf9f8",
+              "primary-fixed": "#ffdad3",
+              "surface-dim": "#dcd9d9",
+              "on-primary-fixed": "#3e0400",
+              "surface-container-highest": "#e5e2e1",
+              surface: "#fcf9f8",
+              "tertiary-container": "#727936",
+              "on-surface": "#1c1b1b",
+              error: "#ba1a1a",
+              "secondary-fixed": "#ffdeab",
+              "on-tertiary-container": "#feffdc",
+              "on-primary": "#ffffff",
+              "on-tertiary-fixed-variant": "#444b0b",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed": "#1a1e00",
+              "on-secondary-fixed-variant": "#5f4100",
+              "surface-container-low": "#f6f3f2",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#6c4a00",
+              "surface-container-high": "#eae7e7",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#313030",
+              outline: "#936e67",
+              "tertiary-fixed": "#e1e999",
+              "inverse-primary": "#ffb4a5",
+              "on-error": "#ffffff",
+              secondary: "#7d5700",
+              primary: "#b51c00",
+              "on-error-container": "#93000a",
+              "inverse-on-surface": "#f3f0ef",
+              "surface-bright": "#fcf9f8",
+              "secondary-fixed-dim": "#ffba30",
+              "on-background": "#1c1b1b",
+              tertiary: "#596020",
+              "outline-variant": "#e9bcb3",
+              "on-secondary-fixed": "#271900",
+              "on-primary-fixed-variant": "#8e1400",
+              "on-tertiary": "#ffffff",
+              "secondary-container": "#ffb615",
+              "primary-fixed-dim": "#ffb4a5",
+              "surface-tint": "#b91d00",
+              "surface-variant": "#e5e2e1",
+            },
+            fontFamily: {
+              headline: ["Lexend", "sans-serif"],
+              body: ["Manrope", "sans-serif"],
+              label: ["Manrope", "sans-serif"],
+              display: ["Epilogue", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .editorial-shadow {
+        box-shadow: 0 20px 40px rgba(28, 27, 27, 0.06);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed"
+  >
+    <!-- TopNavBar -->
+    <nav
+      class="bg-[#fcf9f8]/80 dark:bg-[#1c1b1b]/80 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-[0_20px_40px_rgba(28,27,27,0.06)]"
+    >
+      <div
+        class="max-w-7xl mx-auto px-8 py-6 flex flex-col md:flex-row gap-4 items-center justify-between"
+      >
+        <div
+          class="text-4xl font-black text-[#b51c00] dark:text-[#ff3007] tracking-tighter font-['Epilogue']"
+        >
+          The Gastronomic Editorial
+        </div>
+        <div class="flex items-center gap-8">
+          <div
+            class="hidden md:flex items-center gap-8 font-['Epilogue'] font-bold tracking-tight uppercase text-sm"
+          >
+            <a
+              class="text-[#596020] dark:text-[#e5e2e1] font-medium hover:text-[#b51c00] transition-colors"
+              href="#"
+              >Explore</a
+            >
+            <a
+              class="text-[#b51c00] dark:text-[#ff3007] border-b-2 border-[#b51c00] pb-1"
+              href="#"
+              >Categories</a
+            >
+            <a
+              class="text-[#596020] dark:text-[#e5e2e1] font-medium hover:text-[#b51c00] transition-colors"
+              href="#"
+              >Favorites</a
+            >
+            <a
+              class="text-[#596020] dark:text-[#e5e2e1] font-medium hover:text-[#b51c00] transition-colors"
+              href="#"
+              >Random Recipe</a
+            >
+          </div>
+          <div class="flex items-center gap-4">
+            <div
+              class="bg-surface-container-highest px-4 py-2 rounded-full flex items-center gap-2"
+            >
+              <span
+                class="material-symbols-outlined text-on-surface-variant text-sm"
+                >search</span
+              >
+              <input
+                class="bg-transparent border-none focus:ring-0 text-sm w-32 md:w-48"
+                placeholder="Search culinary archives..."
+                type="text"
+              />
+            </div>
+            <button
+              class="bg-[#b51c00] text-white px-6 py-2 rounded-full font-bold uppercase text-xs tracking-widest hover:scale-[1.02] transition-transform duration-300 ease-out active:opacity-80"
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-[#f6f3f2] dark:bg-[#2d2c2c] h-px w-full"></div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-6 md:px-10">
+      <!-- Hero Section: Title, Category, Tags, Description, Author, Created_at, Hero Image -->
+      <section
+        class="relative mt-12 mb-20 overflow-hidden rounded-xl bg-surface-container-low"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-center">
+          <div
+            class="lg:col-span-7 order-2 lg:order-1 p-8 md:p-16 lg:pr-12 z-10"
+          >
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <span
+                class="bg-primary text-on-primary px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest"
+                >Main Course</span
+              >
+              <div class="h-4 w-px bg-outline-variant mx-2"></div>
+              <div class="flex gap-2">
+                <span
+                  class="text-[10px] font-bold uppercase text-tertiary-container bg-tertiary-container/10 px-2 py-0.5 rounded"
+                  >Seafood</span
+                >
+                <span
+                  class="text-[10px] font-bold uppercase text-tertiary-container bg-tertiary-container/10 px-2 py-0.5 rounded"
+                  >Roasted</span
+                >
+                <span
+                  class="text-[10px] font-bold uppercase text-tertiary-container bg-tertiary-container/10 px-2 py-0.5 rounded"
+                  >Dinner</span
+                >
+              </div>
+            </div>
+            <h1
+              class="text-5xl md:text-7xl lg:text-8xl font-black text-on-surface leading-[0.9] tracking-tighter font-headline mb-6"
+            >
+              Slow-Roasted <span class="text-primary">Balsamic</span> Glazed
+              Salmon
+            </h1>
+            <p
+              class="text-on-surface-variant text-lg leading-relaxed max-w-2xl mb-8 font-medium italic"
+            >
+              A masterful balance of sharp Modena reduction and the delicate,
+              buttery profile of king salmon, prepared with meticulous thermal
+              precision.
+            </p>
+            <div
+              class="flex items-center gap-6 text-xs text-on-surface-variant font-bold uppercase tracking-widest"
+            >
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-base"
+                  >person</span
+                >
+                <span>Author ID: 9422</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-base"
+                  >calendar_today</span
+                >
+                <span>Created: Oct 24, 2024</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="lg:col-span-5 order-1 lg:order-2 h-[400px] lg:h-[700px] relative"
+          >
+            <img
+              alt="Glazed Salmon"
+              class="w-full h-full object-cover rounded-xl lg:rounded-none lg:rounded-r-xl"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgBBS2w0yMExus8Iap8Ztjm2DIErZy3xo0SxL4G8kkUeNvIP_ljl4ThUa_O7cPjBHoOUigjLdDj5DDYMpr90nRtlntRCMijtvpmOBerzdbzAB8sdDxrEZO_e5gxFgXyMOA4AUwyUw-lRBbt6DmRS6E3l925K1yhwl42cU_0vJ1Z43RVoxlFLMOkL98HIALybI0ZEkPWnRpOXuQGUD3GtKUIg8Ev422ymWhWgfT2gEKjdnFlOD80PsYHbDFqfgGV_S6a3OJf0GGHWc"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-surface-container-low via-transparent to-transparent hidden lg:block"
+            ></div>
+          </div>
+        </div>
+      </section>
+      <!-- Main Recipe Content: Ingredients & Steps -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
+        <!-- Ingredients Column -->
+        <section class="lg:col-span-5">
+          <h2 class="font-headline text-3xl mb-8 flex items-center gap-3">
+            <span class="text-primary text-4xl">01</span> Ingredients
+          </h2>
+          <ul class="space-y-6">
+            <li
+              class="flex items-start gap-4 pb-4 border-b border-surface-container"
+            >
+              <div class="flex-1">
+                <div class="flex items-baseline justify-between mb-0.5">
+                  <p
+                    class="font-black text-on-surface uppercase tracking-tight"
+                  >
+                    King Salmon Fillet
+                  </p>
+                  <div class="flex items-center gap-1 text-primary font-black">
+                    <span class="text-lg">2</span>
+                    <span class="text-[10px] uppercase">lbs</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li
+              class="flex items-start gap-4 pb-4 border-b border-surface-container"
+            >
+              <div class="flex-1">
+                <div class="flex items-baseline justify-between mb-0.5">
+                  <p
+                    class="font-black text-on-surface uppercase tracking-tight"
+                  >
+                    Aged Balsamic Vinegar
+                  </p>
+                  <div class="flex items-center gap-1 text-primary font-black">
+                    <span class="text-lg">1/2</span>
+                    <span class="text-[10px] uppercase">cup</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li
+              class="flex items-start gap-4 pb-4 border-b border-surface-container"
+            >
+              <div class="flex-1">
+                <div class="flex items-baseline justify-between mb-0.5">
+                  <p
+                    class="font-black text-on-surface uppercase tracking-tight"
+                  >
+                    Wildflower Honey
+                  </p>
+                  <div class="flex items-center gap-1 text-primary font-black">
+                    <span class="text-lg">2</span>
+                    <span class="text-[10px] uppercase">tbsp</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li
+              class="flex items-start gap-4 pb-4 border-b border-surface-container"
+            >
+              <div class="flex-1">
+                <div class="flex items-baseline justify-between mb-0.5">
+                  <p
+                    class="font-black text-on-surface uppercase tracking-tight"
+                  >
+                    Fresh Garlic
+                  </p>
+                  <div class="flex items-center gap-1 text-primary font-black">
+                    <span class="text-lg">3</span>
+                    <span class="text-[10px] uppercase">cloves</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li
+              class="flex items-start gap-4 pb-4 border-b border-surface-container"
+            >
+              <div class="flex-1">
+                <div class="flex items-baseline justify-between mb-0.5">
+                  <p
+                    class="font-black text-on-surface uppercase tracking-tight"
+                  >
+                    Rosemary &amp; Thyme
+                  </p>
+                  <div class="flex items-center gap-1 text-primary font-black">
+                    <span class="text-lg">4</span>
+                    <span class="text-[10px] uppercase">sprigs</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li
+              class="flex items-start gap-4 pb-4 border-b border-surface-container"
+            >
+              <div class="flex-1">
+                <div class="flex items-baseline justify-between mb-0.5">
+                  <p
+                    class="font-black text-on-surface uppercase tracking-tight"
+                  >
+                    Maldon Sea Salt
+                  </p>
+                  <div class="flex items-center gap-1 text-primary font-black">
+                    <span class="text-lg">1</span>
+                    <span class="text-[10px] uppercase">pinch</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <!-- Instructions Column -->
+        <section class="lg:col-span-7">
+          <h2 class="font-headline text-3xl mb-8 flex items-center gap-3">
+            <span class="text-primary text-4xl">02</span> Preparation
+          </h2>
+          <div class="space-y-12">
+            <div
+              class="relative pl-8 border-l-2 border-surface-container-highest"
+            >
+              <div
+                class="absolute -left-[11px] top-0 w-5 h-5 bg-primary rounded-full border-4 border-background"
+              ></div>
+              <h4
+                class="font-bold uppercase tracking-widest text-[10px] mb-3 text-secondary"
+              >
+                Step One
+              </h4>
+              <p class="text-on-surface leading-relaxed mb-6 font-medium">
+                Preheat oven to 325°F (165°C). Pat the salmon dry with paper
+                towels—moisture is the enemy of a perfect glaze adhesion.
+              </p>
+              <img
+                alt="Salmon Prep"
+                class="w-full h-48 object-cover rounded-xl"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2AbEsuSxnpkQZ0NeXAvrejonuVed4FvG8QXOBFVDV2T1_iD762rLCBT18QqPpn6NX2ixypKbdvAXybUOZ8bHvjacvAsIk2z1LiTMkBSpeABk_3qd0ZuSI-UOnluOKwNYB2eKAkXjDSTkg4r-ttQrwwqo6WRgFC8GbT-G2Ii6u1xaxXMRTyon8TSIQQtBWmdwcemXfRYT76zhERcjEL9WeFLhoHB7HjS3IpkyFjHrbbZQsVtoma7tXNE2lElkIIkRtkhcMxNGL_PQ"
+              />
+            </div>
+            <div
+              class="relative pl-8 border-l-2 border-surface-container-highest"
+            >
+              <div
+                class="absolute -left-[11px] top-0 w-5 h-5 bg-surface-container-highest rounded-full border-4 border-background"
+              ></div>
+              <h4
+                class="font-bold uppercase tracking-widest text-[10px] mb-3 text-secondary"
+              >
+                Step Two
+              </h4>
+              <p class="text-on-surface leading-relaxed font-medium">
+                In a small saucepan, combine balsamic, honey, and garlic. Simmer
+                over low heat until reduced by half. It should coat the back of
+                a spoon with a heavy, syrupy consistency.
+              </p>
+            </div>
+            <div
+              class="relative pl-8 border-l-2 border-surface-container-highest"
+            >
+              <div
+                class="absolute -left-[11px] top-0 w-5 h-5 bg-surface-container-highest rounded-full border-4 border-background"
+              ></div>
+              <h4
+                class="font-bold uppercase tracking-widest text-[10px] mb-3 text-secondary"
+              >
+                Step Three
+              </h4>
+              <p class="text-on-surface leading-relaxed mb-6 font-medium">
+                Place salmon in a cast-iron skillet skin-side down. Brush
+                generously with the reduction. Nestle herbs around the fish.
+                Roast for 22-25 minutes, basting every 8 minutes.
+              </p>
+              <img
+                alt="Basting Salmon"
+                class="w-full h-48 object-cover rounded-xl"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCiBTxSefLP7giBRRNq_e1x2ZykT4lAbYUsI8XpMbQ6WSMQJGwXYE_UyBfaTvIPU7kUAgGo8SldZwRNf3Ro8PN4WQeYXlDGaXlaaWVQ5rb_qQOHY497kZJGV6x9kzDs3iynXunJ0ebJq1H-pGhsdZmIR_34eEhfLOlUTUmivm8jN9OtcB7WcMvr6duwgXVUTtVftD2CKqNYWv4kA6kpRVCzCtDh_hMVqH0O0et4bKk52Jdu76eAOlH7SKt5Usr0z6_uhlS4Pb1qhE"
+              />
+            </div>
+            <div
+              class="relative pl-8 border-l-2 border-surface-container-highest"
+            >
+              <div
+                class="absolute -left-[11px] top-0 w-5 h-5 bg-surface-container-highest rounded-full border-4 border-background"
+              ></div>
+              <h4
+                class="font-bold uppercase tracking-widest text-[10px] mb-3 text-secondary"
+              >
+                Step Four
+              </h4>
+              <p class="text-on-surface leading-relaxed font-medium">
+                Remove from oven and let rest for 4 minutes. Brush one final
+                time with any remaining glaze before serving with a sprinkle of
+                Maldon salt.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="bg-[#e5e2e1] dark:bg-[#121111] full-width mt-20 border-t border-[#d6d3d2] dark:border-[#2d2c2c] flat no shadows"
+    >
+      <div
+        class="max-w-7xl mx-auto px-10 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 font-['Manrope'] text-sm tracking-wide"
+      >
+        <div class="space-y-6">
+          <div class="text-2xl font-black text-[#b51c00] dark:text-[#ff3007]">
+            The Gastronomic Editorial
+          </div>
+          <p class="text-[#596020] dark:text-[#a5a2a1] leading-relaxed">
+            Elevating the culinary conversation through high-fidelity journalism
+            and masterclass preparation techniques.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-8">
+          <div class="space-y-4">
+            <h5 class="font-bold text-[#b51c00]">The Archive</h5>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  class="text-[#596020] dark:text-[#a5a2a1] hover:underline decoration-[#b51c00] underline-offset-4 transition-colors"
+                  href="#"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-[#596020] dark:text-[#a5a2a1] hover:underline decoration-[#b51c00] underline-offset-4 transition-colors"
+                  href="#"
+                  >The Magazine</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-[#596020] dark:text-[#a5a2a1] hover:underline decoration-[#b51c00] underline-offset-4 transition-colors"
+                  href="#"
+                  >Archive</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="space-y-4">
+            <h5 class="font-bold text-[#b51c00]">Legal</h5>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  class="text-[#596020] dark:text-[#a5a2a1] hover:underline decoration-[#b51c00] underline-offset-4 transition-colors"
+                  href="#"
+                  >Terms of Service</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-[#596020] dark:text-[#a5a2a1] hover:underline decoration-[#b51c00] underline-offset-4 transition-colors"
+                  href="#"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-6">
+          <h5 class="font-bold text-[#b51c00]">Join the Studio</h5>
+          <p class="text-[#596020] dark:text-[#a5a2a1]">
+            Get curated menus and editorial exclusives directly to your inbox.
+          </p>
+          <div class="flex">
+            <input
+              class="bg-white/50 border-none rounded-l-full px-4 py-2 w-full focus:ring-1 focus:ring-primary"
+              placeholder="Email Address"
+              type="email"
+            />
+            <button
+              class="bg-[#b51c00] text-white px-6 py-2 rounded-r-full font-bold"
+            >
+              Join
+            </button>
+          </div>
+          <p class="text-[10px] text-[#596020] dark:text-[#a5a2a1] mt-8">
+            © 2024 The Gastronomic Editorial. Crafted for the Modern Maître d’.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
