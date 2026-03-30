@@ -33,8 +33,8 @@ router.get("/register", (req: Request, res: Response) => {
   res.sendFile(path.join(webPath, "register.html"));
 });
 
-router.get("/profile", protect.user, (req: Request, res: Response) => {
-  res.sendFile(path.join(webPath, "profile.html"));
+router.get("/dashboard", protect.user, (req: Request, res: Response) => {
+  res.sendFile(path.join(webPath, "dashboard.html"));
 });
 
 router.get("/admin", protect.admin, (req: Request, res: Response) => {

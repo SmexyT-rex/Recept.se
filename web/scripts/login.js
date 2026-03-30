@@ -1,4 +1,4 @@
-const loginForm = document.getElementById("loginForm");
+const loginForm = document.getElementById("login-form");
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -14,17 +14,19 @@ loginForm.addEventListener("submit", async (e) => {
   });
 
   if (res.ok) {
-    window.location.href = "/profile";
+    window.location.href = "/dashboard";
   } else {
     const data = await res.json().catch(() => null);
     const errorMsg = data?.error || "An error occurred. Please try again.";
     alert(errorMsg);
   }
 });
+
 const passwordInput = document.getElementById("password");
 const toggleButton = passwordInput.nextElementSibling;
 
 toggleButton.addEventListener("click", () => {
+  console.log("Triggered");
   const isHidden = passwordInput.type === "password";
   passwordInput.type = isHidden ? "text" : "password";
 

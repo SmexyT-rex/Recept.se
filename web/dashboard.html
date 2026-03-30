@@ -1,0 +1,730 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dashboard | The Gastronomic Editorial</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;family=Lexend:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed-dim": "#ffba30",
+              "surface-variant": "#e5e2e1",
+              "surface-container-low": "#f6f3f2",
+              "on-tertiary-fixed-variant": "#444b0b",
+              "inverse-primary": "#ffb4a5",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-background": "#1c1b1b",
+              "tertiary-fixed-dim": "#c4cc80",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#5e3f39",
+              primary: "#b51c00",
+              "on-secondary-fixed": "#271900",
+              "on-primary-fixed-variant": "#8e1400",
+              "surface-container": "#f0eded",
+              "primary-container": "#e22600",
+              "on-secondary-container": "#6c4a00",
+              "tertiary-fixed": "#e1e999",
+              "primary-fixed-dim": "#ffb4a5",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#fffbff",
+              "inverse-surface": "#313030",
+              outline: "#936e67",
+              tertiary: "#596020",
+              "tertiary-container": "#727936",
+              "on-secondary-fixed-variant": "#5f4100",
+              background: "#fcf9f8",
+              "surface-container-high": "#eae7e7",
+              "on-error": "#ffffff",
+              "surface-dim": "#dcd9d9",
+              "surface-bright": "#fcf9f8",
+              "inverse-on-surface": "#f3f0ef",
+              "surface-container-highest": "#e5e2e1",
+              "primary-fixed": "#ffdad3",
+              "on-tertiary-container": "#feffdc",
+              "on-surface": "#1c1b1b",
+              "surface-tint": "#b91d00",
+              secondary: "#7d5700",
+              "on-tertiary-fixed": "#1a1e00",
+              "on-secondary": "#ffffff",
+              "on-error-container": "#93000a",
+              error: "#ba1a1a",
+              "secondary-container": "#ffb615",
+              surface: "#fcf9f8",
+              "secondary-fixed": "#ffdeab",
+              "outline-variant": "#e9bcb3",
+              "on-primary-fixed": "#3e0400",
+            },
+            fontFamily: {
+              headline: ["Lexend", "sans-serif"],
+              body: ["Manrope", "sans-serif"],
+              label: ["Manrope", "sans-serif"],
+              epilogue: ["Epilogue", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="bg-surface font-body text-on-surface">
+    <!-- Top Navigation Bar -->
+    <nav
+      class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl rounded-full px-6 py-3 bg-stone-50/80 dark:bg-stone-950/80 backdrop-blur-xl z-50 flex justify-between items-center shadow-[0_20px_40px_rgba(28,27,27,0.06)]"
+    >
+      <div class="flex items-center gap-8">
+        <span
+          class="text-2xl font-black text-red-700 dark:text-red-500 uppercase tracking-tighter font-epilogue"
+          >The Gastronomic Editorial</span
+        >
+        <div class="hidden md:flex gap-6 items-center">
+          <a
+            class="text-stone-600 dark:text-stone-400 hover:text-red-700 transition-transform duration-200 hover:scale-[1.02] font-epilogue font-bold tracking-tight"
+            href="#"
+            >Explore</a
+          >
+          <a
+            class="text-stone-600 dark:text-stone-400 hover:text-red-700 transition-transform duration-200 hover:scale-[1.02] font-epilogue font-bold tracking-tight"
+            href="#"
+            >Community</a
+          >
+          <a
+            class="text-stone-600 dark:text-stone-400 hover:text-red-700 transition-transform duration-200 hover:scale-[1.02] font-epilogue font-bold tracking-tight"
+            href="#"
+            >Submit Recipe</a
+          >
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="hidden lg:block relative">
+          <input
+            class="bg-surface-container-highest border-none rounded-full px-4 py-1.5 text-sm w-64 focus:ring-2 focus:ring-primary/40"
+            placeholder="Search culinary archives..."
+            type="text"
+          />
+        </div>
+        <button
+          class="material-symbols-outlined text-stone-600 hover:text-red-700"
+        >
+          notifications
+        </button>
+        <button
+          class="material-symbols-outlined text-stone-600 hover:text-red-700"
+        >
+          settings
+        </button>
+        <div
+          class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20"
+        >
+          <img
+            alt="User profile avatar"
+            class="w-full h-full object-cover"
+            data-alt="professional chef portrait in a clean white kitchen, soft overhead lighting, confident expression"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr6jQCmaKWiEvYkctifrIh9TrNyWF1BoytkiWOZftdOiUnrR0LUtV3Rv949XlwAiJkvUpUR6USdBv7vrsODOgyyOJveP2kbfOV1KbRJgWqp7Evg_bD-Ahzd5EUjZ4FL_5StK6Q4aQ-zyVoN3zPM0k4a6L_Nu9IZbTDZub8ZzVz8qxxwIAme7EKs2z6MFSD9hSz6tgVyAxFe9bqTd5vXCkaaiofYfi0YGA40HF1PdmyqYfrZ3W8s6H8e78k_sVMzlxU67bRERbgDqY"
+          />
+        </div>
+      </div>
+    </nav>
+    <!-- Side Navigation Bar (Hidden on Mobile) -->
+    <aside
+      class="hidden lg:flex flex-col gap-2 pr-4 h-screen w-64 fixed left-0 top-0 pt-24 bg-stone-100 dark:bg-stone-900 border-r border-stone-200/50 dark:border-stone-800/50"
+    >
+      <div class="px-6 mb-8">
+        <p
+          class="text-xs uppercase tracking-widest text-stone-400 font-bold mb-1"
+        >
+          Chef de Cuisine
+        </p>
+        <p class="text-sm font-medium text-stone-500">Premium Member</p>
+      </div>
+      <a
+        class="flex items-center gap-3 px-6 py-3 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:pl-2 transition-all duration-300 font-medium"
+        href="#"
+      >
+        <span class="material-symbols-outlined">restaurant_menu</span>
+        <span>My Recipes</span>
+      </a>
+      <a
+        class="flex items-center gap-3 px-6 py-3 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:pl-2 transition-all duration-300 font-medium"
+        href="#"
+      >
+        <span class="material-symbols-outlined">favorite</span>
+        <span>Favorites</span>
+      </a>
+      <a
+        class="flex items-center gap-3 px-6 py-3 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:pl-2 transition-all duration-300 font-medium"
+        href="#"
+      >
+        <span class="material-symbols-outlined">insights</span>
+        <span>Stats</span>
+      </a>
+      <div class="mt-auto px-4 pb-8">
+        <button
+          class="w-full bg-primary text-on-primary py-4 rounded-full font-bold shadow-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
+        >
+          <span class="material-symbols-outlined">add</span>
+          Create New Recipe
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content Canvas -->
+    <main class="lg:ml-64 pt-32 pb-24 px-4 md:px-8 max-w-7xl">
+      <!-- Welcoming Header -->
+      <header class="mb-16">
+        <h1
+          class="text-5xl md:text-7xl font-black font-epilogue text-on-background tracking-tighter mb-6"
+        >
+          Bon Appétit, <span class="text-primary italic">Chef Julian</span>
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div
+            class="bg-surface-container-low p-6 rounded-xl flex items-center gap-4"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary"
+            >
+              <span class="material-symbols-outlined">menu_book</span>
+            </div>
+            <div>
+              <p class="text-2xl font-black font-epilogue leading-tight">12</p>
+              <p class="text-sm text-on-surface-variant font-medium">
+                Recipes Published
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-low p-6 rounded-xl flex items-center gap-4"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary"
+            >
+              <span class="material-symbols-outlined">star</span>
+            </div>
+            <div>
+              <p class="text-2xl font-black font-epilogue leading-tight">4.8</p>
+              <p class="text-sm text-on-surface-variant font-medium">
+                Average Rating
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-low p-6 rounded-xl flex items-center gap-4"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary"
+            >
+              <span class="material-symbols-outlined">bookmark</span>
+            </div>
+            <div>
+              <p class="text-2xl font-black font-epilogue leading-tight">
+                1.2k
+              </p>
+              <p class="text-sm text-on-surface-variant font-medium">
+                Total Saves
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Recent Activity & Quick Actions Layout -->
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-16">
+        <!-- Recent Activity -->
+        <section class="xl:col-span-2">
+          <h2 class="text-2xl font-black font-epilogue tracking-tight mb-6">
+            Recent Activity
+          </h2>
+          <div class="space-y-4">
+            <div
+              class="group flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+                  <img
+                    alt="Recipe thumbnail"
+                    class="w-full h-full object-cover"
+                    data-alt="vibrant salad bowl with citrus segments and edible flowers, bright studio lighting"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3nh2fSS-5_w3rjydsHKGQMu-Xgnv8PqYvq3s6ygVisYDYei-OxSP0AW4BkGh9VcOtIavEes0Dxxmw7tfKR5f8xXAnJnz8FkZk2Rl7a5wA0ZJtVEHRmW9jAFnyyhnp_lDwPgs9vxmVF7qAxr26YtT0EUl7CqH2xKB8Hesj17M0vAt9vcc7Ur6uuf01OgiUkU7NUlC57vMi-TLGPlmIK8Kt9K1rbuhT0_r2G7MiFuKPgZHlZmSLObWzmTuMspjnppIlqgeFp6vQ3zs"
+                  />
+                </div>
+                <div>
+                  <h3 class="font-bold text-on-surface">
+                    Continue Editing: Summer Citrus Roast
+                  </h3>
+                  <p class="text-xs text-on-surface-variant">
+                    Last saved 2 hours ago • Draft
+                  </p>
+                </div>
+              </div>
+              <button
+                class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform"
+              >
+                arrow_forward
+              </button>
+            </div>
+            <div
+              class="group flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="material-symbols-outlined text-tertiary"
+                    >chat_bubble</span
+                  >
+                </div>
+                <div>
+                  <h3 class="font-bold text-on-surface">
+                    New Comment on "Truffle Linguine"
+                  </h3>
+                  <p class="text-xs text-on-surface-variant">
+                    "The earthiness was perfectly balanced..." • 15m ago
+                  </p>
+                </div>
+              </div>
+              <button
+                class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform"
+              >
+                reply
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- Quick Actions Sidebar (Integrated) -->
+        <section
+          class="bg-tertiary-container p-8 rounded-3xl text-on-tertiary-container relative overflow-hidden"
+        >
+          <div class="relative z-10">
+            <h2 class="text-xl font-black font-epilogue mb-6">
+              Kitchen Management
+            </h2>
+            <ul class="space-y-4">
+              <li>
+                <button
+                  class="flex items-center gap-3 w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-colors font-medium"
+                >
+                  <span class="material-symbols-outlined"
+                    >collections_bookmark</span
+                  >
+                  Manage Collections
+                </button>
+              </li>
+              <li>
+                <button
+                  class="flex items-center gap-3 w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-colors font-medium"
+                >
+                  <span class="material-symbols-outlined">monitoring</span>
+                  View Analytics
+                </button>
+              </li>
+              <li>
+                <button
+                  class="flex items-center gap-3 w-full p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-colors font-medium"
+                >
+                  <span class="material-symbols-outlined">group</span>
+                  Community Insights
+                </button>
+              </li>
+            </ul>
+          </div>
+          <span
+            class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl opacity-10 pointer-events-none"
+            >kitchen</span
+          >
+        </section>
+      </div>
+      <!-- My Recipes Grid -->
+      <section class="mb-16">
+        <div class="flex justify-between items-end mb-8">
+          <div>
+            <h2 class="text-3xl font-black font-epilogue tracking-tighter">
+              My Recipes
+            </h2>
+            <p class="text-on-surface-variant font-medium">
+              Your culinary portfolio and works in progress.
+            </p>
+          </div>
+          <button
+            class="text-primary font-bold flex items-center gap-1 hover:underline"
+          >
+            View All
+            <span class="material-symbols-outlined text-sm">open_in_new</span>
+          </button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Recipe Card 1 -->
+          <article
+            class="bg-surface-container-low rounded-[2rem] overflow-hidden group"
+          >
+            <div class="relative h-64 overflow-hidden">
+              <img
+                alt="Braised Short Ribs"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="rich braised short ribs with velvety red wine reduction and herb garnish, moody dark lighting"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHpYTs97Bze2E8tbv9bj3c9EqskiHllqVK9EeeGMSeo20nJUlR-w5IhzSm1GuwKbFXLX9pQqae596nwX4vjVJ-lLByBIufX2YI5C_UJHvV2XK4fcVube_FPPZqB9l8js1Z-gE46k1qNjt_EOr5hpF88x3PKW3-sz9xeFs29UG6zEmGXNzPjHTy5vA_ODTRNxrM00qhgwy3tqIjbuu6nOZZ74HpwyOP8wz2Z8B2j8zS6zwgTQIOUurSHIzBh5sfwn3ewnRNVuc18Aw"
+              />
+              <div
+                class="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Published
+              </div>
+              <div class="absolute bottom-4 right-4 flex gap-2">
+                <button
+                  class="bg-white/90 backdrop-blur-md p-2 rounded-full shadow-lg hover:text-primary transition-colors"
+                >
+                  <span class="material-symbols-outlined text-sm">edit</span>
+                </button>
+                <button
+                  class="bg-white/90 backdrop-blur-md p-2 rounded-full shadow-lg hover:text-error transition-colors"
+                >
+                  <span class="material-symbols-outlined text-sm">delete</span>
+                </button>
+              </div>
+            </div>
+            <div class="p-8">
+              <div class="flex justify-between items-start mb-2">
+                <h3
+                  class="text-2xl font-black font-epilogue tracking-tight leading-tight"
+                >
+                  Osso Buco with Saffron Risotto
+                </h3>
+                <span class="text-secondary font-bold text-sm"
+                  >Classic French</span
+                >
+              </div>
+              <div
+                class="flex gap-6 mt-6 pt-6 border-t border-outline-variant/20"
+              >
+                <div class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-primary text-lg"
+                    >visibility</span
+                  >
+                  <span class="text-sm font-bold">2.4k</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span
+                    class="material-symbols-outlined text-primary text-lg"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >favorite</span
+                  >
+                  <span class="text-sm font-bold">482</span>
+                </div>
+                <div class="flex items-center gap-1.5 ml-auto">
+                  <span class="material-symbols-outlined text-tertiary text-lg"
+                    >timer</span
+                  >
+                  <span class="text-sm font-bold text-tertiary">3h 45m</span>
+                </div>
+              </div>
+            </div>
+          </article>
+          <!-- Recipe Card 2 (Draft) -->
+          <article
+            class="bg-surface-container-low rounded-[2rem] overflow-hidden group"
+          >
+            <div class="relative h-64 overflow-hidden bg-stone-200">
+              <img
+                alt="Draft Recipe"
+                class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
+                data-alt="artisan dark chocolate tart with sea salt flakes, soft afternoon light through a window"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWVrXMBd_XiQmGSaKAlNrwQPZ3Pypd_ukTNArre7uUEkUoudBaRx1UqaoIqCzreI1JCjnEBTfI4JG029gUjy9VAd_geVuRkfet02CwMzw6faW08_1grYJTRoq85XYGtIVzr1gbyo_AREVcIPqOT-oZT0XsYCJrFpJIOWWfGkhkFBsDGKsyEXONC1wFhinums3IQk75oqA6p_e2-ehADLmgzZ1zXo3JzCJDAqG8LTxfeJ1yYsMZJk7PLWqiQGvySVqasH3s0_Vu3MQ"
+              />
+              <div
+                class="absolute top-4 left-4 bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Draft (85%)
+              </div>
+              <div
+                class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <button
+                  class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold shadow-2xl scale-95 group-hover:scale-100 transition-transform"
+                >
+                  Continue Editing
+                </button>
+              </div>
+            </div>
+            <div class="p-8">
+              <div class="flex justify-between items-start mb-2">
+                <h3
+                  class="text-2xl font-black font-epilogue tracking-tight leading-tight"
+                >
+                  Dark Chocolate &amp; Maldon Tart
+                </h3>
+                <span class="text-secondary font-bold text-sm">Dessert</span>
+              </div>
+              <p class="text-on-surface-variant text-sm mt-2 italic">
+                Missing high-resolution hero image for publication.
+              </p>
+              <div
+                class="flex gap-6 mt-6 pt-6 border-t border-outline-variant/20"
+              >
+                <div class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-stone-400 text-lg"
+                    >visibility</span
+                  >
+                  <span class="text-sm font-bold text-stone-400">--</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-stone-400 text-lg"
+                    >favorite</span
+                  >
+                  <span class="text-sm font-bold text-stone-400">--</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- Kitchen Favorites (Horizontal Scroll) -->
+      <section>
+        <div class="flex justify-between items-center mb-8">
+          <h2 class="text-3xl font-black font-epilogue tracking-tighter">
+            Kitchen Favorites
+          </h2>
+          <div class="flex gap-2">
+            <button
+              class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors"
+            >
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button
+              class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors"
+            >
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex gap-6 overflow-x-auto no-scrollbar pb-8 snap-x">
+          <!-- Favorite Item 1 -->
+          <div class="flex-shrink-0 w-72 snap-start">
+            <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
+              <img
+                alt="Favorite Recipe"
+                class="w-full h-full object-cover"
+                data-alt="freshly baked focaccia bread with rosemary and sea salt, top-down view on rustic wooden table"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHTut92sHyLnYLwo31LVFZRrDpL-T42Szn7kUSEsU7B_hWOCzmS8H2yyDgjt34QGfjG0kqu4pLnNsH_y0IsKcUTodhSxC180jEM6XJGIieCof8EIcG9n9acmMF1_9oiB-IpvWkqG85P5Szg-9eZsNUSdDWcBg4MxJKpavoha3Dkzjme6ciz5VlqalhB7UVCxkZzt1Uf0fdu7qZOy-heYsVP1g9fEi8m3j-JfrdTAGxA4powwZcQcxGNihrBZZXk2MTIWs5SVW9LKA"
+              />
+              <button
+                class="absolute top-2 right-2 material-symbols-outlined text-red-500 bg-white/80 p-1.5 rounded-full scale-75"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+              >
+                favorite
+              </button>
+            </div>
+            <h4 class="font-black font-epilogue leading-tight mb-1">
+              Rosemary &amp; Maldon Focaccia
+            </h4>
+            <p
+              class="text-xs text-secondary font-bold uppercase tracking-wider mb-2"
+            >
+              by Chef Marco
+            </p>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+              <span class="text-xs font-bold text-on-surface-variant"
+                >Baking Archive</span
+              >
+            </div>
+          </div>
+          <!-- Favorite Item 2 -->
+          <div class="flex-shrink-0 w-72 snap-start">
+            <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
+              <img
+                alt="Favorite Recipe"
+                class="w-full h-full object-cover"
+                data-alt="mediterranean grain bowl with grilled zucchini, feta, and olives, bright clean aesthetics"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK2kUjwuctb000t4LQZZIQ2DIP7xXL0bAfqPGKX2tTHAfFw08cO3LTq2l7j3D64_7J0iY46vcF-il1940qZfyEYuvqwdVArBp-OQxMOId7q8c5vz7co64-f2E1axG6Ti3VQzFCkMcjGDqF4FfdA6ea_9Bp9OigZ1lUGu2317a0q5FScPtIDxDMLByZ-pOtjaOBgw6EZPhIyQfbZEhWuXt7-tPKzoZcmHPuhdC4337scz5t8BLctbyqGENvkf70OvlN_u0diPjLB0M"
+              />
+              <button
+                class="absolute top-2 right-2 material-symbols-outlined text-red-500 bg-white/80 p-1.5 rounded-full scale-75"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+              >
+                favorite
+              </button>
+            </div>
+            <h4 class="font-black font-epilogue leading-tight mb-1">
+              Harvest Mediterranean Bowl
+            </h4>
+            <p
+              class="text-xs text-secondary font-bold uppercase tracking-wider mb-2"
+            >
+              by Elena Roux
+            </p>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+              <span class="text-xs font-bold text-on-surface-variant"
+                >Vegetarian</span
+              >
+            </div>
+          </div>
+          <!-- Favorite Item 3 -->
+          <div class="flex-shrink-0 w-72 snap-start">
+            <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
+              <img
+                alt="Favorite Recipe"
+                class="w-full h-full object-cover"
+                data-alt="charred octopus with romesco sauce and micro-greens, elegant plated presentation on white ceramic"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDANMsZSF3sfM3xE-c9Zl1QdF1OEUp0rwchBP2OdVYjB-i7TY3KH9jUj2kL_Wci9E1cW7ZlaJLRhAU9svu7E0BcetOWNF2CE4p7mQMNytGdHg27I86du0uTa1muPZ66p5fFemF0Ygyw-Pofcq-R-iYRCxyWrAi_fRLB01yl3DrcwuRwZNTu1zY6pDCoTHCM6bt13gakYeK9zM7kJIj6wedhA2ww10zh4rzKcBep_9AOEvFi-CzxpwdSfxNjTZy1vAEqEzUS_GyLFqc"
+              />
+              <button
+                class="absolute top-2 right-2 material-symbols-outlined text-red-500 bg-white/80 p-1.5 rounded-full scale-75"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+              >
+                favorite
+              </button>
+            </div>
+            <h4 class="font-black font-epilogue leading-tight mb-1">
+              Grilled Octopus &amp; Romesco
+            </h4>
+            <p
+              class="text-xs text-secondary font-bold uppercase tracking-wider mb-2"
+            >
+              by Gastronomique
+            </p>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+              <span class="text-xs font-bold text-on-surface-variant"
+                >Sea Treasures</span
+              >
+            </div>
+          </div>
+          <!-- Favorite Item 4 -->
+          <div class="flex-shrink-0 w-72 snap-start">
+            <div class="h-48 rounded-2xl overflow-hidden mb-4 relative">
+              <img
+                alt="Favorite Recipe"
+                class="w-full h-full object-cover"
+                data-alt="korean beef sliders with kimchi slaw on a slate platter, vibrant colors and steam"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWWsNlRZf70pbNHtNNzf6iiRevC4p7FLwD95l5X89fbTghiZ6W9gnzqxVSrhBatZeYzyatdVdF2ew0gWziHpagcgmYHk20EWvscnRESXhP7N_jnsy44LlQAeG5EFrgK0VNUc5vvBoO-RB0rZJ5kikhpsi5yoHUqJqPsY7sK5BsUQogzbyNawK4TIS3pT-fI1ztesXJCLZyIvCsnHWOSItJPnmh_to81Ya9c0IxE6exfWvoxxHapF6cFi4YguEiSruRuS075SflgYc"
+              />
+              <button
+                class="absolute top-2 right-2 material-symbols-outlined text-red-500 bg-white/80 p-1.5 rounded-full scale-75"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+              >
+                favorite
+              </button>
+            </div>
+            <h4 class="font-black font-epilogue leading-tight mb-1">
+              Kimchi Street Sliders
+            </h4>
+            <p
+              class="text-xs text-secondary font-bold uppercase tracking-wider mb-2"
+            >
+              by David Chang-Style
+            </p>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+              <span class="text-xs font-bold text-on-surface-variant"
+                >Fusion</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="w-full py-12 px-8 mt-auto bg-stone-200 dark:bg-stone-900 flex flex-col md:flex-row justify-between items-center gap-6 text-sm tracking-wide font-body"
+    >
+      <div class="flex flex-col gap-2">
+        <span class="font-epilogue font-bold text-lg text-primary uppercase"
+          >The Gastronomic Editorial</span
+        >
+        <p class="text-stone-500">
+          © 2024 The Gastronomic Editorial. All rights reserved.
+        </p>
+      </div>
+      <div class="flex gap-8">
+        <a
+          class="text-stone-500 hover:text-stone-800 transition-opacity"
+          href="#"
+          >Privacy Policy</a
+        >
+        <a
+          class="text-stone-500 hover:text-stone-800 transition-opacity"
+          href="#"
+          >Terms of Service</a
+        >
+        <a
+          class="text-stone-500 hover:text-stone-800 transition-opacity"
+          href="#"
+          >Cookie Settings</a
+        >
+      </div>
+    </footer>
+    <!-- Mobile Bottom NavBar (Mobile Only) -->
+    <nav
+      class="md:hidden fixed bottom-0 left-0 right-0 bg-stone-50/95 backdrop-blur-lg px-6 py-3 flex justify-around items-center border-t border-stone-200/20 z-50"
+    >
+      <button class="flex flex-col items-center gap-1 text-primary">
+        <span
+          class="material-symbols-outlined"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >dashboard</span
+        >
+        <span class="text-[10px] font-bold uppercase tracking-tighter"
+          >Home</span
+        >
+      </button>
+      <button class="flex flex-col items-center gap-1 text-stone-400">
+        <span class="material-symbols-outlined">restaurant_menu</span>
+        <span class="text-[10px] font-bold uppercase tracking-tighter"
+          >My Recipes</span
+        >
+      </button>
+      <button class="bg-primary text-white p-3 rounded-full -mt-10 shadow-xl">
+        <span class="material-symbols-outlined">add</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-stone-400">
+        <span class="material-symbols-outlined">favorite</span>
+        <span class="text-[10px] font-bold uppercase tracking-tighter"
+          >Saves</span
+        >
+      </button>
+      <button class="flex flex-col items-center gap-1 text-stone-400">
+        <span class="material-symbols-outlined">account_circle</span>
+        <span class="text-[10px] font-bold uppercase tracking-tighter"
+          >Profile</span
+        >
+      </button>
+    </nav>
+  </body>
+</html>

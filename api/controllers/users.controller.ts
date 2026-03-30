@@ -65,7 +65,7 @@ export const userController = {
       console.log("Step 8: Response finished");
     });
 
-    return res.redirect(303, "/profile");
+    return res.redirect(303, "/dashboard");
   },
 
   async logout(req: Request, res: Response) {
