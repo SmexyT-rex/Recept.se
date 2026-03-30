@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const webPath: string = path.join(process.cwd(), "web");
 app.use(express.static(webPath));
+
 app.use("/", webRoutes);
 app.use("/api/recipes", recipeRoutes);
 app.use("/api/users", userRoutes);

@@ -103,7 +103,7 @@ export const userController = {
     }
   },
 
-  async likeRecipe(req: Request, res: Response) {
+  async likeRecipe(req: Request<{}, {}, { recipeId: string }>, res: Response) {
     try {
       if (!req.user) {
         return res.status(401).json({ message: "Unauthorized" });
@@ -121,7 +121,10 @@ export const userController = {
     }
   },
 
-  async unlikeRecipe(req: Request, res: Response) {
+  async unlikeRecipe(
+    req: Request<{}, {}, { recipeId: string }>,
+    res: Response,
+  ) {
     try {
       if (!req.user) {
         return res.status(401).json({ message: "Unauthorized" });
