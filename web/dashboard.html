@@ -1,0 +1,571 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Chef Dashboard | The Gastronomic Editorial</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;family=Lexend:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-surface": "#313030",
+              "tertiary-container": "#727936",
+              tertiary: "#596020",
+              outline: "#936e67",
+              "primary-container": "#e22600",
+              "surface-container": "#f0eded",
+              "on-primary-container": "#fffbff",
+              "tertiary-fixed": "#e1e999",
+              "primary-fixed-dim": "#ffb4a5",
+              "on-primary": "#ffffff",
+              "on-secondary-container": "#6c4a00",
+              primary: "#b51c00",
+              "on-surface-variant": "#5e3f39",
+              "tertiary-fixed-dim": "#c4cc80",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed": "#271900",
+              "on-primary-fixed-variant": "#8e1400",
+              "on-tertiary-fixed-variant": "#444b0b",
+              "inverse-primary": "#ffb4a5",
+              "surface-variant": "#e5e2e1",
+              "surface-container-low": "#f6f3f2",
+              "secondary-fixed-dim": "#ffba30",
+              "on-tertiary": "#ffffff",
+              "on-background": "#1c1b1b",
+              "error-container": "#ffdad6",
+              "surface-tint": "#b91d00",
+              secondary: "#7d5700",
+              "on-tertiary-fixed": "#1a1e00",
+              "on-secondary": "#ffffff",
+              "on-error-container": "#93000a",
+              error: "#ba1a1a",
+              "primary-fixed": "#ffdad3",
+              "on-tertiary-container": "#feffdc",
+              "on-surface": "#1c1b1b",
+              "on-primary-fixed": "#3e0400",
+              surface: "#fcf9f8",
+              "secondary-fixed": "#ffdeab",
+              "outline-variant": "#e9bcb3",
+              "secondary-container": "#ffb615",
+              "surface-container-highest": "#e5e2e1",
+              "surface-container-high": "#eae7e7",
+              "on-error": "#ffffff",
+              background: "#fcf9f8",
+              "inverse-on-surface": "#f3f0ef",
+              "surface-dim": "#dcd9d9",
+              "surface-bright": "#fcf9f8",
+              "on-secondary-fixed-variant": "#5f4100",
+            },
+            fontFamily: {
+              headline: ["Lexend"],
+              body: ["Manrope"],
+              label: ["Manrope"],
+              brand: ["Epilogue"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      .editorial-shadow {
+        box-shadow: 0 20px 40px rgba(28, 27, 27, 0.06);
+      }
+      #mobile-drawer {
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #mobile-drawer.open {
+        transform: translateX(0);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed"
+  >
+    <!-- Mobile Drawer Overlay -->
+    <div
+      class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300"
+      id="drawer-overlay"
+    ></div>
+    <!-- Mobile Drawer -->
+    <div
+      class="fixed top-0 left-0 w-[80%] max-w-sm h-full bg-surface z-[70] p-8 flex flex-col gap-8 shadow-2xl"
+      id="mobile-drawer"
+    >
+      <div class="flex justify-between items-center">
+        <h2
+          class="text-xl font-black text-[#b51c00] font-brand uppercase tracking-tighter"
+        >
+          Menu
+        </h2>
+        <button class="p-2 -mr-2" id="menu-close">
+          <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-6 font-headline font-bold text-2xl">
+        <a class="text-primary" href="#">Home</a>
+        <a class="text-on-surface hover:text-primary transition-colors" href="#"
+          >Categories</a
+        >
+        <a class="text-on-surface hover:text-primary transition-colors" href="#"
+          >Favorites</a
+        >
+        <a class="text-on-surface hover:text-primary transition-colors" href="#"
+          >Settings</a
+        >
+      </nav>
+      <div class="mt-auto">
+        <button
+          class="w-full bg-primary text-white px-8 py-4 rounded-full font-headline font-bold uppercase text-sm tracking-widest hover:opacity-90 active:scale-95 transition-all duration-200 editorial-shadow"
+        >
+          Add Recipe
+        </button>
+      </div>
+    </div>
+    <header
+      class="sticky top-0 w-full z-50 bg-[#fcf9f8]/80 dark:bg-stone-900/80 backdrop-blur-md border-b border-stone-200/20 dark:border-stone-800/20 shadow-sm dark:shadow-none transition-all duration-300"
+    >
+      <div
+        class="flex flex-col items-center w-full max-w-screen-2xl mx-auto px-6 py-4"
+      >
+        <!-- Top Tier: Logo centered & Mobile Trigger -->
+        <div
+          class="w-full flex items-center justify-between md:justify-center py-2 relative"
+        >
+          <!-- Mobile Menu Button -->
+          <button
+            aria-label="Open Menu"
+            class="md:hidden flex items-center p-2 -ml-2 text-stone-900 dark:text-stone-50"
+            id="menu-open"
+          >
+            <span class="material-symbols-outlined text-3xl">menu</span>
+          </button>
+          <a
+            class="text-2xl md:text-4xl font-black tracking-tighter text-stone-900 dark:text-stone-50 uppercase font-brand text-center"
+            href="#"
+          >
+            The Gastronomic Editorial
+          </a>
+          <!-- Mobile Action -->
+          <button
+            aria-label="Add Recipe"
+            class="md:hidden flex items-center bg-primary text-white p-2 rounded-full hover:scale-105 transition-transform"
+          >
+            <span class="material-symbols-outlined text-sm">add</span>
+          </button>
+        </div>
+        <!-- Bottom Tier: Navigation & Actions (Desktop Only) -->
+        <div
+          class="hidden md:flex w-full flex-row items-center justify-between mt-4 pt-4 border-t border-stone-100 dark:border-stone-800/50"
+        >
+          <nav class="flex items-center gap-8 font-body tracking-tight text-sm">
+            <a
+              class="text-[16px] text-stone-600 dark:text-stone-400 font-semibold hover:text-[#b51c00] dark:hover:text-stone-200 transition-colors"
+              href="/"
+              >Home</a
+            >
+            <a
+              class="text-[16px] text-stone-600 dark:text-stone-400 font-semibold hover:text-[#b51c00] dark:hover:text-stone-200 transition-colors"
+              href="#"
+              >Categories</a
+            >
+            <a
+              class="text-[16px] text-stone-600 dark:text-stone-400 font-semibold hover:text-[#b51c00] dark:hover:text-stone-200 transition-colors"
+              href="#"
+              >Favorites</a
+            >
+          </nav>
+          <div class="flex items-center gap-6">
+            <button
+              class="bg-[#b51c00] text-white px-8 py-2.5 rounded-full font-headline font-bold uppercase text-xs tracking-widest hover:opacity-90 active:scale-95 transition-all duration-200"
+            >
+              Add Recipe
+            </button>
+            <div
+              class="flex items-center gap-3 pl-4 border-l border-outline-variant/30"
+            >
+              <div class="text-right hidden lg:block">
+                <p class="text-xs font-bold text-on-surface uppercase">
+                  Chef Julian
+                </p>
+                <p class="text-[10px] text-stone-500 font-medium">Head Chef</p>
+              </div>
+              <img
+                alt="User profile"
+                class="w-10 h-10 rounded-full object-cover ring-2 ring-primary/10"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWrRBh7j4g42SE1q1rmGukYSYQmPFhKCbxSvubUo4evHIuF2vYTQouF6x4rFQQF54EhwE43GeywU60K9bcIzEkW9c8-O1DwYXXAta858aTnq6_U-mHB0z7SdmfwqvLpFPJGMe3YPL2HmfgaU8420bC6cWBWHaCoKNyDRuDWcrNqCputmSovWyC1QTEWUzUyffwDXgpSlAzZDHWdcAj3XQQPDTiHy2rzNUpr1ePAtCeT7fH0MchRYwFNyHPmi-vrEYmSazwiXMdT78"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="flex min-h-screen">
+      <!-- Main Content Area (Removed SideNavBar md:ml-64) -->
+      <main class="flex-1 p-8 md:p-12 lg:p-20 bg-surface">
+        <div class="max-w-screen-2xl mx-auto">
+          <!-- Welcome Section -->
+          <header class="mb-16">
+            <span
+              class="text-primary font-bold tracking-[0.2em] uppercase text-sm mb-4 block"
+              >Dashboard Overview</span
+            >
+            <h1
+              class="text-6xl md:text-7xl font-brand font-black text-on-surface tracking-tighter leading-tight mb-8"
+            >
+              Bon Appétit, <br />
+              <span id="user-name" class="text-primary">Chef Julian</span>
+            </h1>
+            <!-- Stats Section -->
+            <div class="flex items-center gap-12">
+              <div
+                class="bg-surface-container-low p-8 rounded-xl min-w-[240px]"
+              >
+                <p
+                  class="text-stone-500 font-semibold text-sm uppercase tracking-widest mb-2"
+                >
+                  Recipes Published
+                </p>
+                <div class="flex items-end gap-3">
+                  <span
+                    id="recipes-published"
+                    class="text-5xl font-headline font-bold text-on-surface"
+                    >24</span
+                  >
+                  <span class="text-tertiary font-bold text-lg mb-1"
+                    >+3 this month</span
+                  >
+                </div>
+              </div>
+            </div>
+          </header>
+          <!-- My Recipes Grid -->
+          <section>
+            <div class="flex justify-between items-end mb-10">
+              <h2 class="text-3xl font-headline font-bold text-on-surface">
+                My Recipes
+              </h2>
+              <div class="flex gap-4">
+                <button
+                  class="p-3 bg-surface-container-highest rounded-full text-on-surface hover:bg-surface-variant transition-colors"
+                >
+                  <span class="material-symbols-outlined">filter_list</span>
+                </button>
+                <button
+                  class="p-3 bg-surface-container-highest rounded-full text-on-surface hover:bg-surface-variant transition-colors"
+                >
+                  <span class="material-symbols-outlined">search</span>
+                </button>
+              </div>
+            </div>
+            <div
+              id="user-recipes-grid"
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8"
+            ></div>
+          </section>
+          <!-- Favorite Recipes Grid-->
+          <section class="mt-20">
+            <div class="flex justify-between items-end mb-10">
+              <h2 class="text-3xl font-headline font-bold text-on-surface">
+                Favorite Recipes
+              </h2>
+              <div class="flex gap-4">
+                <button
+                  class="p-3 bg-surface-container-highest rounded-full text-on-surface hover:bg-surface-variant transition-colors"
+                >
+                  <span class="material-symbols-outlined">filter_list</span>
+                </button>
+                <button
+                  class="p-3 bg-surface-container-highest rounded-full text-on-surface hover:bg-surface-variant transition-colors"
+                >
+                  <span class="material-symbols-outlined">search</span>
+                </button>
+              </div>
+            </div>
+            <div
+              id="favorites-grid"
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8"
+            >
+              <!-- Recipe Card 1 -->
+              <div
+                class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col group transition-all duration-300 hover:editorial-shadow"
+              >
+                <div class="relative h-64 overflow-hidden">
+                  <img
+                    alt="Signature Salad"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcxysy0AoxdpgeW8M_L8KyxpfLIdrc35SIAUtBgQVcRw6MX7sSDAy1cQGcyLge1VqYw-BUO-5VrG0_g69-T1qYAoFdRRpHWAIMrr5fDndmbjxoJATItgrybu9RAjsEfkgCuN-OaJa_ec7-LopEbiTYtOrI2Qd0grxZbsNDESZWJIL1ONrXN0J8v6hTnTWLKSNDwAmL9f4foCQDDpq-PG8xTfZ6ZTbGzZnHG1AglxSbm-2qP6Y8gFLthFwZ_gTgExI3Nvxiep2maAU"
+                  />
+                  <div
+                    class="absolute top-4 left-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                  >
+                    Healthy
+                  </div>
+                </div>
+                <div class="p-8 flex flex-col flex-1">
+                  <div class="flex justify-between items-start mb-4">
+                    <h3
+                      class="text-2xl font-headline font-bold leading-tight group-hover:text-primary transition-colors"
+                    >
+                      Summer Fig &amp; Ricotta Tartine
+                    </h3>
+                    <div class="flex gap-2">
+                      <button
+                        class="p-2 text-stone-400 hover:text-primary transition-colors"
+                      >
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                      <button
+                        class="bin-button p-2 text-stone-400 hover:text-error transition-colors"
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="text-on-surface-variant line-clamp-2 mb-6">
+                    A delicate balance of creamy ricotta, fresh mission figs,
+                    and a drizzle of thyme-infused honey.
+                  </p>
+                  <div
+                    class="mt-auto pt-6 border-t border-outline-variant/10 flex items-center gap-6"
+                  >
+                    <div class="flex items-center gap-2 text-stone-500">
+                      <span class="material-symbols-outlined text-sm"
+                        >schedule</span
+                      >
+                      <span class="text-sm font-semibold">15 mins</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-stone-500">
+                      <span class="material-symbols-outlined text-sm"
+                        >restaurant</span
+                      >
+                      <span class="text-sm font-semibold">Easy</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Recipe Card 2 -->
+              <div
+                class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col group transition-all duration-300 hover:editorial-shadow"
+              >
+                <div class="relative h-64 overflow-hidden">
+                  <img
+                    alt="Roasted Sea Bass"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWCtZLjOjpDVSkAtJvIjX9lavlT1RpDtjC-evYygOGotxi8nwHZSSBDQ69wc_uRGPvDkhyH6RcnMDUIHnoI3kWFziiFjJv6xoxSMin9oeXKsOyT2q1LmG3cM6Zu5po77YFqlgK6yMiJ5XMdtiWP5krUHEySHALYCyE8B7H6QV33OtLfP6jptJ6NNGFj9vojSCtrTxpjHsfIXuNypkYcRY9V0uDphFAqPsQeAQbvbgcoCnBSahg1MmpRb4dDSK6qxfiXQalZhCdZ7M"
+                  />
+                  <div
+                    class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                  >
+                    Featured
+                  </div>
+                </div>
+                <div class="p-8 flex flex-col flex-1">
+                  <div class="flex justify-between items-start mb-4">
+                    <h3
+                      class="text-2xl font-headline font-bold leading-tight group-hover:text-primary transition-colors"
+                    >
+                      Pan-Seared Chilean Sea Bass
+                    </h3>
+                    <div class="flex gap-2">
+                      <button
+                        class="p-2 text-stone-400 hover:text-primary transition-colors"
+                      >
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                      <button
+                        class="bin-button p-2 text-stone-400 hover:text-error transition-colors"
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="text-on-surface-variant line-clamp-2 mb-6">
+                    Master the art of the perfect crispy skin with this
+                    restaurant-quality seafood staple.
+                  </p>
+                  <div
+                    class="mt-auto pt-6 border-t border-outline-variant/10 flex items-center gap-6"
+                  >
+                    <div class="flex items-center gap-2 text-stone-500">
+                      <span class="material-symbols-outlined text-sm"
+                        >schedule</span
+                      >
+                      <span class="text-sm font-semibold">35 mins</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-stone-500">
+                      <span class="material-symbols-outlined text-sm"
+                        >restaurant</span
+                      >
+                      <span class="text-sm font-semibold">Medium</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Recipe Card 3 -->
+              <div
+                class="bg-surface-container-low rounded-xl overflow-hidden flex flex-col group transition-all duration-300 hover:editorial-shadow"
+              >
+                <div class="relative h-64 overflow-hidden">
+                  <img
+                    alt="Miso Ramen"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9HPRkvXZWGWUWs86fGIcMp3TDsY8cKHWD-F6-LU2lMngplkc-KcWa5QX0i4ZUcvhBMeCHbsfzc_8nMPVAWSByeShG-8RZokGhUVXvGFVzjbMqMMru5cH0bGOjdHsmb8M9z2vNCDqpjUZNNZSE-qIzD68HiTJeLEZOqjn_g9YeuEGgwhc4hrNnWdfxlK57U3WJOcM5uXRjsKrk3ieqKG0z1-NudevKiUcMWh2cyPdkiwxgjisayA0CLxm_dvWApePxdpB3j_TL6I4"
+                  />
+                  <div
+                    class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                  >
+                    Dinner
+                  </div>
+                </div>
+                <div class="p-8 flex flex-col flex-1">
+                  <div class="flex justify-between items-start mb-4">
+                    <h3
+                      class="text-2xl font-headline font-bold leading-tight group-hover:text-primary transition-colors"
+                    >
+                      Umami-Rich Miso Ramen
+                    </h3>
+                    <div class="flex gap-2">
+                      <button
+                        class="p-2 text-stone-400 hover:text-primary transition-colors"
+                      >
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                      <button
+                        class="bin-button p-2 text-stone-400 hover:text-error transition-colors"
+                      >
+                        <span class="material-symbols-outlined">delete</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p class="text-on-surface-variant line-clamp-2 mb-6">
+                    A 12-hour broth recipe that captures the soul of traditional
+                    Japanese kitchen techniques.
+                  </p>
+                  <div
+                    class="mt-auto pt-6 border-t border-outline-variant/10 flex items-center gap-6"
+                  >
+                    <div class="flex items-center gap-2 text-stone-500">
+                      <span class="material-symbols-outlined text-sm"
+                        >schedule</span
+                      >
+                      <span class="text-sm font-semibold">12 hrs</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-stone-500">
+                      <span class="material-symbols-outlined text-sm"
+                        >restaurant</span
+                      >
+                      <span class="text-sm font-semibold">Hard</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="./scripts/dashboard.js"></script>
+    <script src="./scripts/profile.js"></script>
+    <!-- Delete Confirmation Modal -->
+    <div
+      class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4"
+      id="delete-modal"
+    >
+      <!-- Backdrop -->
+      <div
+        class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        id="modal-backdrop"
+      ></div>
+      <!-- Modal Content -->
+      <div
+        class="relative bg-white dark:bg-stone-900 w-full max-w-md rounded-xl shadow-2xl p-8 transform transition-all border border-stone-200 dark:border-stone-800"
+      >
+        <div class="flex flex-col items-center text-center">
+          <div
+            class="w-16 h-16 bg-red-50 dark:bg-red-900/20 rounded-full flex items-center justify-center mb-6"
+          >
+            <span class="material-symbols-outlined text-3xl text-[#FF3007]"
+              >delete_forever</span
+            >
+          </div>
+          <h3
+            class="text-2xl font-brand font-black text-on-surface uppercase tracking-tight mb-3"
+          >
+            Delete Recipe?
+          </h3>
+          <p class="text-stone-500 font-body leading-relaxed mb-8">
+            Are you sure you want to remove this recipe from your collection?
+            This action cannot be undone.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 w-full">
+            <button
+              class="flex-1 px-6 py-3.5 rounded-full font-headline font-bold uppercase text-xs tracking-widest text-stone-600 dark:text-stone-300 bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 transition-all"
+              id="close-modal"
+            >
+              Cancel
+            </button>
+            <button
+              class="flex-1 px-6 py-3.5 rounded-full font-headline font-bold uppercase text-xs tracking-widest text-white bg-[#FF3007] hover:opacity-90 active:scale-95 transition-all"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const deleteModal = document.getElementById("delete-modal");
+      const modalBackdrop = document.getElementById("modal-backdrop");
+      const closeModalBtn = document.getElementById("close-modal");
+      const deleteButtons = document.querySelectorAll(".bin-button");
+
+      const openModal = () => {
+        deleteModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      };
+
+      const closeModal = () => {
+        deleteModal.classList.add("hidden");
+        document.body.style.overflow = "";
+      };
+
+      // Handle all delete buttons
+      deleteButtons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+          openModal();
+        });
+      });
+
+      closeModalBtn.addEventListener("click", closeModal);
+      modalBackdrop.addEventListener("click", closeModal);
+    </script>
+  </body>
+</html>

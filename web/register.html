@@ -1,0 +1,324 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Register | The Gastronomic Editorial</title>
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;family=Lexend:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#f0eded",
+              "outline-variant": "#e9bcb3",
+              "on-primary": "#ffffff",
+              "surface-dim": "#dcd9d9",
+              "primary-fixed-dim": "#ffb4a5",
+              "on-error": "#ffffff",
+              "primary-container": "#e22600",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#e1e999",
+              "on-secondary-container": "#6c4a00",
+              error: "#ba1a1a",
+              "on-background": "#1c1b1b",
+              "inverse-primary": "#ffb4a5",
+              "on-tertiary-fixed": "#1a1e00",
+              "surface-container-low": "#f6f3f2",
+              tertiary: "#596020",
+              "secondary-fixed": "#ffdeab",
+              "on-secondary-fixed-variant": "#5f4100",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#1c1b1b",
+              "on-primary-fixed": "#3e0400",
+              background: "#fcf9f8",
+              "on-tertiary": "#ffffff",
+              "on-primary-container": "#fffbff",
+              "surface-bright": "#fcf9f8",
+              "on-surface-variant": "#5e3f39",
+              "secondary-container": "#ffb615",
+              outline: "#936e67",
+              "tertiary-fixed-dim": "#c4cc80",
+              "secondary-fixed-dim": "#ffba30",
+              secondary: "#7d5700",
+              "surface-variant": "#e5e2e1",
+              "primary-fixed": "#ffdad3",
+              "tertiary-container": "#727936",
+              primary: "#b51c00",
+              "on-tertiary-fixed-variant": "#444b0b",
+              "inverse-on-surface": "#f3f0ef",
+              "on-tertiary-container": "#feffdc",
+              "surface-tint": "#b91d00",
+              "on-primary-fixed-variant": "#8e1400",
+              surface: "#fcf9f8",
+              "surface-container-highest": "#e5e2e1",
+              "on-secondary-fixed": "#271900",
+              "inverse-surface": "#313030",
+              "surface-container-high": "#eae7e7",
+              "on-secondary": "#ffffff",
+              "error-container": "#ffdad6",
+            },
+            fontFamily: {
+              headline: ["Epilogue", "sans-serif"],
+              body: ["Manrope", "sans-serif"],
+              label: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .editorial-shadow {
+        box-shadow: 0 20px 40px rgba(28, 27, 27, 0.06);
+      }
+      body {
+        background-color: #fcf9f8;
+      }
+    </style>
+  </head>
+  <body class="font-body text-on-background min-h-screen flex flex-col">
+    <main class="flex-grow flex flex-col md:flex-row w-full overflow-hidden">
+      <!-- Image Section: Left Column -->
+      <section
+        class="relative hidden md:block md:w-1/2 lg:w-3/5 h-screen sticky top-0"
+      >
+        <img
+          alt="Gourmet roasted vegetables"
+          class="absolute inset-0 w-full h-full object-cover"
+          data-alt="Close-up of artisan roasted root vegetables with rosemary sprigs on dark textured ceramic, warm atmospheric lighting and soft shadows"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWweoi7k-gjXA18MERm3pYiwpu0gqwo6HbPuBrsa5Dwsk8SumA__pzg5mK4QmFALMpCXPzgVloy27TXCVY6M0qtoi5eH9cJDnec5F7kecXF1ydc-fSW9iUzB92_bu_mrJrnO06YIimPyqAQj-tLY0fGFzJk5ywIeEJ54x5-XXOZf8HxTVl84ttvCdFqs-5nOwIDsU7VJ0S02abExep-kwj95VqtZiwG7P1Du8UvWrhKSujh-83tTyDqWTd7mKtrmnP64a66OiWu1A"
+        />
+        <!-- Branding Overlay -->
+        <div class="absolute top-12 left-12 z-20">
+          <span
+            class="text-3xl font-black text-white uppercase tracking-tighter mix-blend-difference"
+          >
+            The Gastronomic Editorial
+          </span>
+        </div>
+        <!-- Image Caption Overlay -->
+        <div
+          class="absolute bottom-12 left-12 right-12 z-20 p-8 bg-surface/70 backdrop-blur-xl rounded-xl border border-white/20 editorial-shadow max-w-md"
+        >
+          <span
+            class="text-tertiary font-bold tracking-widest uppercase text-xs block mb-2"
+            >Issue No. 42</span
+          >
+          <h2 class="font-headline text-2xl text-on-surface mb-4 leading-tight">
+            "A kitchen is only as good as the intention behind the ingredients."
+          </h2>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden"
+            >
+              <img
+                alt="Chef portrait"
+                data-alt="Portrait of a professional chef in a clean white apron looking thoughtfully into the distance, soft studio lighting"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsNchfZ3CH8FE8z2YhkXdq0EpOyY6Jpo_E7foAoxVQY61o1m_8B9rhME1O9isA1Q8tgilFJfI3k47wl7YldeE0BTMva2bMKxxDg36mu_a7ICB3UlZ_wPiG41IdA-lT14IJZ7SD2Z4eWqGEDGSqlEs46I8b3QWtsB-hc7JFPuvz-mx3ydlAm7Rben_I0N5c-wriamW1PMigKYfBeAZPIsgq_bHILObg77JlCKQThtGkb0dcUffbxo9lmW7_OVS8Hg1_94K0N06TqTM"
+              />
+            </div>
+            <div>
+              <p class="text-sm font-bold text-on-surface">Chef Elena Vance</p>
+              <p class="text-xs text-on-surface-variant">Executive Editor</p>
+            </div>
+          </div>
+        </div>
+        <!-- Texture Overlay -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-on-background/40 to-transparent pointer-events-none"
+        ></div>
+      </section>
+      <!-- Form Section: Right Column -->
+      <section
+        class="w-full md:w-1/2 lg:w-2/5 min-h-screen bg-surface flex flex-col items-center justify-center p-8 md:p-16 lg:p-24 overflow-y-auto"
+      >
+        <!-- Mobile Logo -->
+        <div class="md:hidden self-start mb-12">
+          <span
+            class="text-xl font-black text-primary uppercase tracking-tighter"
+          >
+            The Gastronomic Editorial
+          </span>
+        </div>
+        <div class="w-full max-w-md">
+          <header class="mb-10">
+            <h1
+              class="font-headline text-5xl md:text-6xl text-on-surface leading-[0.9] tracking-tighter mb-6"
+            >
+              Create your account
+            </h1>
+            <p class="text-on-surface-variant text-lg">
+              Join our exclusive community of culinary enthusiasts and
+              professional chefs.
+            </p>
+          </header>
+          <form class="space-y-6">
+            <!-- Username Field -->
+            <div class="space-y-2">
+              <label
+                class="block text-sm font-bold text-on-surface tracking-wide uppercase"
+                for="username"
+                >Username</label
+              >
+              <input
+                class="w-full px-5 py-4 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-on-surface-variant/50 font-medium"
+                id="username"
+                name="username"
+                placeholder="chef_gourmet"
+                type="text"
+              />
+            </div>
+            <!-- Email Field -->
+            <div class="space-y-2">
+              <label
+                class="block text-sm font-bold text-on-surface tracking-wide uppercase"
+                for="email"
+                >Email Address</label
+              >
+              <input
+                class="w-full px-5 py-4 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-on-surface-variant/50 font-medium"
+                id="email"
+                name="email"
+                placeholder="elena@editorial.com"
+                type="email"
+              />
+            </div>
+            <!-- Password Field -->
+            <div class="space-y-2">
+              <label
+                class="block text-sm font-bold text-on-surface tracking-wide uppercase"
+                for="password"
+                >Password</label
+              >
+              <div class="relative">
+                <input
+                  class="w-full px-5 py-4 bg-surface-container-highest border-none rounded-xl focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-on-surface-variant/50 font-medium"
+                  id="password"
+                  name="password"
+                  placeholder="••••••••"
+                  type="password"
+                />
+                <button
+                  class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60 hover:text-primary transition-colors"
+                  type="button"
+                >
+                  <span class="material-symbols-outlined">visibility</span>
+                </button>
+              </div>
+            </div>
+            <!-- Terms Checkbox -->
+            <div class="flex items-start gap-3 py-2">
+              <input
+                class="mt-1 rounded border-outline-variant text-primary focus:ring-primary"
+                id="terms"
+                type="checkbox"
+              />
+              <label
+                class="text-sm text-on-surface-variant leading-relaxed"
+                for="terms"
+              >
+                I agree to the
+                <a class="text-primary font-bold hover:underline" href="#"
+                  >Terms of Service</a
+                >
+                and
+                <a class="text-primary font-bold hover:underline" href="#"
+                  >Privacy Policy</a
+                >.
+              </label>
+            </div>
+            <!-- Submit Button -->
+            <button
+              class="w-full py-5 bg-primary text-on-primary font-bold text-lg rounded-full shadow-lg shadow-primary/20 hover:bg-primary-container hover:scale-[1.02] transition-all duration-200 uppercase tracking-widest flex items-center justify-center gap-2"
+              type="submit"
+            >
+              Register Account
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </form>
+          <footer class="mt-12 text-center">
+            <p class="text-on-surface-variant font-medium">
+              Already have an account?
+              <a
+                class="text-primary font-bold ml-1 hover:underline decoration-2 underline-offset-4 transition-all"
+                href="#"
+              >
+                Log in
+              </a>
+            </p>
+          </footer>
+        </div>
+        <!-- Secondary Footer Links (Mobile only or subtle) -->
+        <div
+          class="mt-auto pt-12 flex gap-6 text-[10px] font-bold text-on-surface-variant/40 uppercase tracking-widest"
+        >
+          <a class="hover:text-primary transition-colors" href="#">Privacy</a>
+          <a class="hover:text-primary transition-colors" href="#">Terms</a>
+          <a class="hover:text-primary transition-colors" href="#">Support</a>
+        </div>
+      </section>
+    </main>
+    <!-- Global Footer (Minimal) -->
+    <footer
+      class="bg-[#f6f3f2] dark:bg-stone-900 w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto w-full font-['Manrope'] text-sm tracking-wide"
+    >
+      <div class="text-[#b51c00] dark:text-[#ff3007] mb-6 md:mb-0">
+        <span class="text-lg font-bold text-stone-800 dark:text-stone-100"
+          >The Gastronomic Editorial</span
+        >
+      </div>
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <p class="text-stone-500 dark:text-stone-400">
+          © 2024 The Gastronomic Editorial. Organic Brutalism in Kitchen.
+        </p>
+        <div class="flex gap-6">
+          <a
+            class="text-stone-500 dark:text-stone-400 hover:text-[#b51c00] underline decoration-2 underline-offset-4 transition-opacity opacity-80 hover:opacity-100"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-stone-500 dark:text-stone-400 hover:text-[#b51c00] underline decoration-2 underline-offset-4 transition-opacity opacity-80 hover:opacity-100"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-stone-500 dark:text-stone-400 hover:text-[#b51c00] underline decoration-2 underline-offset-4 transition-opacity opacity-80 hover:opacity-100"
+            href="#"
+            >Cookie Settings</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

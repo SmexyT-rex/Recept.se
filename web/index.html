@@ -1,0 +1,912 @@
+<!doctype html>
+
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Gastronomic Editorial | Cook Fast. Eat Well.</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Manrope:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#271900",
+              "on-secondary-fixed-variant": "#5f4100",
+              "primary-container": "#e22600",
+              "error-container": "#ffdad6",
+              "on-tertiary-fixed": "#1a1e00",
+              "on-primary-fixed": "#3e0400",
+              "surface-tint": "#b91d00",
+              "inverse-on-surface": "#f3f0ef",
+              "on-tertiary": "#ffffff",
+              "surface-container-low": "#f6f3f2",
+              surface: "#fcf9f8",
+              "on-secondary-container": "#6c4a00",
+              "surface-dim": "#dcd9d9",
+              "outline-variant": "#e9bcb3",
+              "secondary-container": "#ffb615",
+              "secondary-fixed-dim": "#ffba30",
+              "on-secondary": "#ffffff",
+              "surface-variant": "#e5e2e1",
+              error: "#ba1a1a",
+              "on-primary-fixed-variant": "#8e1400",
+              "on-error-container": "#93000a",
+              "tertiary-container": "#727936",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#ffb4a5",
+              "surface-container": "#f0eded",
+              "tertiary-fixed-dim": "#c4cc80",
+              "surface-bright": "#fcf9f8",
+              "inverse-primary": "#ffb4a5",
+              "primary-fixed": "#ffdad3",
+              "surface-container-high": "#eae7e7",
+              outline: "#936e67",
+              tertiary: "#596020",
+              "tertiary-fixed": "#e1e999",
+              "on-surface-variant": "#5e3f39",
+              secondary: "#7d5700",
+              primary: "#b51c00",
+              "on-surface": "#1c1b1b",
+              background: "#fcf9f8",
+              "on-primary-container": "#fffbff",
+              "inverse-surface": "#313030",
+              "on-error": "#ffffff",
+              "on-background": "#1c1b1b",
+              "secondary-fixed": "#ffdeab",
+              "on-tertiary-fixed-variant": "#444b0b",
+              "on-primary": "#ffffff",
+              "surface-container-highest": "#e5e2e1",
+              "on-tertiary-container": "#feffdc",
+            },
+            fontFamily: {
+              headline: ["Epilogue"],
+              body: ["Manrope"],
+              label: ["Manrope"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .editorial-shadow {
+        box-shadow: 0 20px 40px rgba(28, 27, 27, 0.04);
+      }
+      .glass-nav {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .text-balanced {
+        text-wrap: balance;
+      }
+      #mobile-drawer {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      #mobile-drawer.translate-x-full {
+        transform: translateX(100%);
+      }
+      #mobile-drawer.translate-x-0 {
+        transform: translateX(0);
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  </head>
+  <body
+    class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-primary overflow-x-hidden"
+  >
+    <!-- TopNavBar - Redesigned Two-Tier Sticky Header with Responsive Drawer -->
+    <header
+      class="sticky top-0 w-full z-50 bg-white/80 dark:bg-stone-900/80 backdrop-blur-md border-b border-stone-200/20 dark:border-stone-800/20 shadow-sm dark:shadow-none transition-all duration-300"
+    >
+      <div
+        class="flex flex-col items-center w-full max-w-screen-2xl mx-auto px-6 py-4"
+      >
+        <!-- Top Tier: Logo centered & Mobile Trigger -->
+        <div
+          class="w-full flex items-center justify-between md:justify-center py-2 relative"
+        >
+          <!-- Mobile Menu Button (Visible only on small screens) -->
+          <button
+            aria-label="Open Menu"
+            class="md:hidden flex items-center p-2 -ml-2 text-stone-900 dark:text-stone-50"
+            id="menu-open"
+          >
+            <span class="material-symbols-outlined text-3xl">menu</span>
+          </button>
+          <a
+            class="text-2xl md:text-4xl font-black tracking-tighter text-stone-900 dark:text-stone-50 uppercase font-headline text-center"
+            href="#"
+          >
+            The Gastronomic Editorial
+          </a>
+          <!-- Mobile Action (Visible only on small screens) -->
+          <button
+            aria-label="Add Recipe"
+            class="md:hidden flex items-center bg-primary text-white p-2 rounded-full hover:scale-105 transition-transform"
+          >
+            <span class="material-symbols-outlined text-sm">add</span>
+          </button>
+        </div>
+        <!-- Bottom Tier: Navigation & Actions (Desktop Only) -->
+        <div
+          class="hidden md:flex w-full flex-row items-center justify-between mt-4 pt-4 border-t border-stone-100 dark:border-stone-800/50"
+        >
+          <nav
+            class="flex items-center gap-8 font-['Epilogue'] tracking-tight text-sm"
+          >
+            <a
+              class="text-[18px] text-[#b51c00] dark:text-[#ff3007] font-bold border-b-2 border-[#b51c00] pb-1 transition-all duration-200"
+              href="#"
+              >Home</a
+            >
+            <a
+              class="text-[18px] text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+              href="#"
+              >Categories</a
+            >
+            <a
+              class="text-[18px] text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200 transition-colors"
+              href="#"
+              >Favorites</a
+            >
+          </nav>
+
+          <div class="flex items-center gap-6">
+            <button
+              class="bg-[#b51c00] text-white px-8 py-2.5 rounded-full font-headline font-bold uppercase text-xs tracking-widest hover:opacity-90 active:scale-95 transition-all duration-200"
+            >
+              Add Recipe
+            </button>
+
+            <button
+              class="log-in bg-transparent text-[#b51c00] border-[#b51c00] border-2 px-8 py-2 rounded-full font-headline font-bold uppercase text-xs tracking-widest hover:bg-[#b51c00] hover:text-white active:scale-95 transition-all duration-200 box-content"
+            >
+              Log in
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Mobile Drawer Menu -->
+    <div
+      class="fixed inset-0 z-[60] translate-x-full pointer-events-none transition-transform duration-500"
+      id="mobile-drawer"
+    >
+      <div
+        class="absolute inset-0 duration-300 pointer-events-none"
+        id="drawer-overlay"
+      ></div>
+      <div
+        class="absolute right-0 top-0 bottom-0 w-[100%] max-w-sm bg-white dark:bg-stone-950 shadow-2xl flex flex-col pointer-events-auto"
+      >
+        <div
+          class="p-6 flex items-center justify-between border-b border-stone-100 dark:border-stone-800"
+        >
+          <span
+            class="text-xs font-black uppercase tracking-[0.2em] text-stone-400"
+            >Navigation</span
+          >
+          <button class="p-2 text-stone-900 dark:text-stone-50" id="menu-close">
+            <span class="material-symbols-outlined text-3xl">close</span>
+          </button>
+        </div>
+        <div class="flex-1 overflow-y-auto py-10 px-8">
+          <nav class="flex flex-col gap-8">
+            <a class="text-3xl font-headline font-black text-primary" href="#"
+              >Explore</a
+            >
+            <a
+              class="text-3xl font-headline font-black text-stone-900 dark:text-stone-100"
+              href="#"
+              >Categories</a
+            >
+            <a
+              class="text-3xl font-headline font-black text-stone-900 dark:text-stone-100"
+              href="#"
+              >Favorites</a
+            >
+            <button
+              class="log-in bg-[#b51c00] text-white px-8 py-2.5 rounded-full font-headline font-bold uppercase text-xs tracking-widest hover:opacity-90 active:scale-95 transition-all duration-200"
+            >
+              Log in
+            </button>
+          </nav>
+          <div class="mt-16 space-y-8">
+            <div class="space-y-4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main>
+      <!-- Hero Section -->
+      <section
+        class="relative min-height-[921px] pt-16 md:pt-32 pb-32 px-6 md:px-12 max-w-[1600px] mx-auto overflow-hidden"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          <div class="lg:col-span-7 z-10">
+            <h1
+              class="font-headline font-black text-5xl md:text-8xl lg:text-9xl leading-[0.9] -tracking-[0.04em] text-on-surface mb-10 text-balanced"
+            >
+              Cook Fast. <br />
+              <span class="text-primary">Eat Well.</span>
+            </h1>
+            <p
+              class="font-body text-xl md:text-2xl text-on-surface-variant max-w-xl mb-16 leading-relaxed"
+            >
+              Delicious recipes designed for your life, ready in minutes.
+              Experience high-end culinary craft without the long hours.
+            </p>
+            <div class="flex flex-wrap gap-4 md:gap-6">
+              <button
+                class="bg-primary text-on-primary px-8 md:px-12 py-5 md:py-6 rounded-full font-headline font-extrabold text-base md:text-lg flex items-center gap-3 hover:scale-105 active:scale-95 transition-all shadow-lg"
+              >
+                Explore Recipes
+                <span
+                  class="material-symbols-outlined"
+                  data-icon="arrow_forward"
+                  >arrow_forward</span
+                >
+              </button>
+              <button
+                class="bg-surface-container-highest text-on-surface px-8 md:px-12 py-5 md:py-6 rounded-full font-headline font-extrabold text-base md:text-lg hover:scale-105 active:scale-95 transition-all"
+              >
+                Our Philosophy
+              </button>
+            </div>
+          </div>
+          <div class="lg:col-span-5 relative">
+            <div
+              id="featured-recipe-card"
+              class="relative rounded-[2.5rem] md:rounded-[3rem] overflow-hidden editorial-shadow transform rotate-1 hover:rotate-0 transition-transform duration-700"
+            >
+              <img
+                id="featured-recipe-image"
+                alt=""
+                class="w-full h-[450px] md:h-[650px] object-cover"
+                data-alt="close-up of a vibrant healthy bowl with salmon, avocado, and fresh greens on a stone textured surface with soft natural light"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbpQaid6ghTCz1D2TrVPG_KGa-21FxOGTCarUDo4L87VEjBtuG75vwbVk1FJHP4mOGVwxavUlE8F9cN5rahYjU7LuHKlch-PRodEdec9oVvqnjt1GZnQKGqXuGNiku6_SFWzoCPu-YMiO78XUmloOq3dHncLDKiPXkjeSSzkp1BAePfhejROMgsjWRps6gkm0OZeP6vn59jf1YAOF9sSM5ZtZ0kXESJHHDx3cE6ug8-53_ocFKppATE1UJAktOM5VGu-8oSZv4bds"
+              />
+              <div
+                class="absolute bottom-6 md:bottom-8 left-6 md:left-8 right-6 md:right-8 glass-nav bg-white/40 p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-white/20"
+              >
+                <p
+                  class="text-[10px] md:text-xs uppercase tracking-widest font-bold text-on-primary-fixed mb-2"
+                >
+                  Featured Meal
+                </p>
+                <h3
+                  id="featured-recipe-title"
+                  class="font-headline text-xl md:text-2xl font-black text-on-surface leading-tight"
+                >
+                  15-Min Citrus Glazed Salmon
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Categories: Bento Grid -->
+      <section class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-low/50">
+        <div class="max-w-7xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-6"
+          >
+            <div>
+              <h2
+                class="font-headline text-4xl md:text-5xl font-black mb-4 md:6 tracking-tight"
+              >
+                Explore by Taste
+              </h2>
+              <p class="text-on-surface-variant text-lg">
+                Curated collections for every craving.
+              </p>
+            </div>
+            <a
+              class="text-primary font-bold flex items-center gap-2 group"
+              href="#"
+            >
+              See all categories
+              <span
+                class="material-symbols-outlined group-hover:translate-x-1 transition-transform"
+                data-icon="chevron_right"
+                >chevron_right</span
+              >
+            </a>
+          </div>
+          <div
+            class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 h-auto md:h-[450px]"
+          >
+            <div
+              class="col-span-2 row-span-2 relative group overflow-hidden rounded-[2rem] md:rounded-[2.5rem] bg-secondary-container h-[300px] md:h-auto"
+            >
+              <img
+                class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000"
+                data-alt="array of colorful quick healthy vegetable bowls on a light marble table top view"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbn8GQwFlkee49vZCb-IfB1LvLxIjgTaBge3KK_D_NJZT8yEq1B3cJJ99TTwGUc3ArCy6CeSlqM6npTgM0BO7urAIKI2nLCs7xsjB_5Ecgk7ZCyp_q3o-64uFy8lD9oP0in0DvyOXQGBa9C1V8giKU91uPIRRGmA_oN_zcyDC0y4ifGnQT4mIscrNiwDl5w344wQRX7xY2NMykiLlQOMHLr4UfbNXQHPZs5vwdzyvRh9wyhm-G-ZnLbMi4pgADSXn447qPbbQ6Jss"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
+              ></div>
+              <div class="absolute bottom-6 md:bottom-10 left-6 md:left-10">
+                <span
+                  class="bg-secondary text-on-secondary px-3 md:4 py-1 rounded-full text-[10px] md:text-xs font-bold mb-2 md:3 inline-block"
+                  >Popular</span
+                >
+                <h4
+                  class="text-white font-headline text-3xl md:text-4xl font-black"
+                >
+                  Quick Meals
+                </h4>
+              </div>
+            </div>
+            <div
+              class="relative group overflow-hidden rounded-[2rem] md:rounded-[2.5rem] bg-tertiary-container h-[180px] md:h-auto"
+            >
+              <img
+                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
+                data-alt="fresh green salad with diverse vegetables and seeds in a minimalist white bowl"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuALhQn9DsNV0mcMcyomoYMW9njnrNRs_ieU65gx5y_Zfz_puo594mfv4a-nXDSRtrw6Qbj35rDkV9dpGBU0Jwo8WNNWQ8oovojr0ImOO8LtLMlpihMEFP8uk5Gwir_mXU_ufKyPDycraTjdCb1LlJa8o6a467geZS6uwEX_e_0f6DZB44gQQ1Hf_5PAU5xB0Ihy_1fLrXJPrOB449AO6dZPWHGfj7WYMjnKXoHfQgHEiViZGlnh61HyBXReX7_I1p5qLvxadlITjxs"
+              />
+              <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
+                <h4
+                  class="text-white font-headline text-lg md:text-xl font-bold"
+                >
+                  Healthy
+                </h4>
+              </div>
+            </div>
+            <div
+              class="relative group overflow-hidden rounded-[2rem] md:rounded-[2.5rem] bg-primary-container h-[180px] md:h-auto"
+            >
+              <img
+                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
+                data-alt="steaming hot pasta dish with rich tomato sauce and basil leaves"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh5uKQDNCvtQfQxMR-m16P6MhFSTdT2pjObyKLwabePSbFLlbwZpgVP2A3YGvW5YX-ZZdr3aHTfrMMIKLsPnT-htGKsF8eztvlfRUv6HZH7845K6CTS-JrgxJ_K1Ln3_ReNL4BDRr6YMTF2gqZPbNuSkTNgCZgPzMTi-Vdf9CRot4DB0SfY39y0JMspUCaC97o0-ij_SUEUfvH75o9ax4n2IPJpFMn5txj-M6e8pvGufiHYnOl2doV1a641HA-BIMwnX8KVHrT7sc"
+              />
+              <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
+                <h4
+                  class="text-white font-headline text-lg md:text-xl font-bold"
+                >
+                  Comfort
+                </h4>
+              </div>
+            </div>
+            <div
+              class="relative group overflow-hidden rounded-[2rem] md:rounded-[2.5rem] bg-surface-container-highest lg:col-start-3 h-[180px] md:h-auto"
+            >
+              <img
+                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
+                data-alt="elegant chocolate dessert with gold leaf and raspberry garnish on dark plate"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOwwu6qQffwVBPlQ5Onky8Kw4fomY6gOHSGNxXwQk2V6ykTOWh8MgBNPsJ_P5-J_AAg2GGSonMqhiayhmx5Nbbn9KchjEessFWTi2ImOpndTRou8J1OV1rZgoFGG-6lJIgzLh-J6_N-csUlSSPbS3ynLBhIl0OSS-9oYery54WHKwRaZtgwOhRK8U2ioFF7aLifYY5iWPaUaf-D1q1tDgYsQVcdja5iGMjYCuipnUIaec52YDgRX-B9FVbAJLh1HgmaaUqgdLqiNU"
+              />
+              <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
+                <h4
+                  class="text-on-surface font-headline text-lg md:text-xl font-bold"
+                >
+                  Desserts
+                </h4>
+              </div>
+            </div>
+            <div
+              class="relative group overflow-hidden rounded-[2rem] md:rounded-[2.5rem] bg-on-tertiary-fixed-variant lg:col-start-4 lg:col-span-2 h-[180px] md:h-auto"
+            >
+              <img
+                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
+                data-alt="grilled chicken breast with quinoa and steamed broccoli high protein meal"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIECN2uMkulyNR1X05RV2z3_6y52By8WLUYiP3C7tzb-VMEyoIpabYEmM9m_9au43oHay7K-oFYHBWet28k_wk0y8cor_aDgd03iU8iWVaxqUrIa0pvRKzBQNPVlyhqUGCQ33SFWGMmLYcYkHxAY5MKUNndjbfPOjlptEXOY79tOY9l3XRsbYQru9ltMuwppxWc1TDiayH3hDuJt-JlvJMWEhDOj3IIqPE3GI7ykIZSZCdS3NJ7pL1H7EngFz-MZQyvLVh_SNuhm4"
+              />
+              <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6">
+                <h4
+                  class="text-white font-headline text-lg md:text-xl font-bold"
+                >
+                  High-Protein
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Weekly Selections -->
+      <section class="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
+        <h2
+          class="font-headline text-4xl md:text-5xl font-black mb-16 md:mb-20 tracking-tight text-center md:text-left"
+        >
+          Weekly Selections
+        </h2>
+        <div class="space-y-24 md:space-y-32">
+          <!-- Recipe 1: Simplified Expanded Preview -->
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 bg-white rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden editorial-shadow"
+          >
+            <div
+              class="lg:col-span-6 h-[300px] md:h-[450px] lg:h-auto relative"
+            >
+              <img
+                id="second-recipe-image"
+                class="w-full h-full object-cover"
+                data-alt="close up of artisan fresh pasta with pesto and pine nuts being tossed in a pan"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9PqELJBMjPluQaigvWxwa7jlxYTw5AkVWo75huhXhfH_Nr1orRmnvrXZ7FGMKOjoW-PTDPcsii5Y0BY4CnDA5PmrjxtZ1amzta_Dfktiuksf-GX1N2UK_7Lrt9O_Mpc_SgiEUq5f7ROaNCCifPr-y-KXK0iM9fmecbSPHP_UpIfKCCobU_-DhfBV4t6ROqUGqjFBkm8c8_2WgcDgyb4a0BLSHQcl36JhJVsihNVbCQPMz-Be_UcgZZycuuTk_S_SHpCqErRTVtA4"
+              />
+              <div class="absolute top-6 md:top-10 left-6 md:left-10">
+                <div
+                  class="bg-white/95 glass-nav px-4 md:5 py-2 md:2.5 rounded-full flex items-center gap-2 shadow-sm"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary text-sm"
+                    data-icon="schedule"
+                    >schedule</span
+                  >
+                  <span class="text-xs md:text-sm font-bold tracking-tight"
+                    >60 MINS</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="lg:col-span-6 p-8 md:p-16 lg:p-20 flex flex-col justify-center"
+            >
+              <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+                <span
+                  class="text-[10px] md:text-xs font-black uppercase tracking-widest text-primary/80"
+                  >Low Carb</span
+                >
+                <span
+                  class="w-1 md:1.5 h-1 md:1.5 rounded-full bg-stone-200"
+                ></span>
+                <span
+                  class="text-[10px] md:text-xs font-black uppercase tracking-widest text-stone-500"
+                  >Beginner Friendly</span
+                >
+              </div>
+              <h3
+                id="second-recipe-title"
+                class="font-headline text-3xl md:text-4xl lg:text-5xl font-black mb-6 md:10 leading-tight tracking-tighter"
+              >
+                Wild Garlic &amp; Walnut Pesto Penne
+              </h3>
+              <p
+                id="second-recipe-description"
+                class="text-on-surface-variant text-lg md:text-xl mb-8 md:12 leading-relaxed italic border-l-2 border-primary/20 pl-6 md:8"
+              >
+                "A spring classic reimagined for modern kitchens. The pungent
+                kick of wild garlic pairs beautifully with the earthy crunch of
+                toasted walnuts."
+              </p>
+              <div class="flex items-center">
+                <button
+                  class="text-primary font-black uppercase text-sm tracking-widest flex items-center gap-3 group"
+                >
+                  Full Recipe
+                  <span
+                    class="material-symbols-outlined group-hover:translate-x-2 transition-transform"
+                    data-icon="arrow_right_alt"
+                    >arrow_right_alt</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Grid Style Cards -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24"
+          >
+            <div class="group cursor-pointer">
+              <div
+                class="relative aspect-[4/3] rounded-[2rem] md:rounded-[3rem] overflow-hidden editorial-shadow mb-6 md:10"
+              >
+                <img
+                  id="third-recipe-image"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                  data-alt="glistening honey glazed ribs served on a dark rustic wooden board with herbs"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMw47JcGQHC1sKfKny3WOAQKyPr0GB7OI8I3q8Ecs7VGOBn4AuDZaIJkT51ohlcsPvrDTyoFVjCANcAitONQEj3H7AgCQ5b_TQ8hs2ayar9cWz62JTlL5bXS_QZOn_u2Jm2wP3d5ZFL2XSx6kwmlQSxnS_RsB-TLPtWAMWyR7Lfe74fS5uitxl1b9X7c7z-2TcP8Qu75qtWFElVUqe0FSZx806j1G9lHVd7R8GaDVUAdzXCl_Zb_b9KGChgrfjWLi1nP_9ZJgJXho"
+                />
+                <div class="absolute bottom-6 md:bottom-8 left-6 md:left-8">
+                  <div
+                    class="bg-white/95 backdrop-blur-md px-4 md:5 py-2 md:2.5 rounded-full flex items-center gap-2 shadow-sm"
+                  >
+                    <span
+                      class="material-symbols-outlined text-secondary text-sm"
+                      data-icon="bolt"
+                      >bolt</span
+                    >
+                    <span class="text-xs md:text-sm font-bold tracking-tight"
+                      >45 MINS</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="px-2 md:px-4">
+                <h3
+                  id="third-recipe-title"
+                  class="font-headline text-2xl md:text-3xl font-black mb-4 md:5 tracking-tight"
+                >
+                  Sticky Umami Short Ribs
+                </h3>
+                <p
+                  class="text-on-surface-variant text-base md:text-lg leading-relaxed mb-6 md:8 line-clamp-2"
+                  id="third-recipe-description"
+                >
+                  Slow-braised flavor achieved in record time using pressure
+                  cooking techniques.
+                </p>
+                <div
+                  class="flex items-center justify-between border-t border-stone-100 pt-6"
+                >
+                  <span
+                    class="text-[10px] md:text-xs font-black uppercase tracking-widest text-stone-400"
+                    >Intermediate Skill</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform"
+                    data-icon="east"
+                    >east</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="group cursor-pointer">
+              <div
+                class="relative aspect-[4/3] rounded-[2rem] md:rounded-[3rem] overflow-hidden editorial-shadow mb-6 md:10"
+              >
+                <img
+                  id="fourth-recipe-image"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                  data-alt="vibrant mediterranean spread with hummus, olives, pita bread and fresh vegetables"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIl8IJhCXtyAOOoZvN0rPknkcYIobYgesNAr6FZi2doM23fU-LLMycO3a6AcBkvscXBnkPdHzQg5SZdjnDazOUo6T4BP4FPm2SCyvpCEZdJe-WRTb5UMXXdzLOZmuMz0kEOKo5lQFTuig62kDJbF44PE2-llDrYm8e1X74oq3Rx7-kL12pYaRg6LeKvB--yV4Qg9JEx-12iCdoMLndeIA5bcWvvVnoS_1IscwUTXgixRLEsmVjt9Kh6JYw0ai8VtjyfbRlq4JrZLY"
+                />
+                <div class="absolute bottom-6 md:bottom-8 left-6 md:left-8">
+                  <div
+                    class="bg-white/95 backdrop-blur-md px-4 md:5 py-2 md:2.5 rounded-full flex items-center gap-2 shadow-sm"
+                  >
+                    <span
+                      class="material-symbols-outlined text-tertiary text-sm"
+                      data-icon="eco"
+                      >eco</span
+                    >
+                    <span class="text-xs md:text-sm font-bold tracking-tight"
+                      >20 MINS</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="px-2 md:px-4">
+                <h3
+                  id="fourth-recipe-title"
+                  class="font-headline text-2xl md:text-3xl font-black mb-4 md:5 tracking-tight"
+                >
+                  The Modern Meze Board
+                </h3>
+                <p
+                  class="text-on-surface-variant text-base md:text-lg leading-relaxed mb-6 md:8 line-clamp-2"
+                  id="fourth-recipe-description"
+                >
+                  An assembly-focused masterpiece featuring smoky harissa hummus
+                  and quick-pickled onions.
+                </p>
+                <div
+                  class="flex items-center justify-between border-t border-stone-100 pt-6"
+                >
+                  <span
+                    class="text-[10px] md:text-xs font-black uppercase tracking-widest text-stone-400"
+                    >Easy Assembly</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform"
+                    data-icon="east"
+                    >east</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Chef's Fast-Scan Grid -->
+      <section class="py-24 md:py-32 bg-stone-100/30">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+          <div class="text-center mb-16 md:24">
+            <h2
+              class="font-headline text-3xl md:text-4xl font-black mb-4 md:6 italic text-secondary tracking-tight"
+            >
+              Chef's Fast-Scan
+            </h2>
+            <p class="text-on-surface-variant text-base md:text-lg">
+              Low effort, high reward ideas trending right now.
+            </p>
+          </div>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10"
+          >
+            <!-- Scan Item 1 -->
+            <div
+              class="bg-white p-5 md:6 rounded-[2rem] md:rounded-[2.5rem] flex flex-col gap-6 group editorial-shadow border border-stone-100/50"
+            >
+              <div
+                class="h-40 md:48 overflow-hidden rounded-[1.5rem] md:rounded-[1.75rem]"
+              >
+                <img
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  data-alt="close up of a refreshing avocado toast with chili flakes and radish slices"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRHU8ZOaQ7UST5HMxUatbbasLDbCoc6BvBX2SgNKWjmdM34kOc77lbQN4imtQsuNaZliA8HTGOL8lCkppJHpSsqedi1Ip5MTWYRHri-FYiVLiBJYRTJuHv3DHCSMOCw5-kkOiEkLWitdyoEPV_4HKVKqIly2RBue9SVty1PDArbvBXM5Vpcgfyqfr0Ox2qIG_Ln3FddnxXFKcxQYIDoJPhvMVWyhWeuYo6_WkIIq9JB2ETZpqO6EwC34CWRJDvLoWMM_WoLhxrImQ"
+                />
+              </div>
+              <div class="px-2">
+                <h5 class="font-headline font-black text-xl leading-tight mb-3">
+                  Spiced Avo Smash
+                </h5>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="text-[10px] font-black text-primary uppercase tracking-[0.2em]"
+                    >Breakfast</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-stone-200"></span>
+                  <span
+                    class="text-[10px] font-black text-stone-400 uppercase tracking-[0.2em]"
+                    >5 MINS</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Scan Item 2 -->
+            <div
+              class="bg-white p-5 md:6 rounded-[2rem] md:rounded-[2.5rem] flex flex-col gap-6 group editorial-shadow border border-stone-100/50"
+            >
+              <div
+                class="h-40 md:48 overflow-hidden rounded-[1.5rem] md:rounded-[1.75rem]"
+              >
+                <img
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  data-alt="a beautifully presented bowl of seasonal roasted vegetables with balsamic glaze"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBATQFeYViT8EJ7mrp1LbaizeNAKDczEDriEUI98YI-QE9WxpOVb3rgsiQJlQeuqKizZhZBW6A8ezjVL8jaPUMvUJR-XuEGTgk7fH4Tfp2jwY8kn4PlBwaTI89E47-8JqiNC_KbF764M90sTQGdwHfYUyZUb85R8gb1EvX4R7tNddLbeoT0SvLETZpof1BjanZ-ilmb9zBnMYkFq23pDcykAJdykY1cStvLbWwgMRhC74rVFvHf976UPB7BjNTAbw5Ig82Ia_PmF_k"
+                />
+              </div>
+              <div class="px-2">
+                <h5 class="font-headline font-black text-xl leading-tight mb-3">
+                  Root Roast Bowl
+                </h5>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="text-[10px] font-black text-primary uppercase tracking-[0.2em]"
+                    >Side</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-stone-200"></span>
+                  <span
+                    class="text-[10px] font-black text-stone-400 uppercase tracking-[0.2em]"
+                    >15 MINS</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Scan Item 3 -->
+            <div
+              class="bg-white p-5 md:6 rounded-[2rem] md:rounded-[2.5rem] flex flex-col gap-6 group editorial-shadow border border-stone-100/50"
+            >
+              <div
+                class="h-40 md:48 overflow-hidden rounded-[1.5rem] md:rounded-[1.75rem]"
+              >
+                <img
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  data-alt="freshly baked artisan focaccia with rosemary and sea salt grains visible"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRXsgVd1f8LI2JX11BxPTMqQOVGXnQyDy9qGIBE9mkIa5_c7g-x2kE3PrVqzWc6AsfSXVceVcvStSCA686Dy7ydDxOs6j8woMpMO0vRveZfi2q3rpMcKAWU8YjYf3hZ6KTb5ICI0vFjQldbO092D8MENDvLmwzb5f-e3r85IKSgEnV1caDZlezOFNSUlB7ViqEZK3LF_4BMg2H1MgrFmfJLvuuawk-H4N0o0L1v11rvIZ2yaiNvSCDZflyGiXYMGtdOXUoKRZtDU0"
+                />
+              </div>
+              <div class="px-2">
+                <h5 class="font-headline font-black text-xl leading-tight mb-3">
+                  Lazy Focaccia
+                </h5>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="text-[10px] font-black text-primary uppercase tracking-[0.2em]"
+                    >Baking</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-stone-200"></span>
+                  <span
+                    class="text-[10px] font-black text-stone-400 uppercase tracking-[0.2em]"
+                    >10 MIN PREP</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Scan Item 4 -->
+            <div
+              class="bg-white p-5 md:6 rounded-[2rem] md:rounded-[2.5rem] flex flex-col gap-6 group editorial-shadow border border-stone-100/50"
+            >
+              <div
+                class="h-40 md:48 overflow-hidden rounded-[1.5rem] md:rounded-[1.75rem]"
+              >
+                <img
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  data-alt="vibrant tropical smoothie bowl with fruit toppings and seeds"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfL6KOoJbYYibcFfnwH752zC_UYfadTzoBmWHgBpfL4zKufZCX8uTPqnS6Hs0vpDFXMFs8OATYsYe9TnSZa9Hw_whPPakguU-ZJilFwEfiV0K7o1NsR8QHYadMN7DfsrEloLvAbnxLuc59nvP7rbjNfYbjXiENKoYgtQYPOGGzqeT1sJuMvW7o7o-U3IZoQ1W1-r2gRs-yh4AY7yGnPCloLqkOJMSDyN066rz9hPz3zhJ7UwvoKd7YXpbFTAPovk6Q3T4-x1EfPpE"
+                />
+              </div>
+              <div class="px-2">
+                <h5 class="font-headline font-black text-xl leading-tight mb-3">
+                  Açaí Flash
+                </h5>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="text-[10px] font-black text-primary uppercase tracking-[0.2em]"
+                    >Snack</span
+                  >
+                  <span class="w-1 h-1 rounded-full bg-stone-200"></span>
+                  <span
+                    class="text-[10px] font-black text-stone-400 uppercase tracking-[0.2em]"
+                    >3 MINS</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Final CTA Section -->
+      <section class="py-24 md:py-48 px-6">
+        <div
+          class="max-w-5xl mx-auto bg-primary rounded-[3rem] md:rounded-[5rem] p-12 md:p-32 text-center text-on-primary relative overflow-hidden editorial-shadow"
+        >
+          <div
+            class="absolute top-0 right-0 w-96 h-96 bg-primary-container rounded-full blur-[120px] opacity-40 -translate-y-1/2 translate-x-1/2"
+          ></div>
+          <div class="relative z-10">
+            <h2
+              class="font-headline text-4xl md:text-7xl font-black mb-8 md:10 leading-none -tracking-[0.03em] text-balanced"
+            >
+              Your best meal is <br />
+              15 minutes away.
+            </h2>
+            <p
+              class="text-lg md:text-2xl opacity-90 max-w-2xl mx-auto mb-12 md:16 font-medium leading-relaxed"
+            >
+              Join 200,000+ home chefs elevating their daily routine with
+              recipes that respect your time and palate.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8"
+            >
+              <button
+                class="bg-white text-primary px-10 md:14 py-5 md:6 rounded-full font-headline font-black text-lg md:text-xl hover:scale-105 active:scale-95 transition-all w-full sm:w-auto"
+              >
+                Start Cooking
+              </button>
+              <button
+                class="border-2 border-white/40 text-white px-10 md:14 py-5 md:6 rounded-full font-headline font-black text-lg md:text-xl hover:bg-white hover:text-primary transition-all w-full sm:w-auto"
+              >
+                Get the App
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="bg-[#f6f3f2] dark:bg-stone-950 w-full py-16 md:20 px-6 md:10"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-start max-w-7xl mx-auto gap-12 md:16 mb-16 md:20"
+      >
+        <div class="max-w-sm">
+          <div
+            class="text-xl md:text-2xl font-black text-stone-800 dark:text-stone-200 mb-6 md:8 font-headline uppercase tracking-tighter"
+          >
+            The Gastronomic Editorial
+          </div>
+          <p
+            class="font-['Manrope'] text-sm tracking-wide text-stone-500 dark:text-stone-400 leading-relaxed"
+          >
+            Crafting the future of home cooking through editorial precision and
+            modern kitchen efficiency. Join the movement of purposeful eating.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-12 md:16">
+          <div>
+            <h5
+              class="text-xs font-black uppercase tracking-widest text-[#b51c00] mb-6 md:8"
+            >
+              Navigate
+            </h5>
+            <ul class="space-y-3 md:4 font-['Manrope'] text-sm">
+              <li>
+                <a
+                  class="text-stone-500 hover:text-[#b51c00] transition-colors hover:underline decoration-[#b51c00] underline-offset-4"
+                  href="#"
+                  >Explore</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-stone-500 hover:text-[#b51c00] transition-colors hover:underline decoration-[#b51c00] underline-offset-4"
+                  href="#"
+                  >Categories</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-stone-500 hover:text-[#b51c00] transition-colors hover:underline decoration-[#b51c00] underline-offset-4"
+                  href="#"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-stone-500 hover:text-[#b51c00] transition-colors hover:underline decoration-[#b51c00] underline-offset-4"
+                  href="#"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h5
+              class="text-xs font-black uppercase tracking-widest text-[#b51c00] mb-6 md:8"
+            >
+              Legal
+            </h5>
+            <ul class="space-y-3 md:4 font-['Manrope'] text-sm">
+              <li>
+                <a
+                  class="text-stone-500 hover:text-[#b51c00] transition-colors hover:underline decoration-[#b51c00] underline-offset-4"
+                  href="#"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  class="text-stone-500 hover:text-[#b51c00] transition-colors hover:underline decoration-[#b51c00] underline-offset-4"
+                  href="#"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pt-10 border-t border-stone-200 dark:border-stone-800/50 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6 md:8"
+      >
+        <p
+          class="font-['Manrope'] text-sm tracking-wide text-stone-500 dark:text-stone-400 text-center md:text-left"
+        >
+          © 2024 The Gastronomic Editorial. All rights reserved.
+        </p>
+        <div class="flex gap-8">
+          <span
+            class="material-symbols-outlined text-stone-400 cursor-pointer hover:text-[#b51c00] transition-colors"
+            data-icon="public"
+            >public</span
+          >
+          <span
+            class="material-symbols-outlined text-stone-400 cursor-pointer hover:text-[#b51c00] transition-colors"
+            data-icon="share"
+            >share</span
+          >
+        </div>
+      </div>
+    </footer>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
